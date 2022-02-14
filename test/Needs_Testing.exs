@@ -10,7 +10,12 @@ defmodule Upcycle_Ext.NeedsTesting do
 
   test "displays need", %{conn: conn} do
     user = fake_agent!()
-    intent = fake_intent!(user)
+
+    attrs = %{
+      provider: user.id
+    }
+
+    intent = Intents.create(user, intent(attrs))
 
     {:ok, view, html} = live(conn, @path)
 
