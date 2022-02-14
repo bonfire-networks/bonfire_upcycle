@@ -12,10 +12,11 @@ defmodule Upcycle_Ext.NeedsTesting do
     user = fake_agent!()
 
     attrs = %{
-      provider: user.id
+      provider: user.id,
+      name: "Lumber"
     }
 
-    intent = Intents.create(user, intent(attrs))
+    assert {:ok, intent} = Intents.create(user, intent(attrs))
 
     {:ok, view, html} = live(conn, @path)
 
