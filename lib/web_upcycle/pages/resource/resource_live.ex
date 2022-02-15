@@ -65,7 +65,7 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
       9 -> "Sep"
       10 -> "Oct"
       11 -> "Nov"
-      12 -> "Dev"
+      12 -> "Dec"
     end
 
     "#{week} #{month} #{date.day} #{date.year}"
