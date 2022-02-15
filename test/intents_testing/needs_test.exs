@@ -8,7 +8,7 @@ defmodule Upcycle_Ext.NeedsTesting do
 
   @path "/upcycle/discover"
 
-  test "displays need", %{conn: conn} do
+  test "displays need" do
     user = fake_agent!()
 
     attrs = %{
@@ -17,6 +17,8 @@ defmodule Upcycle_Ext.NeedsTesting do
     }
 
     assert {:ok, intent} = Intents.create(user, intent(attrs))
+
+    conn = user_conn(user)
 
     {:ok, view, html} = live(conn, @path)
 
