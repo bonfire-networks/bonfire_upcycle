@@ -42,7 +42,7 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
   def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
   def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 
-  defp get_last_activity(date) do
+  def get_last_activity(date) do
     week = case Date.day_of_week(date) do
       0 -> "Sun"
       1 -> "Mon"
