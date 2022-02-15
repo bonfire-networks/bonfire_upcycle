@@ -27,3 +27,5 @@ defmodule Upcycle_Ext.NeedsTesting do
   defp has_need?(view, name) do
     has_element?(view, "[data-test-id=need]", name)
   end
+
+end

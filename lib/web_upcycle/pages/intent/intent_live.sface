@@ -14,7 +14,7 @@
                 {l "need"}
               </span>
             {/if}
-            <h3 class="text-xl text-black font-semibold">{e(@intent, :name, nil)} : {e(@intent, :resourceQuantity, :hasNumericalValue, :nil)}</h3>
+            <h3 class="text-xl text-black font-semibold"> <span data-test-id="need"> {e(@intent, :name, nil)} </span> : {e(@intent, :resourceQuantity, :hasNumericalValue, :nil)}</h3>
           </span>
           <span/>
           <div class="mt-1 justify-self-end">
