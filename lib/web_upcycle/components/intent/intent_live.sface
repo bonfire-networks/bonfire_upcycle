@@ -1,11 +1,11 @@
 <div class="p-3 rounded-box bg-base-300">
   <div class="flex items-start space-x-3 py-2">
     {#if e(@intent, :provider, nil)}
-      <div class="flex rounded-box px-2 py-1 w-1/8 bg-pink-600 border-1 text-white justify-center badge badge-accent">
+      <div data-test-id="intent_name" class="flex rounded-box px-2 py-1 w-1/8 bg-pink-600 border-1 text-white justify-center badge badge-accent">
         {l "offer"}
       </div>
       {#else}
-      <div class="flex rounded-box px-2 py-1 w-1/8 bg-blue-600 border-1 text-white justify-center badge badge-accent">
+      <div data-test-id="intent_name" class="flex rounded-box px-2 py-1 w-1/8 bg-blue-600 border-1 text-white justify-center badge badge-accent">
         {l "need"}
       </div>
     {/if}
