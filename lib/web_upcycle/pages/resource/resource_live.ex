@@ -44,13 +44,13 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
 
   def get_last_activity(date) do
     week = case Date.day_of_week(date) do
-      0 -> "Sun"
       1 -> "Mon"
       2 -> "Tue"
       3 -> "Wed"
       4 -> "Thu"
       5 -> "Fri"
       6 -> "Sat"
+      7 -> "Sun"
     end
 
     month = case date.month do
