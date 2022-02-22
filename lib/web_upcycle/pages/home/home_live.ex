@@ -155,6 +155,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
     ) {
         id
         name
+        has_beginning
         has_point_in_time
         note
         provider {
