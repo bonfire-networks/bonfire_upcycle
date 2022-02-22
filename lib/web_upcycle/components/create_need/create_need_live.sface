@@ -11,7 +11,17 @@
     <HiddenInput :if={e(assigns, :intent_type, nil) == "need"} name="receiver" value={e(current_user(assigns), :id, nil)} />
     <HiddenInput :if={e(assigns, :intent_type, nil) == "offer"} name="provider" value={e(current_user(assigns), :id, nil)} />
     <HiddenInput name="classified_as[]" value={Bonfire.Upcycle.Integration.remote_tag_id} />
-
+    
+    <div hidden=true>
+      <Field name={:has_beginning}>
+        {
+          {:ok, datetime} = DateTime.now("Etc/UTC-6")
+          datetime
+        }
+        <DateTimeLocalInput name="has_beginning" opts={required: true} value={datetime}/>
+      </Field>
+    </div>
+    
     <!-- Create a title input form field -->
     <Field 
       class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300"
