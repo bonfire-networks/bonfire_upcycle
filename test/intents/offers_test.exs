@@ -1,4 +1,4 @@
-defmodule Upcycle_Ext.NeedsTesting do
+defmodule Upcycle_Ext.OffersTesting do
   use Bonfire.Upcycle.ConnDataCase, async: true
 
   import ValueFlows.Simulate
