@@ -8,15 +8,19 @@ defmodule Upcycle_Ext.NeedsTesting do
 
   @path "/upcycle/discover"
 
-  test "displays need", %{conn: conn} do
-    user = fake_agent!()
+  test "displays need" do
+    agent = fake_agent!()
+    account = fake_account!()
+    user = fake_user!(account)
 
     attrs = %{
-      provider: user.id,
+      provider: agent.id,
       name: "Lumber"
     }
 
-    assert {:ok, intent} = Intents.create(user, intent(attrs))
+    assert {:ok, intent} = Intents.create(agent, intent(attrs))
+
+    conn = conn(user: user, account: account)
 
     {:ok, view, html} = live(conn, @path)
 

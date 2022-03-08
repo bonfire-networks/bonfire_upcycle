@@ -9,16 +9,20 @@ defmodule Upcycle_Ext.OffersTesting do
   @path "/upcycle/discover"
 
   test "displays offer", %{conn: conn} do
-    user = fake_agent!()
+    agent = fake_agent!()
+    account = fake_account!()
+    user = fake_user!(account)
 
     test_name = "Volunteer Hours"
 
     attrs = %{
-      provider: user.id,
+      provider: agent.id,
       name: test_name
     }
 
-    assert {:ok, intent} = Intents.create(user, intent(attrs))
+    assert {:ok, intent} = Intents.create(agent, intent(attrs))
+
+    conn = conn(user: user, account: account)
 
     {:ok, view, _html} = live(conn, @path)
 
