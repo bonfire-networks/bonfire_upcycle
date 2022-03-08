@@ -9,6 +9,8 @@ defmodule Bonfire.Upcycle.ConnDataCase do
 
   use ExUnit.CaseTemplate
 
+  import Bonfire.Upcycle.Integration
+
   using do
     quote do
       import Bonfire.Upcycle.ConnDataCase
