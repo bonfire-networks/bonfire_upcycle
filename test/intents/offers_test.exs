@@ -1,5 +1,5 @@
 defmodule Upcycle_Ext.NeedsTesting do
-  use Bonfire.Upcycle.ConnCase, async: true
+  use Bonfire.Upcycle.ConnDataCase, async: true
 
   import ValueFlows.Simulate
   import ValueFlows.Test.Faking
