@@ -20,8 +20,6 @@ defmodule Upcycle_Ext.OffersTesting do
 
     assert {:ok, intent} = Intents.create(user, intent(attrs))
 
-    conn = user_conn(user)
-
     {:ok, view, _html} = live(conn, @path)
 
     assert has_offer?(view, test_name)
