@@ -8,7 +8,7 @@ defmodule Upcycle_Ext.OffersTesting do
 
   @path "/upcycle/discover"
 
-  test "displays offer", %{conn: conn} do
+  test "displays offer" do
     agent = fake_agent!()
     account = fake_account!()
     user = fake_user!(account)
