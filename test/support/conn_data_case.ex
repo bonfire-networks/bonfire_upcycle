@@ -23,7 +23,7 @@ defmodule Bonfire.Upcycle.ConnDataCase do
       import Phoenix.LiveViewTest
       import Plug.Conn
 
-      alias Bonfire.Upcycle.Fake
+      alias Bonfire.Me.Fake
 
       @endpoint Bonfire.Common.Config.get!(:endpoint_module)
     end
