@@ -3,6 +3,7 @@ defmodule Upcycle_Ext.NeedsTesting do
 
   import ValueFlows.Simulate
   import ValueFlows.Test.Faking
+  import Bonfire.Me.Fake
 
   import Phoenix.LiveViewTest
 
