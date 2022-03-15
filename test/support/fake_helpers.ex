@@ -2,7 +2,7 @@ defmodule Bonfire.Upcycle.Test.FakeHelpers do
 
   alias Bonfire.Data.Identity.Account
   alias Bonfire.Me.Fake
-  alias Bonfire.Upcycle.Identity.{Accounts, Users}
+  alias Bonfire.Me.Identity.{Accounts, Users}
   import ExUnit.Assertions
 
   import Bonfire.Upcycle.Integration
