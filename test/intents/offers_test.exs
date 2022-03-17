@@ -18,6 +18,8 @@ defmodule Upcycle_Ext.OffersTesting do
     test_name = "Volunteer Hours"
 
     attrs = %{
+      has_point_in_time: nil,
+      has_end: nil,
       provider: agent.id,
       name: test_name
     }

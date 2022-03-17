@@ -16,6 +16,8 @@ defmodule Upcycle_Ext.NeedsTesting do
     user = fake_user!(account)
 
     attrs = %{
+      has_point_in_time: nil,
+      has_end: nil,
       provider: agent.id,
       name: "Lumber"
     }
