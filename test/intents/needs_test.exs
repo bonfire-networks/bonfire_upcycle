@@ -4,6 +4,7 @@ defmodule Upcycle_Ext.NeedsTesting do
   import ValueFlows.Simulate
   import ValueFlows.Test.Faking
   import Bonfire.Me.Fake
+  alias ValueFlows.Planning.Intent.Intents
 
   import Phoenix.LiveViewTest
 
