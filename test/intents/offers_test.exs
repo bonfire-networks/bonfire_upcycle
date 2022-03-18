@@ -35,7 +35,7 @@ defmodule Upcycle_Ext.OffersTesting do
   end
 
   defp has_offer?(view, name) do
-    has_element?(view, "[data-test-id=offer]", name)
+    has_element?(view, "[data-test-id=intent_name]", "offer") and has_element?(view, "h3", name)
   end
 
 end

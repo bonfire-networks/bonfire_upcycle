@@ -33,7 +33,7 @@ defmodule Upcycle_Ext.NeedsTesting do
   end
 
   defp has_need?(view, name) do
-    has_element?(view, "[data-test-id=intent_name]", name)
+    has_element?(view, "[data-test-id=intent_name]", "need") and has_element?(view, "h3", name)
   end
 
 end
