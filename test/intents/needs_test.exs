@@ -18,7 +18,7 @@ defmodule Bonfire.Upcycle.NeedsTest do
     attrs = %{
       has_point_in_time: nil,
       has_end: nil,
-      provider: agent.id,
+      provider: nil,
       name: "Lumber"
     }
 

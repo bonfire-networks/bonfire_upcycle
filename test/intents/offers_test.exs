@@ -20,7 +20,7 @@ defmodule Bonfire.Upcycle.OffersTest do
     attrs = %{
       has_point_in_time: nil,
       has_end: nil,
-      provider: nil,
+      provider: agent.id,
       name: test_name
     }
 
