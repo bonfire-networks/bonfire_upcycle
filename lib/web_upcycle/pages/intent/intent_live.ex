@@ -47,6 +47,9 @@ defmodule Bonfire.Upcycle.IntentLive do
       note
       due
       finished
+      resourceInventoriedAs {
+        id
+      }
       has_beginning
       resourceQuantity {
         id
