@@ -100,15 +100,6 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(%{"tab" => "inventory" = tab} = _params, _url, socket) do
-    current_user = current_user(socket)
-
-    {:noreply,
-     assign(socket,
-       selected_tab: tab,
-     )}
-  end
-
   def do_handle_params(%{"tab" => "create-resource" = tab} = _params, _url, socket) do
     current_user = current_user(socket)
 
