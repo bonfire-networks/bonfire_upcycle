@@ -1,4 +1,4 @@
-<Form
+<Form class="bg-white border-2 border-black rounded-md p-4 m-3 text-black"
     for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
     opts={autocomplete: "off"}
     submit="ValueFlows.EconomicEvent:create"
@@ -11,6 +11,7 @@
 
     <div class="text-base font-extrabold text-primary-content-800">{l "Add a resource to inventory"}</div>
     <div class="mt-1 text-sm text-primary-content-600 font-regular">{l "Specify the resource you want to add"}</div>
+
 
     <Bonfire.UI.Social.MultiselectLive
         preloaded_options={e(assigns, :resource_specifications_autocomplete, [])}
@@ -26,7 +27,7 @@
         <Inputs for={:resource_quantity}>
         <div class="w-20">
             <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10">
-            <NumberInput opts={placeholder: "0", min: 1} class="flex-1 block w-full font-bold text-primary-content-800 placeholder-gray-600 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
+            <NumberInput opts={placeholder: "0"} class="flex-1 block w-full font-bold text-primary-content-800 placeholder-gray-600 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
             <ErrorTag class="p-3 bg-error-300" />
             </Field>
         </div>
@@ -44,13 +45,13 @@
     </div>
 
     <div id="event_note" phx-update="ignore" class="mt-3">
-      <Field name={:note} class="flex flex-col p-3 rounded-xl bg-base-200">
+    <Field name={:note} class="flex flex-col p-3 rounded-xl bg-base-200">
         <label class="block text-sm text-primary-content">{l "Add an optional note about the event"}</label>
         <TextArea placeholder="Add an optional message for the transfer" class="flex-1 h-20 mt-1 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
-      </Field>
+    </Field>
     </div>
 
     <button type="submit" class="inline-flex items-center w-full px-6 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full shadow-sm place-content-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500">
-      {@action}
+    {@action}
     </button>
 </Form>

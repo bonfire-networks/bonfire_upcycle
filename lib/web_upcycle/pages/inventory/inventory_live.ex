@@ -21,7 +21,9 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
     {:ok, socket
     |> assign(
       user: current_user,
-      resources: resources
+      resources: resources,
+      changeset: ValueFlows.EconomicEvent.validate_changeset(),
+      action: "raise"
     )}
   end
 
