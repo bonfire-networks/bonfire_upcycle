@@ -1,0 +1,59 @@
+<div class="p-4 m-4 rounded-md bg-white text-black">
+    <div class="relative items-center p-1">
+        <LivePatch to={"/resource/"<>e(@resource, :id, nil)} class="font-bold text-2xl text-black">{e(@resource, :name, "[resource name]")}</LivePatch>
+        <button class="p-2 bg-indigo-600 hover:bg-indigo-400 rounded-md place-self-end absolute right-0">
+            <img class="w-6 invert" src={"https://upload.wikimedia.org/wikipedia/commons/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg"}/>
+        </button>
+    </div>
+    <div class="relative">
+        <div class="flex items-center p-1">
+        <LivePatch to={"/user/"<>e(@resource, :primaryAccountable, :displayUsername, nil)} class="flex items-center text-black">
+            <div class="rounded-lg p-1 bg-gray-200">
+                <img class="w-8" src={e(@resource, :primaryAccountable, :image, "#{avatar_url(@resource)}")}/>
+            </div>
+            <Label class="hover:underline pl-2 font-semibold">{e(@resource, :primaryAccountable, :name, "[user's name]")}</Label>
+            <Label class="hover:underline pl-3 text-gray-400">{"@" <> e(@resource, :primaryAccountable, :displayUsername, "[username]")}</Label>
+        </LivePatch>
+        <div class="pl-3">
+            <span class="rounded-full border-0 px-3 py-1 bg-blue-400 border-1 text-white justify-center">{l "[Organization Name]"}</span>
+        </div>
+        <div class="pl-2">
+            <span class="rounded-full border-0 px-3 py-1 bg-blue-600 text-white justify-center">{l "[Offered]"}</span>
+        </div>
+        <div class="flex">
+            <Label class="justify-end text-gray-500 absolute right-0">{l "Last Activity [2 days ago]"}</Label>
+        </div>
+        </div>
+    </div>
+    <div class="flex p-1">
+        <div>
+            <img class="rounded-md" src={e(@resource, :image, "https://placekitten.com/150/150")}/>
+        </div>
+        <div class="p-2 h-full w-full">
+            <div>
+                <Label class="w-full font-semibold">{l "Description:"}</Label>
+                <span>
+                    {e(@resource, :note, "[description]")}
+                </span>
+            </div>
+            <div class="grid grid-cols-6">
+                <div class="col-span-2">
+                    <Label class="w-full font-semibold">{l "Resource Specification: "}</Label>
+                    {e(@resource, :conformsTo, :name, "[spec-name-here]")}
+                </div>
+                <div>
+                    <Label class="font-semibold">{l "Quantity: "}</Label>
+                    {e(@resource, :onhandQuantity, :hasNumericalValue, "[#]")}
+                </div>
+                <div >
+                    <Label class="font-semibold">{l "Units: "}</Label>
+                    {e(@resource, :onhandQuantity, :hasUnit, :lable, "[units]")}
+                </div>
+                <div class="col-span-2">
+                    <Label class="font-semibold">{l "Location: "}</Label>
+                    {e(@resource, :currentLocation, :displayUsername, "[location]")}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

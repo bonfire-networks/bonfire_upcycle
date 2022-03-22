@@ -27,8 +27,6 @@
     <Bonfire.UI.Upcycle.MyOffersLive  intents={@intents} />
     {#match "bookmarked"}
     <Bonfire.UI.Upcycle.BookmarkedLive />
-    {#match "inventory"}
-    <Bonfire.UI.Upcycle.InventoryLive />
     {#match "create-resource"}
     <Bonfire.UI.Upcycle.CreateResourceLive />
   {/case}
