@@ -17,13 +17,13 @@
             <h3 class="text-xl text-black font-semibold"> <span data-test-id="intent_name"> {e(@intent, :name, nil)} </span> : {e(@intent, :resourceQuantity, :hasNumericalValue, :nil)}</h3>
           </span>
           <span/>
-          <div class="mt-1 justify-self-end">
+          <!-- <div class="fixed right-w-full/2">
             <Bonfire.UI.Social.LikeActionWithoutLabelLive  
             id={ComponentID.new(Bonfire.UI.Social.LikeActionWithoutLabelLive, e(@intent, :id, nil))} 
             object_id={e(@intent, :id, nil)}
             current_user={current_user(assigns)} 
             />
-          </div>
+          </div> -->
         </div>
 
         <div class="flex space-x-3 items-top ">
@@ -33,7 +33,7 @@
                 <div class="flex items-center space-x-2">
                   <Label class="text-s tracking-wide text-black hover:underline font-regular">{"TODO Organization"}</Label>
                 </div>
-                <span class="text-s tracking-wide text-black font-regular"> - {date_from_now(@intent)}</span>
+                <span class="text-s tracking-wide text-black font-regular"> - {get_creation_date(@intent.has_beginning)}</span>
               </div>
 
               <div class="flex items-center pb-1">

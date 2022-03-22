@@ -5,9 +5,14 @@
     <Bonfire.UI.Upcycle.CreateOfferLive 
       intent_url={@intent_url}
       action_id={"work"} 
-      intent_type={"offer"} />
+      intent_type={"offer"}
+      intents={@intents}
+      resource_id={@resource_id}
+      resource_name={@resource_name}
+      resource_quantity={@resource_quantity}
+      />
       {#match "publish-need"}
-      <Bonfire.UI.Upcycle.CreateNeedLive 
+    <Bonfire.UI.Upcycle.CreateNeedLive 
       intent_url={@intent_url}
       action_id={"work"} 
       intent_type={"need"} />

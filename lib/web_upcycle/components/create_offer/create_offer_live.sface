@@ -10,7 +10,22 @@
     <HiddenInput :if={e(assigns, :action_id, nil)} name="action_id" value={@action_id} />
     <HiddenInput :if={e(assigns, :intent_type, nil) == "need"} name="receiver" value={e(current_user(assigns), :id, nil)} />
     <HiddenInput :if={e(assigns, :intent_type, nil) == "offer"} name="provider" value={e(current_user(assigns), :id, nil)} />
+    <HiddenInput :if={e(assigns, :intent_type, nil) == "offer"} name="provider" value={e(current_user(assigns), :id, nil)} />
     <HiddenInput name="classified_as[]" value={Bonfire.Upcycle.Integration.remote_tag_id} />
+
+    <div hidden=true>
+      <Field name={:resource_inventoried_as_id}>
+        <TextInput value={@resource_id}/>
+      </Field>
+      
+      <Field name={:has_beginning}>
+        {
+          {:ok, datetime} = DateTime.now("Etc/UTC-6")
+          datetime
+        }
+        <DateTimeLocalInput name="has_beginning" opts={required: true} value={datetime}/>
+      </Field>
+    </div>
 
     <!-- Create a title input form field -->
     <Field 
@@ -19,18 +34,47 @@
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l "Select for which organization"}</Label>
       <Select class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
     </Field>
-    <Field 
-      class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300"
-      name={:name}>
-      <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l "Resource I can offer"}</Label>
-      <TextInput opts={placeholder: "TODO: Make this into a drop-down", required: true} class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
-    </Field>
+
+    <div x-data="{ open: false }">
+      <Field name={:name} class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300">
+          <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l "Resource I can offer"}</Label>
+          <div class="flex w-full h-full">
+            <TextInput value={@resource_name} opts={required: true, placeholder: "Select a resource"} class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+            <div class="absolute w-full">
+              <button @click="open = !open" class="w-full h-full text-2xl" phx-click="my_agent">{l" "}</button>
+            </div>
+          </div>
+          <div x-show="open" @click.away="open = false"> 
+          {#if e(@intents, :myAgent, :inventoriedEconomicResources, nil)} <!-- make sure there is something in inventory -->
+            {#for resource <- e(@intents, :myAgent, :inventoriedEconomicResources, nil)}
+              <div>
+                <label @click = "open = false" 
+                    phx-value-id={resource.id}
+                    phx-value-name={resource.name} 
+                    phx-value-quantity={resource.onhandQuantity.hasNumericalValue}
+                    phx-click="resource_click"
+                    class="block bg-white text-black p-1 hover:bg-blue-500 hover:text-white"
+                    >
+                  {l"   "}{resource.name}{" - "}{resource.onhandQuantity.hasNumericalValue}
+                </label>
+              </div>
+            {/for}
+          {/if}
+          <div>
+            <LivePatch to={"/upcycle/inventory"} @click = "open = false" class="block bg-white text-black p-1 border-2 border-black hover:bg-blue-300 hover:border-white hover:text-white">
+              {l "   Create a new resource"}
+            </LivePatch>
+          </div>
+          </div>
+      </Field>
+    </div>
+
     <Inputs for={:resource_quantity}>
       <div class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300">
         <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l "Amount I can offer"}</Label>
         <div class="grid grid-cols-3 gap-1">
           <Field name={:has_numerical_value} class="w-full">
-            <NumberInput opts={placeholder: "00.00", min: 1, required: true} class="w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+            <NumberInput opts={placeholder: "00.00", value: @resource_quantity, min: 1, max: @resource_quantity, required: true} class="w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
           </Field>
           <Field name={:has_unit} class="w-full">
               <Select options={"TODO units": "todo"} class="w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
@@ -38,12 +82,14 @@
         </div>
       </div>
     </Inputs>
+
     <div class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300">
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l "Offer Expires"}</Label>
       <Field name={:due}>
         <DateTimeLocalInput name="due" opts={required: true} class="block w-full text-base-content rounded-box focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
       </Field>
     </div>
+    
     <Field
       name={:note}
       class="w-full p-2 rounded-lg shadow-inner bg-base-300">

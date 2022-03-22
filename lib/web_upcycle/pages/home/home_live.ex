@@ -27,7 +27,10 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
       page: "publish-offer",
       action_id: "work",
       intent_type: "offer",
-      intent_url: "/upcycle/intent/"
+      intent_url: "/upcycle/intent/",
+      resource_id: 0,
+      resource_name: "",
+      resource_quantity: 0
     )}
   end
 
@@ -79,10 +82,12 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
   def do_handle_params(%{"tab" => "publish-offer" = tab} = _params, _url, socket) do
     current_user = current_user(socket)
+    my_agent = my_agent(socket)
 
     {:noreply,
      assign(socket,
        selected_tab: tab,
+       intents: my_agent
      )}
   end
 
@@ -91,7 +96,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
     {:noreply,
      assign(socket,
-       selected_tab: tab,
+       selected_tab: tab
      )}
   end
 
@@ -155,6 +160,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
     ) {
         id
         name
+        has_beginning
         has_point_in_time
         note
         provider {
@@ -177,6 +183,40 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
   # defdelegate handle_params(params, attrs, socket), to: Bonfire.Common.LiveHandlers
 
+  def handle_event("my_agent", %{}, socket) do
+    my_agent = my_agent(socket)
+    {:noreply, socket |> assign(intents: my_agent)}
+  end
+
+  @graphql """
+  query {
+    myAgent {
+      id
+      displayUsername
+      primaryLocation {
+        displayUsername
+      }
+      inventoriedEconomicResources {
+        id
+        name
+        onhandQuantity {
+          hasNumericalValue
+          hasUnit
+        }
+      }
+    }
+  }
+  """
+  def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
+
+  def handle_event("resource_click", %{"id" => id, "name" => name, "quantity" => quantity}, socket) do
+    IO.puts("lolXD")
+    IO.inspect(socket)
+    {:noreply,
+      socket |> assign(resource_id: id, resource_name: name, resource_quantity: quantity)}
+  end
+
+  @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
   def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
   def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 end
