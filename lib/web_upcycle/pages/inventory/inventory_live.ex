@@ -2,7 +2,7 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
   use Bonfire.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
   alias Bonfire.Web.LivePlugs
 
-  use AbsintheClient, schema: Bonfire.GraphQL.Schema, action: [mode: :internal]
+  use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
   def mount(params, session, socket) do
     LivePlugs.live_plug params, session, socket, [
