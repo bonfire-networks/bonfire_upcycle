@@ -42,6 +42,7 @@
 
     <!--Quantity and Units -->
     <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-middle shadow-inner bg-base-300 rounded-xl">{l "Quantity"}
+    <br>
         <Inputs for={:resource_quantity}>
         <div class="w-20">
             <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10 shadow-inner bg-base-300" >
