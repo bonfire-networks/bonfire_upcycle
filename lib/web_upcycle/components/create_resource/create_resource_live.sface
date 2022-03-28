@@ -41,7 +41,7 @@
     </div>
 
     <!--Quantity and Units -->
-    <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-middle shadow-inner bg-base-300 rounded-xl">{l "Quantity"}
+    <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-top shadow-inner bg-base-300 rounded-xl">{l "Quantity"}
     <br>
         <Inputs for={:resource_quantity}>
         <div class="w-20">
