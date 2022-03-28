@@ -31,7 +31,7 @@
          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
         </Field>
    </div>
-   
+
     <!--Description-->
     <div id="resource_note" phx-update="ignore" class="mt-1">
         <Field name={:resource_note} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
@@ -41,7 +41,7 @@
     </div>
 
     <!--Quantity and Units -->
-    <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-middle ">
+    <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-middle shadow-inner bg-base-300 rounded-xl">{l "Quantity"}
         <Inputs for={:resource_quantity}>
         <div class="w-20">
             <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10 shadow-inner bg-base-300" >
