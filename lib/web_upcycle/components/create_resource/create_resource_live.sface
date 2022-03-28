@@ -10,7 +10,7 @@
     <HiddenInput :if={e(assigns, :output_of_id, nil)} name="output_of_id" value={e(assigns, :output_of_id, "")} />
 
     <div class="text-base font-extrabold text-primary-content-800">{l "Add a resource to inventory"}</div>
-    <div class="mt-1 text-sm text-primary-content-600 font-regular shadow-inner bg-base-300 rounded-xl">{l "Specify the resource you want to add"}
+    <div class="mt-1 text-sm text-primary-content-600 font-regular flex flex-col p-3 rounded-xl shadow-inner bg-base-300">{l "Specify the resource you want to add"}
     <Bonfire.UI.Social.MultiselectLive
         preloaded_options={e(assigns, :resource_specifications_autocomplete, [])}
         selected_options={e(assigns, :resource_specification_selected, [])}
@@ -35,14 +35,14 @@
     </div></div>
 
     <div id="resource_note" phx-update="ignore" class="mt-3">
-        <Field name={:resource_note} class="flex flex-col p-3 mt-1 border shadow-inner bg-base-300 shadow-sm rounded-xl">
+        <Field name={:resource_note} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
          <label class="block mt-2 text-sm text-primary-content text-black">{l "Add a resource description"}</label>
         <TextArea placeholder="Add an optional resource description" class="flex-1 h-20 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
         </Field>
     </div>
 
     <div id="event_note" phx-update="ignore" class="mt-3">
-    <Field name={:note} class="flex flex-col p-3 rounded-xl  shadow-inner bg-base-300 \">
+    <Field name={:note} class="flex flex-col p-3 rounded-xl shadow-inner bg-base-300 ">
         <label class="block text-sm text-primary-content text-black">{l "Add an optional note about the event"}</label>
         <TextArea placeholder="Add an optional message for the transfer" class="flex-1 h-20 mt-1 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
     </Field>
