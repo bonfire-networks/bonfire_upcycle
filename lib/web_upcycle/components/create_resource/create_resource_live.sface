@@ -20,6 +20,8 @@
         remove_event={e(assigns, :remove_event, "")}
         focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"
     />
+    </div>
+    <div>
     <Field name={:resource_name} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
          <label class="block mt-2 text-sm text-primary-content text-black">{l "Name of Resource:"}</label>
          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
@@ -48,7 +50,7 @@
         </Field>
         </Inputs>
     </div>
-    <button type="submit" class="inline-flex items-center w-full px-6 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full shadow-sm place-content-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500">
+    <button type="submit" class="inline-flex items-center w-full px-6 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full shadow-sm place-content-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 align-middle focus:ring-secondary-500">
     {@action}
     </button>
 </Form>
