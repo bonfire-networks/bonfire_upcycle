@@ -24,22 +24,6 @@
         focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"/>
     </div>
 
-    <!--Name -->
-    <div phx-update="ignore" class="mt-1">
-    <Field name={:resource_name} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
-         <label class="block mt-2 text-sm text-primary-content text-black">{l "Name of Resource:"}</label>
-         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
-        </Field>
-   </div>
-
-    <!--Description-->
-    <div id="resource_note" phx-update="ignore" class="mt-1">
-        <Field name={:resource_note} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
-         <label class="block mt-2 text-sm text-primary-content text-black">{l "Add a resource description"}</label>
-        <TextArea placeholder="Add an optional resource description" class="flex-1 h-20 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
-        </Field>
-    </div>
-
     <!--Quantity and Units -->
     <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-middle shadow-inner bg-base-300 rounded-xl">{l "Quantity"}
         <Inputs for={:resource_quantity}>
@@ -55,7 +39,15 @@
         </Inputs>
     </div>
 
+    <!--Description-->
+    <div id="resource_note" phx-update="ignore" class="mt-1">
+        <Field name={:resource_note} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
+         <label class="block mt-2 text-sm text-primary-content text-black">{l "Add a resource description"}</label>
+        <TextArea placeholder="Add an optional resource description" class="flex-1 h-20 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
+        </Field>
+    </div>
+
     <button type="submit" class="inline-flex items-center w-full px-6 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full shadow-sm place-content-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 align-middle focus:ring-secondary-500">
-    {@action}
+        {@action}
     </button>
 </Form>

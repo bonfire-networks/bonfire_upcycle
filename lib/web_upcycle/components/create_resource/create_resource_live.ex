@@ -7,6 +7,7 @@ defmodule Bonfire.UI.Upcycle.CreateResourceLive do
   prop changeset, :any
 
   def mount(socket) do
+    IO.puts("fdasdsa")
     {:ok, socket |> assign(
       form_error: "",
       changeset: ValueFlows.EconomicEvent.validate_changeset()
