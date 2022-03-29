@@ -1,0 +1,33 @@
+<main class="flex flex-col items-center mx-auto mt-8 w-full max-w-screen-md">
+  <Bonfire.UI.Upcycle.MainNavigationLive page={@selected_tab} />
+  {#case @selected_tab}
+    {#match "publish-offer"}
+    <Bonfire.UI.Upcycle.CreateOfferLive 
+      intent_url={@intent_url}
+      action_id={"work"} 
+      intent_type={"offer"}
+      intents={@intents}
+      resource_id={@resource_id}
+      resource_name={@resource_name}
+      resource_quantity={@resource_quantity}
+      />
+      {#match "publish-need"}
+    <Bonfire.UI.Upcycle.CreateNeedLive 
+      intent_url={@intent_url}
+      action_id={"work"} 
+      intent_type={"need"} />
+    {#match "discover"}
+    <Bonfire.UI.Upcycle.DiscoverLive
+      intents={@intents}
+      current_user={current_user(assigns)}
+    />
+    {#match "my-needs"}
+    <Bonfire.UI.Upcycle.MyNeedsLive  intents={@intents} />
+    {#match "my-offers"}
+    <Bonfire.UI.Upcycle.MyOffersLive  intents={@intents} />
+    {#match "bookmarked"}
+    <Bonfire.UI.Upcycle.BookmarkedLive />
+    {#match "create-resource"}
+    <Bonfire.UI.Upcycle.CreateResourceLive />
+  {/case}
+</main>

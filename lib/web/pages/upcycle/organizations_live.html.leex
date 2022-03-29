@@ -1,0 +1,81 @@
+<div class="w-full">
+    <div class="flex">
+        <h1 class="text-xl flex-auto">All Organizations</h1>
+        <button class="bg-blue-400 float-right p-1 rounded-md text-white">Create Organization</button>
+    </div>
+
+    <form class="flex">
+        <div class="flex-1">
+            <label for="search">Search For Organization</label><br />
+            <input name="search" />
+        </div>
+
+        <div class="flex-1">
+            <label for="distance">Search Distance (mi)</label><br />
+            <input name="distance" value="50" />
+        </div>
+
+        <div class="flex-1">
+            <label for="type">Type</label><br />
+            <select name="type">
+                <option value="All">All</option>
+            </select>
+        </div>
+
+        <div class="flex-1">
+            <label for="sort">Sort</label><br />
+            <select name="sort">
+                <option value="Alphabetical">Alphabetical</option>
+            </select>
+        </div>
+
+        <button class="bg-red-400 p-1 rounded-md text-white flex-1">Reset Filters</button>
+    </form>
+
+    <div class="divide-y divide-black">
+        <div class="flex p-2">
+            <img src="https://placekitten.com/200/200?b" class="p-2" />
+            <div class="flex-auto">
+                <h2 class="text-lg">Franklin High School</h2>
+                <p>(no location available)</p>
+                <p>(distance not available)</p>
+            </div>
+            <div>
+                <button class="bg-blue-400 p-1 rounded-md text-white">View Inventory</button>
+            </div>
+        </div>
+        <div class="flex p-2">
+            <img src="https://placekitten.com/200/200" class="p-2" />
+            <div class="flex-auto">
+                <h2 class="text-lg">Milwaukee School of Engineering</h2>
+                <p>(no location available)</p>
+                <p>(distance not available)</p>
+            </div>
+            <div>
+                <button class="bg-blue-400 p-1 rounded-md text-white">View Inventory</button>
+            </div>
+        </div>
+        <div class="flex p-2">
+            <img src="https://placekitten.com/200/200?" class="p-2" />
+            <div class="flex-auto">
+                <h2 class="text-lg">St. Francis High School</h2>
+                <p>(no location available)</p>
+                <p>(distance not available)</p>
+            </div>
+            <div>
+                <button class="bg-blue-400 p-1 rounded-md text-white">View Inventory</button>
+            </div>
+        </div>
+        <div class="flex p-2">
+            <img src="https://placekitten.com/200/200?a" class="p-2" />
+            <div class="flex-auto">
+                <h2 class="text-lg">test</h2>
+                <p>1025 N Broadway Blvd, Milwaukee, WI 53221</p>
+                <p>Distance: 0.38 mi</p>
+            </div>
+            <div>
+                <button class="bg-blue-400 p-1 rounded-md text-white">View Inventory</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="w-full" x-data="{create: false, transfer: false}">
+    <div class="flex">
+        <h1 class="text-xl flex-auto">Franklin High School Inventory</h1>
+        <button class="bg-blue-400 float-right p-1 rounded-md text-white" @click="create = !create, transfer=false">Create Item</button>
+    </div>
+
+    <dialog class="bg-white-500 float-right p-1 rounded-md" open x-show="create">
+        <label>Create Item</label>
+        <button class="bg-red-500 float-right p-1 rounded-md text-white">X</button>
+        <br>
+        <input type="text" class="rounded" placeholder="Name"> <br>
+        <select type="text" class="dropdown-content">
+            <option value="default" selected>Choose a resource classification</option>
+        </select> <br>
+        <input type="text" class="rounded" placeholder="Notes"> <br>
+        <input type="text" class="rounded" placeholder="Quantity"> <input type="text" class="rounded" placeholder="Units">
+        <img src="???"/> <br>
+        <button class="bg-gray-400 rounded-md text-white">Upload image</button> <br>
+        <button class="bg-blue-400 rounded-md text-white">Create Item</button>
+    </dialog>
+
+    <dialog class="bg-white-500 float-right p-1 rounded-md text-black" open x-show="transfer">
+        <label>Transfer Item</label>
+        <button class="bg-red-500 float-right p-1 rounded-md text-white">X</button>
+        <br>
+        <label>Item: Neural Net</label> <br>
+        <input type="text" class="rounded" placeholder="Quantity"> <br>
+        <label>Transfer to...</label> <br>
+        <select type="text" class="dropdown-content">
+            <option value="default" selected>Choose an organization</option>
+        </select> <br>
+        <button class="bg-blue-400 rounded-md text-white">Transfer Item</button>
+    </dialog>
+
+    <div class="divide-y divide-black">
+        <div class="flex">
+            <img src="https://placekitten.com/150/100" />
+            <div class="flex-auto">
+                <h2 class="text-lg">Neural net</h2>
+                <p>Software source code</p>
+                <p>Quantity: 100 United States Dollar(s)</p>
+                <p>Added on: 2021-09-10</p>
+            </div>
+            <div>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Edit</button>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Discuss</button>
+                <button class="bg-blue-400 p-1 rounded-md text-white" @click="transfer = !transfer, create=false">Transfer</button>
+            </div>
+        </div>
+        <div class="flex">
+            <img src="https://placekitten.com/150/100" />
+            <div class="flex-auto">
+                <h2 class="text-lg">Soda</h2>
+                <p>sweet</p>
+                <p>Quantity: 1 United States Dollar(s)</p>
+                <p>Added on: 2021-09-10</p>
+            </div>
+            <div>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Edit</button>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Discuss</button>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Transfer</button>
+            </div>
+        </div>
+        <div class="flex" x-show="open">
+            <img src="https://placekitten.com/150/100" />
+            <div class="flex-auto">
+                <h2 class="text-lg">Chair</h2>
+                <p>(no description available)</p>
+                <p>Quantity: 3 United States Dollar(s)</p>
+                <p>Added on: 2021-09-10</p>
+            </div>
+            <div>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Edit</button>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Discuss</button>
+                <button class="bg-blue-400 p-1 rounded-md text-white">Transfer</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<main class="flex flex-col items-center mx-auto mt-8 w-full max-w-screen-md">
+  <section>
+    <button type="submit" phx-click="create_mock" class="px-16 py-4 m-8 bg-blue-300 border-solid rounded-md border-4 border-blue-900">CLICK HERE TO MOCK A RESOURCE</button>
+  </section>
+  <%= if @inventoried_resources do %>
+      <section>
+        <%= for agent <- @inventoried_resources.agents do %>
+          <%= for resource <- agent.inventoried_economic_resources do %>
+            <div>
+              <strong><%= resource.name %></strong>
+              <br>
+              <%= resource.note %>
+            </div>
+          <% end %>
+        <% end %>
+      </section>
+  <% else %>
+    <section>
+      <h2>Nothing to show here!</h2>
+      <h4><em>Your inventory is currently empty.</em></h4>
+    </section>
+  <% end %>
+</main>

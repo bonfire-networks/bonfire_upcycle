@@ -1,0 +1,17 @@
+<div 
+  class="flex items-center w-full px-3 mb-4 shadow-lg rounded-box menu bg-base-100 horizontal">
+  <ul class="flex items-stretch flex-1 w-full">
+    <li class={"bordered": @page == "discover"}>
+      <LivePatch  to={"/upcycle/discover"}>{l "Discover"}</LivePatch>
+    </li> 
+    <li class={"bordered": @page == "my-needs"}>
+      <LivePatch  to={"/upcycle/my-needs"}>{l "My needs"}</LivePatch>
+    </li> 
+    <li class={"bordered": @page == "my-offers"}>
+      <LivePatch  to={"/upcycle/my-offers"}>{l "My offers"}</LivePatch>
+    </li>
+    <li class={"bordered": @page == "bookmarked"}>
+      <LivePatch  to={"/upcycle/bookmarked"}>{l "Bookmarked"}</LivePatch>
+    </li>
+  </ul>
+</div>
