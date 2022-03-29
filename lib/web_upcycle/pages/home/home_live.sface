@@ -21,6 +21,8 @@
       intents={@intents}
       current_user={current_user(assigns)}
     />
+    {#match "inventory"}
+    <Bonfire.UI.Upcycle.InventoryLive />
     {#match "my-needs"}
     <Bonfire.UI.Upcycle.MyNeedsLive  intents={@intents} />
     {#match "my-offers"}

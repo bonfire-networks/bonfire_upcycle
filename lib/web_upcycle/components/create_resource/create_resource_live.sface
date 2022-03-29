@@ -9,10 +9,11 @@
     <HiddenInput :if={e(assigns, :input_of_id, nil)} name="input_of_id" value={e(assigns, :input_of_id, "")} />
     <HiddenInput :if={e(assigns, :output_of_id, nil)} name="output_of_id" value={e(assigns, :output_of_id, "")} />
 
+    
     <div class="text-base font-extrabold text-primary-content-800">{l "Add a resource to inventory"}</div>
-    <div class="mt-1 text-sm text-primary-content-600 font-regular">{l "Specify the resource you want to add"}</div>
 
-
+    <!--Specifcation -->
+    <div class="mt-1 text-sm text-primary-content-600 font-regular flex flex-col p-3 rounded-xl shadow-inner bg-base-300">{l "Specify the resource you want to add"}
     <Bonfire.UI.Social.MultiselectLive
         preloaded_options={e(assigns, :resource_specifications_autocomplete, [])}
         selected_options={e(assigns, :resource_specification_selected, [])}
@@ -20,38 +21,33 @@
         form_input_name={"resource_conforms_to"}
         pick_event={e(assigns, :pick_event, "ValueFlows.Knowledge.ResourceSpecification:select")}
         remove_event={e(assigns, :remove_event, "")}
-        focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"
-    />
-    
-    <div id="event_quantity" phx-update="ignore" class="flex mt-3 space-x-2">
+        focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"/>
+    </div>
+
+    <!--Quantity and Units -->
+    <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-middle shadow-inner bg-base-300 rounded-xl">{l "Quantity"}
         <Inputs for={:resource_quantity}>
         <div class="w-20">
-            <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10">
+            <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10 shadow-inner bg-base-300" >
             <NumberInput opts={placeholder: "0"} class="flex-1 block w-full font-bold text-primary-content-800 placeholder-gray-600 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
             <ErrorTag class="p-3 bg-error-300" />
             </Field>
         </div>
-        <Field name={:has_unit} class="flex-1">
+        <Field name={:has_unit} class="flex-1 shadow-inner bg-base-300">
             <Select options={"TODO units": "todo"} class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"/>
         </Field>
         </Inputs>
     </div>
 
-    <div id="resource_note" phx-update="ignore" class="mt-3">
-        <label class="block mt-2 text-sm text-primary-content">{l "Add a resource description"}</label>
-        <Field name={:resource_note} class="flex flex-col p-3 mt-1 bg-base-100 border shadow-sm rounded-xl">
+    <!--Description-->
+    <div id="resource_note" phx-update="ignore" class="mt-1">
+        <Field name={:resource_note} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
+         <label class="block mt-2 text-sm text-primary-content text-black">{l "Add a resource description"}</label>
         <TextArea placeholder="Add an optional resource description" class="flex-1 h-20 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
         </Field>
     </div>
 
-    <div id="event_note" phx-update="ignore" class="mt-3">
-    <Field name={:note} class="flex flex-col p-3 rounded-xl bg-base-200">
-        <label class="block text-sm text-primary-content">{l "Add an optional note about the event"}</label>
-        <TextArea placeholder="Add an optional message for the transfer" class="flex-1 h-20 mt-1 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
-    </Field>
-    </div>
-
-    <button type="submit" class="inline-flex items-center w-full px-6 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full shadow-sm place-content-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500">
-    {@action}
+    <button type="submit" class="inline-flex items-center w-full px-6 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full shadow-sm place-content-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 align-middle focus:ring-secondary-500">
+        {@action}
     </button>
 </Form>

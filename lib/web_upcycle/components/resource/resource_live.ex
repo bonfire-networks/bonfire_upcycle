@@ -5,7 +5,6 @@ defmodule Bonfire.UI.Upcycle.ResourceLive do
 
   defp mounted(params, session, socket) do
     current_user = current_user(socket)
-
     {:ok, socket
     |> assign(
       user: current_user,
