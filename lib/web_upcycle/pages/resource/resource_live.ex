@@ -20,7 +20,7 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
     resource = Bonfire.Repo.preload(resource, :primary_accountable)
     resource = Bonfire.Repo.preload(resource, :image)
     unit = Bonfire.Repo.preload(resource.accounting_quantity, :unit).unit
-    user = resource.primary_accountable |> Bonfire.Repo.preload(:accounted)
+    user = current_user(socket) |> Bonfire.Repo.preload(:accounted)
     user = user |> Bonfire.Repo.preload(:character)
     user = user |> Bonfire.Repo.preload(:profile)
     {:ok, account} = Bonfire.Me.Accounts.fetch_current(user.accounted.account_id)
