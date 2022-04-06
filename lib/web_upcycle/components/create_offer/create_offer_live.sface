@@ -51,11 +51,11 @@
                 <label @click = "open = false" 
                     phx-value-id={resource.id}
                     phx-value-name={resource.name} 
-                    phx-value-quantity={resource.onhandQuantity.hasNumericalValue}
+                    phx-value-quantity={e(resource, :onhandQuantity, :hasNumericalValue, nil)}
                     phx-click="resource_click"
                     class="block bg-white text-black p-1 hover:bg-blue-500 hover:text-white"
                     >
-                  {l"   "}{resource.name}{" - "}{resource.onhandQuantity.hasNumericalValue}
+                  {l"   "}{resource.name}{" - "}{e(resource, :onhandQuantity, :hasNumericalValue, nil)}
                 </label>
               </div>
             {/for}

@@ -21,6 +21,6 @@
       TODO Org ({e(@intent, :provider, :name, "Unnamed Org")})
     </LiveRedirect> 
     <span class="text-xs tracking-wide text-base-content text-opacity-80 font-regular"> - TODO Location</span>
-    <span class="text-xs tracking-wide text-base-content text-opacity-80 font-regular"> - {get_creation_date(@intent.has_beginning)}</span>
+    <span class="text-xs tracking-wide text-base-content text-opacity-80 font-regular"> - {format_date(e(@intent, :has_beginning, nil))}</span>
   </div>
 </div>

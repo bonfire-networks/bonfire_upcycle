@@ -28,7 +28,7 @@
             </div>
         </div>
         {#for resource <- @resources}
-            {#if resource.onhandQuantity.hasNumericalValue > 0} {}
+            {#if e(resource, :onhandQuantity, :hasNumericalValue, nil) > 0} {}
                 <Bonfire.UI.Upcycle.ResourceLive
                     resource={resource}
                 />

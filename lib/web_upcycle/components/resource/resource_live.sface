@@ -12,11 +12,11 @@
                 <img class="w-8" src={e(@resource, :primaryAccountable, :image, "#{avatar_url(@resource)}")}/>
             </div>
             <Label class="hover:underline pl-2 font-semibold">{e(@resource, :primaryAccountable, :name, "[user's name]")}</Label>
-            <Label class="hover:underline pl-3 text-gray-400">{"@" <> e(@resource, :primaryAccountable, :displayUsername, "[username]")}</Label>
+            <Label class="hover:underline pl-3 text-gray-400">{e(@resource, :primaryAccountable, :displayUsername, "[username]")}</Label>
         </LivePatch>
-        <div class="pl-3">
+        <!-- <div class="pl-3">
             <span class="rounded-full border-0 px-3 py-1 bg-blue-400 border-1 text-white justify-center">{l "[Organization Name]"}</span>
-        </div>
+        </div> -->
         <div class="pl-2">
             <span class="rounded-full border-0 px-3 py-1 bg-blue-600 text-white justify-center">{l "[Offered]"}</span>
         </div>

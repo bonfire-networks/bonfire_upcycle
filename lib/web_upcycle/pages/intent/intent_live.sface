@@ -33,7 +33,7 @@
                 <div class="flex items-center space-x-2">
                   <Label class="text-s tracking-wide text-black hover:underline font-regular">{"TODO Organization"}</Label>
                 </div>
-                <span class="text-s tracking-wide text-black font-regular"> - {get_creation_date(@intent.has_beginning)}</span>
+                <span class="text-s tracking-wide text-black font-regular"> - {format_date(e(@intent, :has_beginning, nil))}</span>
               </div>
 
               <div class="flex items-center pb-1">
