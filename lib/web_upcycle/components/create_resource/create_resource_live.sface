@@ -1,4 +1,4 @@
-<Form class="bg-white border-2 border-black rounded-md p-4 m-3 text-black"
+<Form class="bg-white border-2 border-gray-400 rounded-md text-black p-4"
     for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
     opts={autocomplete: "off"}
     submit="ValueFlows.EconomicEvent:create"
@@ -9,45 +9,70 @@
     <HiddenInput :if={e(assigns, :input_of_id, nil)} name="input_of_id" value={e(assigns, :input_of_id, "")} />
     <HiddenInput :if={e(assigns, :output_of_id, nil)} name="output_of_id" value={e(assigns, :output_of_id, "")} />
 
-    
-    <div class="text-base font-extrabold text-primary-content-800">{l "Add a resource to inventory"}</div>
-
-    <!--Specifcation -->
-    <div class="mt-1 text-sm text-primary-content-600 font-regular flex flex-col p-3 rounded-xl shadow-inner bg-base-300">{l "Specify the resource you want to add"}
-    <Bonfire.UI.Social.MultiselectLive
-        preloaded_options={e(assigns, :resource_specifications_autocomplete, [])}
-        selected_options={e(assigns, :resource_specification_selected, [])}
-        label={"Pick a type of resource..."}
-        form_input_name={"resource_conforms_to"}
-        pick_event={e(assigns, :pick_event, "ValueFlows.Knowledge.ResourceSpecification:select")}
-        remove_event={e(assigns, :remove_event, "")}
-        focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"/>
+    <div class="flex justify-center">
+        <Label class="font-bold text-lg text-black">
+            {l "Add a Resource to Inventory"}
+        </Label>
     </div>
 
-    <!--Quantity and Units -->
-    <div id="event_quantity" phx-update="ignore" class=" flex mt-1 space-x-2 align-middle shadow-inner bg-base-300 rounded-xl">{l "Quantity"}
-        <Inputs for={:resource_quantity}>
-        <div class="w-20">
-            <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10 shadow-inner bg-base-300" >
-            <NumberInput opts={placeholder: "0"} class="flex-1 block w-full font-bold text-primary-content-800 placeholder-gray-600 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
-            <ErrorTag class="p-3 bg-error-300" />
-            </Field>
-        </div>
-        <Field name={:has_unit} class="flex-1 shadow-inner bg-base-300">
-            <Select options={"TODO units": "todo"} class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"/>
+    <!--Specification -->
+    <div class="bg-gray-100 p-2 rounded-md m-1">
+    {l "Specify the resource you want to add"}
+        <Bonfire.UI.Social.MultiselectLive
+            preloaded_options={e(assigns, :resource_specifications_autocomplete, [])}
+            selected_options={e(assigns, :resource_specification_selected, [])}
+            label={"Pick a type of resource..."}
+            form_input_name={"resource_conforms_to"}
+            pick_event={e(assigns, :pick_event, "ValueFlows.Knowledge.ResourceSpecification:select")}
+            remove_event={e(assigns, :remove_event, "")}
+            focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"/>
+    </div>
+
+    <!--Name -->
+    <div class="bg-gray-100 p-2 rounded-md m-1">
+    {l "Specify a name"}
+        <Field name={:resource_name}>
+            <TextInput opts={required: true} class="w-full rounded-md"/>
         </Field>
+    </div>
+    
+    <!-- Quantity and Units -->
+    <div class="bg-gray-100 p-2 rounded-md m-1">
+    {l "Specify the quantity and units"}
+        <div class="flex">
+        <Inputs for={:resource_quantity}>
+            <Field name={:has_numerical_value} class="flex-grow">
+                <NumberInput opts={required: true, min: 1} class="rounded-tl-lg rounded-bl-lg w-full"/>
+            </Field>
+            <Field name={:has_unit}>
+                <Select options={"TODO units": "todo"} class="rounded-tr-lg rounded-br-lg"/>
+            </Field>
         </Inputs>
+        </div>
     </div>
 
     <!--Description-->
-    <div id="resource_note" phx-update="ignore" class="mt-1">
-        <Field name={:resource_note} class="flex flex-col p-3  shadow-inner bg-base-300 rounded-xl">
-         <label class="block mt-2 text-sm text-primary-content text-black">{l "Add a resource description"}</label>
-        <TextArea placeholder="Add an optional resource description" class="flex-1 h-20 text-sm textarea border-none font-regular placeholder-opacity-60"></TextArea>
+    <div class="bg-gray-100 p-2 rounded-md m-1">
+    {l "Add an optional resource description"}
+        <Field name={:resource_note}>
+            <TextArea class="w-full rounded-md"/>
         </Field>
     </div>
 
-    <button type="submit" class="inline-flex items-center w-full px-6 py-3 mt-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full shadow-sm place-content-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 align-middle focus:ring-secondary-500">
-        {@action}
-    </button>
+    <!--Image-->
+    <div class="bg-gray-100 p-2 rounded-md m-1">
+    {l "Add an optional image"}
+        <div class="flex justify-center">
+            <Field name={:resource_image}>
+                <img class="rounded-md" src={"https://placekitten.com/150/150"}/>
+            </Field>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-center">
+        <button type="submit" class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
+            {l "Add Resource"}
+        </button>
+    </div>
 </Form>
