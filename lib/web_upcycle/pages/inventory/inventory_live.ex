@@ -59,4 +59,8 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
   }
   """
   def resources(params \\ %{}, socket), do: liveql(socket, :resources, params)
+
+  @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
+  def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
+  def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 end
