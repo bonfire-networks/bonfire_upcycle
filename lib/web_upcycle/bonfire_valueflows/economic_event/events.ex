@@ -311,7 +311,7 @@ defmodule ValueFlows.EconomicEvent.EconomicEvents do
               resource_conforms_to || %{}
             ))
             |> Map.merge(%{note: Map.get(event_attrs, :resource_note, "")})
-            |> Map.merge(%{name: Map.get(event_attrs, :resource_name, "")})
+            |> Map.merge(%{name: Map.get(event_attrs, :resource_name, "[resource name]")})
             |> Map.merge(%{image_id: Map.get(event_attrs, :resource_image_id, "")})
       })
   end

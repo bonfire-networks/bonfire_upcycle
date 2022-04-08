@@ -1,3 +1,4 @@
+<div class="w-full" x-data="{ create: false }">
 <section class="w-full p-4 shadow bg-base-100 rounded-box">
     <Label class="block rounded-box w-1/3 p-2 m-0 bg-pink-600 border-transparent text-white text-center">{l "I can offer"}</Label>
   <!-- Create a form -->
@@ -47,23 +48,27 @@
           <div x-show="open" @click.away="open = false"> 
           {#if e(@intents, :myAgent, :inventoriedEconomicResources, nil)} <!-- make sure there is something in inventory -->
             {#for resource <- e(@intents, :myAgent, :inventoriedEconomicResources, nil)}
-              <div>
-                <label @click = "open = false" 
-                    phx-value-id={resource.id}
-                    phx-value-name={resource.name} 
-                    phx-value-quantity={resource.onhandQuantity.hasNumericalValue}
-                    phx-click="resource_click"
-                    class="block bg-white text-black p-1 hover:bg-blue-500 hover:text-white"
-                    >
-                  {l"   "}{resource.name}{" - "}{resource.onhandQuantity.hasNumericalValue}
-                </label>
-              </div>
+              {#if resource.onhandQuantity}
+                {#if resource.onhandQuantity.hasNumericalValue > 0}
+                <div>
+                  <label @click = "open = false" 
+                      phx-value-id={resource.id}
+                      phx-value-name={resource.name} 
+                      phx-value-quantity={resource.onhandQuantity.hasNumericalValue}
+                      phx-click="resource_click"
+                      class="block bg-white text-black p-1 hover:bg-blue-500 hover:text-white"
+                      >
+                    {l"   "}{resource.name}{" - "}{resource.onhandQuantity.hasNumericalValue}
+                  </label>
+                </div>
+                {/if}
+              {/if}
             {/for}
           {/if}
           <div>
-            <LivePatch to={"/upcycle/inventory"} @click = "open = false" class="block bg-white text-black p-1 border-2 border-black hover:bg-blue-300 hover:border-white hover:text-white">
+            <label @click="create = !create; open = false" class="w-full block bg-white text-black p-1 border-2 border-black hover:bg-blue-300 hover:border-white hover:text-white">
               {l "   Create a new resource"}
-            </LivePatch>
+            </label>
           </div>
           </div>
       </Field>
@@ -99,3 +104,9 @@
     <button type="submit" class="w-full btn btn-primary">{l "Publish"}</button>
   </Form>
 </section>
+<div x-show="create" @click.away="create = false" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4">
+    <div>
+    <Bonfire.UI.Upcycle.CreateResourceLive/>
+    </div>
+</div>
+</div>

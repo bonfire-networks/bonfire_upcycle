@@ -69,17 +69,6 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(%{"tab" => "bookmarked" = tab} = _params, _url, socket) do
-    current_user = current_user(socket)
-
-    # TODO
-
-    {:noreply,
-     assign(socket,
-       selected_tab: tab,
-     )}
-  end
-
   def do_handle_params(%{"tab" => "publish-offer" = tab} = _params, _url, socket) do
     current_user = current_user(socket)
     my_agent = my_agent(socket)
