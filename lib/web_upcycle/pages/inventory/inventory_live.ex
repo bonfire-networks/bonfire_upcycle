@@ -4,6 +4,8 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
+  prop action, :any, default: "raise"
+
   def mount(params, session, socket) do
     LivePlugs.live_plug params, session, socket, [
       LivePlugs.LoadCurrentAccount,
@@ -35,6 +37,10 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
         name
         note
         image
+        conformsTo{
+          id
+          name
+        }
         primaryAccountable {
           displayUsername
           name
@@ -59,6 +65,12 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
   }
   """
   def resources(params \\ %{}, socket), do: liveql(socket, :resources, params)
+
+  def handle_event("toggle_action", %{"id" => id}, socket) do
+    debug(id)
+    {:noreply,
+      socket |> assign(action: id)}
+  end
 
   @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
   def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
