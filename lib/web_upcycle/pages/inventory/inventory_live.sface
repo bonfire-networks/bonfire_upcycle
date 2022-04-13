@@ -35,6 +35,7 @@
                             <Bonfire.UI.Upcycle.ResourceLive
                                 resource={resource}
                                 action={@action}
+                                edit_resource_value={@edit_resource_value}
                             />
                         {/if}
                     {/if}

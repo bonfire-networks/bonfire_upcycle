@@ -25,7 +25,8 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
       user: current_user,
       resources: resources,
       changeset: ValueFlows.EconomicEvent.validate_changeset(),
-      action: "raise"
+      action: "raise",
+      edit_resource_value: 100
     )}
   end
 
@@ -70,6 +71,12 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
     debug(id)
     {:noreply,
       socket |> assign(action: id)}
+  end
+
+  def handle_event("edit_resource_change", %{}, socket) do
+    IO.inspect("edit_resource_change")
+    {:noreply,
+      socket}
   end
 
   @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
