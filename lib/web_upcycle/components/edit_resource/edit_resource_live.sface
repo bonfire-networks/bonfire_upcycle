@@ -10,7 +10,7 @@
 </div>
 
 <!-- Select event -->
-<div class="grid h-12 grid-cols-2 bg-gray-100 p-2 rounded-md m-1 capitalize">
+<div class="grid h-12 grid-cols-3 bg-gray-100 p-2 rounded-md m-1 capitalize">
   <div 
   phx-value-id="raise" 
   phx-click="toggle_action" 
@@ -34,13 +34,25 @@
   >
     {l "lower"}
   </div>
+  
+  <div 
+  phx-value-id="consume" 
+  phx-click="toggle_action" 
+  class=
+    {"hover:bg-indigo-400 cursor-pointer flex items-center justify-center px-4 text-sm font-medium text-center text-base-content rounded-md", 
+    "text-secondary-content bg-indigo-600": 
+    @action == "consume"
+    }
+  >
+    {l "consume"}
+  </div>
 </div>
 
 <Form
   for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
   opts={autocomplete: "off"}
   submit="ValueFlows.EconomicEvent:create"
-  change="Bonfire.UI.ValueFlows.CreateEconomicEventLive:autocomplete"
+  change="edit_resource_change"
   >
 
   <!--Hidden Inputs-->
@@ -61,20 +73,37 @@
 
   <!--Quantity -->
   <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="flex">
   {l "Specify the quantity to "}
-  <span class="font-semibold">{@action}</span>
-  {l "by"}
+  <span class="font-semibold">{l" "}{@action}</span>
+  <img :if={@action == "lower" or @action == "raise"} src="https://cdn3.iconfinder.com/data/icons/ui-ux-web-application-simplicon-set/102/question-mark-512.png"
+     style="cursor:pointer; width:15px; height:15px;"
+     title="Use lower or raise to fix mistakes when inventorying.">
+  <img :if={@action == "consume"} src="https://cdn3.iconfinder.com/data/icons/ui-ux-web-application-simplicon-set/102/question-mark-512.png"
+     style="cursor:pointer; width:15px; height:15px;"
+     title="Use consume if the resource is being physically used.">
+  {l " by"}
+  </div>
     <div class="flex">
     <Inputs for={:resource_quantity}>
       <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10">
         <NumberInput :if={@action == "raise"} opts={placeholder: "00.00", step: "any", min: 1, required: true} class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
-        <NumberInput :if={@action == "lower"} opts={placeholder: "00.00", step: "any", min: 1, required: true, max: @resource.onhandQuantity.hasNumericalValue} class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
+        <NumberInput :if={@action == "lower" or @action=="consume"} opts={placeholder: "00.00", step: "any", min: 1, required: true, max: @resource.onhandQuantity.hasNumericalValue} class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
       </Field>
       <Field name={:has_unit}>
         <Select options={"TODO units": "todo"} class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"/>
       </Field>
     </Inputs>
     </div>
+  {l "The new quantity will be"}
+    <span class="font-semibold">
+      <Label :if={@action == "raise"}>
+        {e(@resource, :onhandQuantity, :hasNumericalValue, 0) + e(assigns, :edit_resource_value, 10)}
+      </Label>
+      <Label :if={@action == "lower" or @action=="consume"}>
+        {e(@resource, :onhandQuantity, :hasNumericalValue, 0) - e(assigns, :edit_resource_value, 10)}
+      </Label>
+    </span>
   </div>
 
   <!--Description-->

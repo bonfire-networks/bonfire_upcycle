@@ -2,7 +2,7 @@
     <div class="p-4 m-4 rounded-md bg-white text-black">
         <div class="relative items-center p-1">
             <LivePatch to={"/resource/"<>e(@resource, :id, nil)} class="font-bold text-2xl text-black">{e(@resource, :name, "[resource name]")}</LivePatch>
-            <button @click="open = !open" class="p-2 bg-indigo-600 hover:bg-indigo-400 rounded-md place-self-end absolute right-0">
+            <button class="p-2 bg-indigo-600 hover:bg-indigo-400 rounded-md place-self-end absolute right-0">
                 <img class="w-6 invert" src={"https://upload.wikimedia.org/wikipedia/commons/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg"}/>
             </button>
         </div>
@@ -37,7 +37,7 @@
                         {e(@resource, :note, "[description]")}
                     </span>
                 </div>
-                <div class="grid grid-cols-6">
+                <div class="grid grid-cols-6 grid-rows-2 h-12">
                     <div class="col-span-2">
                         <Label class="w-full font-semibold">{l "Resource Specification: "}</Label>
                         {e(@resource, :conformsTo, :name, "[spec-name-here]")}
@@ -54,6 +54,14 @@
                         <Label class="font-semibold">{l "Location: "}</Label>
                         {e(@resource, :currentLocation, :displayUsername, "[location]")}
                     </div>
+                    <div class="col-span-2">
+                        {l ""}
+                    </div>
+                    <div class="w-full">
+                        <button @click="open = !open" class="btn rounded-md normal-case text-base text-sm font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
+                            {l "Edit Quantity"} {}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,6 +71,7 @@
         <Bonfire.UI.Upcycle.EditResourceLive
             resource={@resource}
             action={@action}
+            edit_resource_value={@edit_resource_value}
         />
         </div>
     </div>
