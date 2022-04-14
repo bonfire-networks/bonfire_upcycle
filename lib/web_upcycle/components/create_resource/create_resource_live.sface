@@ -9,8 +9,8 @@
     <HiddenInput :if={e(assigns, :input_of_id, nil)} name="input_of_id" value={e(assigns, :input_of_id, "")} />
     <HiddenInput :if={e(assigns, :output_of_id, nil)} name="output_of_id" value={e(assigns, :output_of_id, "")} />
 
-    <div class="text-base font-extrabold text-base-content-800">{l "Add a resource to inventory"}</div>
-    <div class="mt-1 text-sm text-base-content-600 font-regular">{l "Specify the resource you want to add"}</div>
+    <div class="text-base font-extrabold text-base-content opacity-80">{l "Add a resource to inventory"}</div>
+    <div class="mt-1 text-sm text-base-content opacity-60 font-regular">{l "Specify the resource you want to add"}</div>
 
 
     <Bonfire.UI.Social.MultiselectLive
@@ -27,12 +27,12 @@
         <Inputs for={:resource_quantity}>
         <div class="w-20">
             <Field name={:has_numerical_value} class="relative flex items-stretch flex-grow focus-within:z-10">
-            <NumberInput opts={placeholder: "0"} class="flex-1 block w-full font-bold text-base-content-800 placeholder-gray-600 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
+            <NumberInput opts={placeholder: "0"} class="flex-1 block w-full font-bold text-base-content opacity-80 placeholder-gray-600 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm" placeholder="0.0"/>
             <ErrorTag class="p-3 bg-error-300" />
             </Field>
         </div>
         <Field name={:has_unit} class="flex-1">
-            <Select options={"TODO units": "todo"} class="flex-1 block w-full font-bold text-base-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"/>
+            <Select options={"TODO units": "todo"} class="flex-1 block w-full font-bold text-base-content opacity-80 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"/>
         </Field>
         </Inputs>
     </div>
