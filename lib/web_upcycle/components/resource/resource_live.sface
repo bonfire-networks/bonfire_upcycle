@@ -20,9 +20,9 @@
         <div class="pl-2">
             <span class="rounded-full border-0 px-3 py-1 bg-blue-600 text-white justify-center">{l "[Offered]"}</span>
         </div>
-        <div class="flex">
+        <!-- <div class="flex">
             <Label class="justify-end text-gray-500 absolute right-0">{l "Last Activity [2 days ago]"}</Label>
-        </div>
+        </div> -->
         </div>
     </div>
     <div class="flex p-1">

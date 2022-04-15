@@ -2,7 +2,7 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
   use Bonfire.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
 
   alias Bonfire.Web.LivePlugs
-  import Bonfire.Web.Gettext
+  import Bonfire.Upcycle.Integration
 
   def mount(params, session, socket) do
     LivePlugs.live_plug params, session, socket, [
@@ -42,32 +42,5 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
   def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
   def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 
-  def get_last_activity(date) do
-    week = case Date.day_of_week(date) do
-      1 -> "Mon"
-      2 -> "Tue"
-      3 -> "Wed"
-      4 -> "Thu"
-      5 -> "Fri"
-      6 -> "Sat"
-      7 -> "Sun"
-    end
 
-    month = case date.month do
-      1 -> "Jan"
-      2 -> "Feb"
-      3 -> "Mar"
-      4 -> "Apr"
-      5 -> "May"
-      6 -> "Jun"
-      7 -> "Jul"
-      8 -> "Aug"
-      9 -> "Sep"
-      10 -> "Oct"
-      11 -> "Nov"
-      12 -> "Dec"
-    end
-
-    "#{week} #{month} #{date.day} #{date.year}"
-  end
 end
