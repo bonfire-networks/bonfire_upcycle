@@ -83,6 +83,7 @@ defmodule Bonfire.Upcycle.Web.TransferLive do
           id
           image
           name
+          note
           conformsTo {
             name
           }
