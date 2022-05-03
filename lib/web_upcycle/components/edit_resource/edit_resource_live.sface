@@ -4,8 +4,8 @@
 <div class="flex justify-center">
   <Label class="font-bold text-lg text-black">
       {l "Edit Resource "}
-      {@resource.name }
-      {@resource.onhandQuantity.hasNumericalValue}
+      {e(@resource, :name, "[name]")}
+      {e(@resource, :onhandQuantity, :hasNumericalValue, "[quantity]")}
   </Label>
 </div>
 
@@ -63,11 +63,11 @@
   <HiddenInput :if={e(assigns, :resource_conforms_to, nil)} name="resource_conforms_to" value={{@resource.conformsTo}} />
   
   <div hidden=true>
-    {#if @resource.conformsTo}
-      <TextInput opts={value: @resource.conformsTo.id}/>
+    {#if e(@resource, :conformsTo, nil)}
+      <TextInput opts={value: e(@resource, :conformsTo, :id, nil)}/>
     {/if}
     <Field name={:resource_inventoried_as} class="flex flex-col p-3 rounded-xl bg-base-200">
-      <TextInput opts={value: @resource.id}/>
+      <TextInput opts={value: e(@resource, :id, nil)}/>
     </Field>
   </div>
 

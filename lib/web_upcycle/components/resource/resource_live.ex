@@ -4,4 +4,5 @@ defmodule Bonfire.UI.Upcycle.ResourceLive do
   prop resource, :any
   prop action, :any
   prop edit_resource_value, :any
+  prop editable, :any, default: true
 end

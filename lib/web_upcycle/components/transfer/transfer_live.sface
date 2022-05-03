@@ -1,0 +1,89 @@
+<div class="w-full" x-data="{ open: false }">
+    <div class="p-4 m-4 rounded-md bg-white text-black">
+        <div class="grid grid-cols-3">
+            <div>
+                <span class="font-bold text-xl text-black">
+                    {l "FROM"}
+                </span>
+                <div class="flex">
+                    <div class="rounded-md border-2">
+                        <img class="rounded-md p-2" src={"#{avatar_url(e(@transfer, :provider, nil))}"}}/>
+                    </div>
+                    <div class="p-4 grid grid-rows-3">
+                        <span class="font-bold text-black">
+                            {e(@transfer, :provider, :name, "[organization A]")}
+                        </span>
+                        <span class="text-gray-400">
+                            {e(@transfer, :provider, :displayUsername, "[org_A_handle]")}
+                        </span>
+                        <span>
+                            {l " "}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span class="font-bold text-xl text-black">
+                    {l "TO"}
+                </span>
+                <div class="flex">
+                    <div class="rounded-md border-2 p-2">
+                        <img src={"#{avatar_url(e(@transfer, :receiver, nil))}"}}/>
+                    </div>
+                    <div class="p-4 grid grid-rows-3">
+                        <span class="font-bold text-black">
+                            {e(@transfer, :receiver, :name, "[organization A]")}
+                        </span>
+                        <span class="text-gray-400">
+                            {e(@transfer, :receiver, :displayUsername, "[org_A_handle]")}
+                        </span>
+                        <span>
+                            {l " "}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-5 grid-cols-2">
+                <span>
+                    {l " "}
+                </span>
+                <span>
+                    {l " "}
+                </span>
+                <span class="font-bold">
+                    {l "Transfer Date: "}
+                </span>
+                <span>
+                    {l "[date]"}
+                </span>
+                <span class="font-bold">
+                    {l "Location: "}
+                </span>
+                <span>
+                    {e(@transfer, :atLocation, :name, "[location]")}
+                </span>
+            </div>
+        </div>
+        <br>
+        <span class="font-bold">
+            {l "Transfer Description"}
+        </span>
+        <p>
+            {e(@transfer, :note, "[description]")}
+        </p>
+        <br>
+        <hr>
+        <br>
+        <div class="border-2 rounded-md">
+        <Bonfire.UI.Upcycle.ResourceLive
+            editable={false}
+            resource={e(@transfer, :resourceInventoriedAs, nil)}
+        />
+        </div>
+    </div>
+    <div x-show="open" @click.away="open = false" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4">
+        <div>
+            <!--  -->
+        </div>
+    </div>
+</div>
