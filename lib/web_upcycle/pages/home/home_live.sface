@@ -27,5 +27,12 @@
     <Bonfire.UI.Upcycle.MyOffersLive  intents={@intents} />
     {#match "create-resource"}
     <Bonfire.UI.Upcycle.CreateResourceLive />
+    {#match "create-transfer"}
+    <Bonfire.UI.Upcycle.CreateTransferLive
+      intents={@intents}
+      resource_id={@resource_id}
+      resource_name={@resource_name}
+      resource_quantity={@resource_quantity}
+       />
   {/case}
 </main>

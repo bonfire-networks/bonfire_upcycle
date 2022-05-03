@@ -98,6 +98,18 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
+
+  def do_handle_params(%{"tab" => "create-transfer" = tab} = _params, _url, socket) do
+    current_user = current_user(socket)
+    my_agent = my_agent(socket)
+
+    {:noreply,
+     assign(socket,
+       selected_tab: tab,
+       intents: my_agent
+     )}
+  end
+
   def do_handle_params(%{"tab" => tab} = _params, _url, socket) do
     current_user = current_user(socket)
     intents = intents(socket)

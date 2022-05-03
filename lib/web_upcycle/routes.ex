@@ -22,6 +22,7 @@ defmodule Bonfire.Upcycle.Web.Routes do
         pipe_through :user_required
 
         live "/inventory", Web.InventoryLive
+        live "/transfers", Web.TransferLive
         live "/", Web.HomeLive
         live "/:tab", Web.HomeLive
         live "/intent/:id", IntentLive, as: ValueFlows.Planning.Intent

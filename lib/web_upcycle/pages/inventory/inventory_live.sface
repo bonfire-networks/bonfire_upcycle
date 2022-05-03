@@ -1,32 +1,38 @@
 <div class="w-full" x-data="{ open: false }">
     <div>
         <Bonfire.UI.Upcycle.MainNavigationLive />
-        <div class="flex justify-center text-white">
-            <div class="flex w-1/2">
-                <div>
-                    <Select class="rounded-md h-full border-0 bg-indigo-600 hover:bg-indigo-400" options={"Organization Filter": "org"}/>
+        <div class="relative text-white">
+            <div class="absolute left-0">
+                <div class="flex">
+                    <div>
+                        <Select class="rounded-md h-full border-0 bg-indigo-600 hover:bg-indigo-400" options={"Organization Filter": "org"}/>
+                    </div>
+                    <div class="pl-2">
+                        <SearchInput class="text-black h-full  border-0 rounded-tl-lg rounded-bl-lg" opts={placeholder: "Search..."}/>
+                    </div>
+                    <button class='p-2 bg-indigo-600 hover:bg-indigo-400 rounded-br-lg rounded-tr-lg'>
+                        <img class='w-8 border-0 invert' src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg"/>
+                    </button>
                 </div>
-                <div class="pl-2">
-                    <SearchInput class="text-black h-full  border-0 rounded-tl-lg rounded-bl-lg" opts={placeholder: "Search..."}/>
-                </div>
-                <button class='p-2 bg-indigo-600 hover:bg-indigo-400 rounded-br-lg rounded-tr-lg'>
-                    <img class='w-8 border-0 invert' src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg"/>
-                </button>
             </div>
-            <div class="flex">
-                <div>
-                    <LivePatch to={"/upcycle/resources"} class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
-                        {l "Goto Resource Specifications"}
-                    </LivePatch>
-                    <button class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
-                        {l "Receive Transfer"}
-                    </button>
-                    <button @click="open = !open" class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
-                        {l "Create New Resource"}
-                    </button>
+            <div class="absolute right-0">
+                <div class="flex">
+                    <div>
+                        <LivePatch to={"/upcycle/resources"} class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
+                            {l "Goto Resource Specifications"}
+                        </LivePatch>
+                        <button class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
+                            {l "Receive Transfer"}
+                        </button>
+                        <button @click="open = !open" class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
+                            {l "Create New Resource"}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="py-10">
         {#for resource <- @resources}
             {#if resource}
                 {#if resource.onhandQuantity}
@@ -42,6 +48,7 @@
                 {/if}
             {/if}
         {/for}
+        </div>
     </div>
     <div x-show="open" @click.away="open = false" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4">
         <div>
