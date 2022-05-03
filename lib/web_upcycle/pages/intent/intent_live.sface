@@ -5,18 +5,22 @@
       <section class="p-3 mb-4 bg-white rounded-lg shadow dark:bg-blueGray-700 w-center">
         <span class="grid-item flex gap-2">
           {#if @intent.is_offer}
-            <span class="flex rounded-box px-2 py-1 bg-pink-600 border-1 text-white justify-center">
+            <span class="flex rounded-md px-2 py-1 bg-pink-600 border-1 text-white justify-center">
               {l "offer"}
             </span>
             {#else}
-            <span class="flex rounded-box px-2 py-1 bg-blue-600 border-1 text-white justify-center">
+            <span class="flex rounded-md px-2 py-1 bg-blue-600 border-1 text-white justify-center">
               {l "need"}
             </span>
           {/if}
           <h3 class="text-xl text-black font-semibold hover:underline"> 
+            {#if @intent.resourceInventoriedAs}
             <LivePatch to={"/resource/" <> @intent.resourceInventoriedAs.id}>
               <span data-test-id="intent_name"> {e(@intent, :name, nil)} </span> : {e(@intent, :resourceQuantity, :hasNumericalValue, :nil)}
             </LivePatch>
+            {#else}
+              <span data-test-id="intent_name"> {e(@intent, :name, nil)} </span> : {e(@intent, :resourceQuantity, :hasNumericalValue, :nil)}
+            {/if}
           </h3>
         </span>
           <span/>
