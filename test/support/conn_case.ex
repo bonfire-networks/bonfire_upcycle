@@ -26,7 +26,7 @@ defmodule Bonfire.Upcycle.ConnCase do
       import Bonfire.UI.Common.Testing.Helpers
 
       import Phoenix.LiveViewTest
-      import Bonfire.Upcycle.ConnCase
+      # import Bonfire.Upcycle.ConnCase, async: true
       import Bonfire.Upcycle.Test.ConnHelpers
       import Bonfire.Upcycle.Test.FakeHelpers
       alias Bonfire.Upcycle.Fake
@@ -41,11 +41,7 @@ defmodule Bonfire.Upcycle.ConnCase do
 
     import Bonfire.Upcycle.Integration
 
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(repo())
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(repo(), {:shared, self()})
-    end
+    Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 
     {:ok, []}
   end

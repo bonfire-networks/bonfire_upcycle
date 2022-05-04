@@ -1,9 +1,9 @@
 defmodule Bonfire.Upcycle.NeedsTest do
-  use Bonfire.Upcycle.ConnDataCase
+  use Bonfire.Upcycle.ConnDataCase, async: true
 
   import ValueFlows.Simulate
   import ValueFlows.Test.Faking
-  import Bonfire.Me.Fake
+
   alias ValueFlows.Planning.Intent.Intents
 
   import Phoenix.LiveViewTest

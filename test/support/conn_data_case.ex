@@ -13,7 +13,7 @@ defmodule Bonfire.Upcycle.ConnDataCase do
 
   using do
     quote do
-      import Bonfire.Upcycle.ConnDataCase
+      # import Bonfire.Upcycle.ConnDataCase, async: true
       import Bonfire.Upcycle.Test.ConnHelpers
       import Bonfire.Upcycle.Test.FakeHelpers
       import Ecto
@@ -32,11 +32,7 @@ defmodule Bonfire.Upcycle.ConnDataCase do
   setup tags do
     import Bonfire.Upcycle.Integration
 
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(repo())
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(repo(), {:shared, self()})
-    end
+    Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 
     {:ok, []}
   end
