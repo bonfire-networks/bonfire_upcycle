@@ -13,7 +13,7 @@ defmodule Bonfire.Upcycle.ConnDataCase do
 
   using do
     quote do
-      # import Bonfire.Upcycle.ConnDataCase, async: true
+      # import Bonfire.Upcycle.ConnDataCase
       import Bonfire.Upcycle.Test.ConnHelpers
       import Bonfire.Upcycle.Test.FakeHelpers
       import Ecto

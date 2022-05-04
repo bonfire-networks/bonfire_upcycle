@@ -26,7 +26,7 @@ defmodule Bonfire.Upcycle.ConnCase do
       import Bonfire.UI.Common.Testing.Helpers
 
       import Phoenix.LiveViewTest
-      # import Bonfire.Upcycle.ConnCase, async: true
+      # import Bonfire.Upcycle.ConnCase
       import Bonfire.Upcycle.Test.ConnHelpers
       import Bonfire.Upcycle.Test.FakeHelpers
       alias Bonfire.Upcycle.Fake

@@ -23,7 +23,7 @@ defmodule Bonfire.Upcycle.DataCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Bonfire.Upcycle.DataCase, async: true
+      # import Bonfire.Upcycle.DataCase
     end
   end
 
