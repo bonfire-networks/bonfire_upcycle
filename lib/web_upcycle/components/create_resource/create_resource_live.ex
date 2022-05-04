@@ -1,5 +1,5 @@
 defmodule Bonfire.UI.Upcycle.CreateResourceLive do
-  use Bonfire.Web, :stateless_component
+  use Bonfire.UI.Common.Web, :stateless_component
 
   prop action, :string, default: "raise"
   prop input_of_id, :string
