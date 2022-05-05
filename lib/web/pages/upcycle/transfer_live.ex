@@ -1,5 +1,5 @@
 defmodule Bonfire.Web.TransferLive do
-  use Bonfire.UI.Common.Web, {:live_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :live_view
 
   alias Bonfire.Me.Web.LivePlugs
   import Bonfire.Common.Localise.Gettext
@@ -19,10 +19,11 @@ defmodule Bonfire.Web.TransferLive do
     title = "Transfer"
 
     {:ok, socket
-          |> assign(
-               page_title: "Transfer",
-               feed_title: title
-             )}
+      |> assign(
+        page_title: "Transfer",
+        feed_title: title,
+        without_sidebar: true
+    )}
   end
 
   defdelegate handle_params(params, attrs, socket), to: Bonfire.UI.Common.LiveHandlers

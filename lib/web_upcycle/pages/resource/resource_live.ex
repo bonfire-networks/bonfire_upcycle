@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.Web.ResourceLive do
-  use Bonfire.UI.Common.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :surface_view
 
   alias Bonfire.Me.Web.LivePlugs
   import Bonfire.Upcycle.Integration
@@ -35,7 +35,8 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
       unit: unit,
       user: user,
       organizations: organizations,
-      feed_title: title
+      feed_title: title,
+      without_sidebar: true
     )}
   end
 

@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.IntentLive do
-  use Bonfire.UI.Common.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :surface_view
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
   import Bonfire.Upcycle.Integration
 
@@ -35,7 +35,8 @@ defmodule Bonfire.Upcycle.IntentLive do
     |> assign(
       page_title: "Intent",
       intent: intent,
-      matches: ValueFlows.Util.search_for_matches(intent)
+      matches: ValueFlows.Util.search_for_matches(intent),
+      without_sidebar: true
     )} #|> IO.inspect
     end
   end

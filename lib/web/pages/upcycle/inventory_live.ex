@@ -1,5 +1,5 @@
 defmodule Bonfire.Web.InventoryLive do
-  use Bonfire.UI.Common.Web, {:live_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :live_view
 
   alias Bonfire.Me.Web.LivePlugs
   import Bonfire.Common.Localise.Gettext
@@ -21,7 +21,8 @@ defmodule Bonfire.Web.InventoryLive do
     {:ok, socket
     |> assign(
       page_title: "View Inventory",
-      feed_title: title
+      feed_title: title,
+      without_sidebar: true
     )}
   end
 

@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.Web.HomeLive do
-  use Bonfire.UI.Common.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :surface_view
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
@@ -31,7 +31,8 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
       intent_url: "/upcycle/intent/",
       resource_id: 0,
       resource_name: "",
-      resource_quantity: 0
+      resource_quantity: 0,
+      without_sidebar: true
     )}
   end
 

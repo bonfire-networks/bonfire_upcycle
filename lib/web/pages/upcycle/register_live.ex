@@ -1,5 +1,5 @@
 defmodule Bonfire.Web.RegisterLive do
-  use Bonfire.UI.Common.Web, {:live_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :live_view
 
   alias Bonfire.Me.Web.LivePlugs
   import Bonfire.Common.Localise.Gettext
@@ -19,11 +19,12 @@ defmodule Bonfire.Web.RegisterLive do
     title = "Register User"
 
     {:ok, socket
-          |> assign(
-               page_title: "Register User",
-               feed_title: title
-             )}
-  end
+      |> assign(
+        page_title: "Register User",
+        feed_title: title,
+        without_sidebar: true
+    )}
+end
 
   defdelegate handle_params(params, attrs, socket), to: Bonfire.UI.Common.LiveHandlers
   def handle_event(action, attrs, socket), do: Bonfire.UI.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)

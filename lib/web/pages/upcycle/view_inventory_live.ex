@@ -1,5 +1,5 @@
 defmodule Bonfire.Web.ViewInventoryLive do
-  use Bonfire.UI.Common.Web, {:live_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :live_view
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
@@ -28,7 +28,8 @@ defmodule Bonfire.Web.ViewInventoryLive do
     |> assign(
       page_title: title,
       feed_title: title,
-      inventoried_resources: resources
+      inventoried_resources: resources,
+      without_sidebar: true
     )}
   end
 

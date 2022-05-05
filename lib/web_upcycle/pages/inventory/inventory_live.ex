@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.Web.InventoryLive do
-  use Bonfire.UI.Common.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :surface_view
   alias Bonfire.Me.Web.LivePlugs
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
@@ -24,7 +24,8 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
       user: current_user,
       resources: resources,
       changeset: ValueFlows.EconomicEvent.validate_changeset(),
-      action: "raise"
+      action: "raise",
+      without_sidebar: true
     )}
   end
 
