@@ -37,7 +37,7 @@
     </Field>
     <Inputs for={:resource_quantity}>
       <div class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300">
-        <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l "Amount I can offer"}</Label>
+        <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l "Amount I need"}</Label>
         <div class="grid grid-cols-3 gap-1">
           <Field name={:has_numerical_value} class="w-full">
             <NumberInput opts={placeholder: "00.00", min: 1, required: true} class="w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
