@@ -3,7 +3,7 @@ defmodule Bonfire.Web.ViewInventoryLive do
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
-  alias Bonfire.Me.Web.LivePlugs
+  alias Bonfire.UI.Me.LivePlugs
   import Bonfire.Common.Localise.Gettext
   alias ValueFlows.EconomicEvent.EconomicEvents
 

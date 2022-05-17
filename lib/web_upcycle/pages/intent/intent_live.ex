@@ -4,9 +4,9 @@ defmodule Bonfire.Upcycle.IntentLive do
   import Bonfire.Upcycle.Integration
 
   alias Bonfire.UI.ValueFlows.{IntentCreateActivityLive, CreateMilestoneLive, ProposalFeedLive, FiltersLive}
-  alias Bonfire.Me.Web.LivePlugs
+  alias Bonfire.UI.Me.LivePlugs
   alias Bonfire.Me.Users
-  alias Bonfire.Me.Web.{CreateUserLive, LoggedDashboardLive}
+  alias Bonfire.UI.Me.{CreateUserLive, LoggedDashboardLive}
 
   prop selected_tab, :string, default: "discover"
 
