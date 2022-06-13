@@ -25,7 +25,7 @@ defmodule Bonfire.Upcycle.ConnDataCase do
 
       alias Bonfire.Me.Fake
 
-      @endpoint Bonfire.Common.Config.get!(:endpoint_module)
+      @endpoint Application.compile_env!(:bonfire, :endpoint_module)
     end
   end
 
