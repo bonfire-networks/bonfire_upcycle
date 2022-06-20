@@ -25,7 +25,7 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
     user = user |> Bonfire.Common.Repo.preload(:character)
     user = user |> Bonfire.Common.Repo.preload(:profile)
     {:ok, account} = Bonfire.Me.Accounts.fetch_current(user.accounted.account_id)
-    organizations = Bonfire.Me.SharedUsers.by_account(account)
+    organizations = if module_enabled?(Bonfire.Data.SharedUser), do: Bonfire.Me.SharedUsers.by_account(account)
     title = resource.name
 
     {:ok, socket
