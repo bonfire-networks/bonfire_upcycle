@@ -8,7 +8,7 @@ An extension for [Bonfire](https://bonfire.cafe/) that handles:
 
 ## Copyright and License
 
-Copyright (c) 2020 Bonfire, VoxPublica, and CommonsPub Contributors
+Copyright (c) 2022 all contributors
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as

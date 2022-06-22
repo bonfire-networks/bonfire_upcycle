@@ -18,7 +18,7 @@
     <!--Specification -->
     <div class="bg-gray-100 p-2 rounded-md m-1">
     {l "Specify the resource you want to add"}
-        <Bonfire.UI.Social.MultiselectLive
+        <Bonfire.UI.Common.MultiselectLive
             preloaded_options={e(assigns, :resource_specifications_autocomplete, [])}
             selected_options={e(assigns, :resource_specification_selected, [])}
             label={"Pick a type of resource..."}

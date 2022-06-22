@@ -25,7 +25,7 @@
     <div class="bg-gray-100 p-2 rounded-md m-1">
     {l "Specify the receiver"}
         <div :if={@action == "transfer"} class="flex flex-col">
-        <Bonfire.UI.Social.MultiselectLive.UserSelectorLive
+        <Bonfire.UI.Common.MultiselectLive.UserSelectorLive
             label={"Select a receiver"}
             form_input_name={"receiver"}
             preloaded_options={e(assigns, :users_autocomplete, [])}
@@ -38,7 +38,7 @@
     <!-- <div class="bg-gray-100 p-2 rounded-md m-1">
     {l "Specify which resource to transfer"}
         <div class="relative flex-1">
-            <Bonfire.UI.Social.MultiselectLive
+            <Bonfire.UI.Common.MultiselectLive
             preloaded_options={e(assigns, :economic_resources_autocomplete, [])}
             selected_options={e(assigns, :economic_resource_selected, [])} 
             label={"Pick a resource..."}
