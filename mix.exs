@@ -5,7 +5,7 @@ defmodule Bonfire.Upcycle.MixProject do
 
   def project do
     [
-      app: :upcycle_ext,
+      app: :bonfire_upcycle,
       version: "0.1.0",
       elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -23,21 +23,11 @@ defmodule Bonfire.Upcycle.MixProject do
     ]
   end
 
-  def application do
-    [
-      extra_applications: [:logger, :runtime_tools]
-    ]
-  end
+  def application, do: [ extra_applications: [:logger, :runtime_tools] ]
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
-  @bonfire_deps [
-    "pointers",
-    "bonfire_data_access_control",
-    "bonfire_data_identity",
-    "bonfire_data_social",
-  ] |> Enum.join(" ")
 
   defp aliases do
     [
@@ -45,11 +35,8 @@ defmodule Bonfire.Upcycle.MixProject do
       "rebar.setup": ["local.rebar --force"],
       "js.deps.get": ["cmd npm install --prefix assets"],
       "ecto.seeds": ["run priv/repo/seeds.exs"],
-      "bonfire.deps.update": ["deps.update #{@bonfire_deps}"],
-      "bonfire.deps.clean": ["deps.clean #{@bonfire_deps} --build"],
-      "bonfire.deps": ["bonfire.deps.update", "bonfire.deps.clean"],
-      setup: ["hex.setup", "rebar.setup", "deps.get", "bonfire.deps.clean", "ecto.setup", "js.deps.get"],
-      updates: ["deps.get", "bonfire.deps.clean", "ecto.migrate", "js.deps.get"],
+      setup: ["hex.setup", "rebar.setup", "deps.get", "ecto.setup", "js.deps.get"],
+      updates: ["deps.get", "ecto.migrate", "js.deps.get"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seeds"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]

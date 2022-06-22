@@ -22,15 +22,18 @@ defmodule Bonfire.Upcycle.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
+
+      import Bonfire.UI.Common.Testing.Helpers
+
       import Phoenix.LiveViewTest
-      import Bonfire.Upcycle.ConnCase
+      # import Bonfire.Upcycle.ConnCase
       import Bonfire.Upcycle.Test.ConnHelpers
       import Bonfire.Upcycle.Test.FakeHelpers
       alias Bonfire.Upcycle.Fake
       # alias Bonfire.Upcycle.Web.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint Bonfire.Common.Config.get!(:endpoint_module)
+      @endpoint Application.compile_env!(:bonfire, :endpoint_module)
     end
   end
 
@@ -38,11 +41,7 @@ defmodule Bonfire.Upcycle.ConnCase do
 
     import Bonfire.Upcycle.Integration
 
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(repo())
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(repo(), {:shared, self()})
-    end
+    Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 
     {:ok, []}
   end

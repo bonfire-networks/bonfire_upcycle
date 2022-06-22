@@ -1,20 +1,18 @@
 defmodule Bonfire.Upcycle.Web.InventoryLive do
-  use Bonfire.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
-  alias Bonfire.Web.LivePlugs
+  use Bonfire.UI.Common.Web, :surface_view
+  alias Bonfire.UI.Me.LivePlugs
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
-  prop action, :any, default: "raise"
-
   def mount(params, session, socket) do
-    LivePlugs.live_plug params, session, socket, [
+    live_plug params, session, socket, [
       LivePlugs.LoadCurrentAccount,
       LivePlugs.LoadCurrentUser,
-      LivePlugs.StaticChanged,
-      LivePlugs.Csrf, LivePlugs.Locale,
+      Bonfire.UI.Common.LivePlugs.StaticChanged,
+      Bonfire.UI.Common.LivePlugs.Csrf,
+      Bonfire.UI.Common.LivePlugs.Locale,
       &mounted/3,
     ]
-  end
 
   defp mounted(params, session, socket) do
     current_user = current_user(socket)
@@ -26,7 +24,8 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
       resources: resources,
       changeset: ValueFlows.EconomicEvent.validate_changeset(),
       action: "raise",
-      edit_resource_value: 100
+      edit_resource_value: 100,
+      without_sidebar: true
     )}
   end
 

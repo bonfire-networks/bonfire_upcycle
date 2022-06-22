@@ -1,15 +1,16 @@
 defmodule Bonfire.Web.OrganizationsLive do
-  use Bonfire.Web, {:live_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :live_view
 
-  alias Bonfire.Web.LivePlugs
-  import Bonfire.Web.Gettext
+  alias Bonfire.UI.Me.LivePlugs
+  import Bonfire.Common.Localise.Gettext
 
   def mount(params, session, socket) do
-    LivePlugs.live_plug params, session, socket, [
+    live_plug params, session, socket, [
       LivePlugs.LoadCurrentAccount,
       LivePlugs.LoadCurrentUser,
-      LivePlugs.StaticChanged,
-      LivePlugs.Csrf, LivePlugs.Locale,
+      Bonfire.UI.Common.LivePlugs.StaticChanged,
+      Bonfire.UI.Common.LivePlugs.Csrf,
+      Bonfire.UI.Common.LivePlugs.Locale,
       &mounted/3,
     ]
   end
@@ -20,11 +21,12 @@ defmodule Bonfire.Web.OrganizationsLive do
     {:ok, socket
     |> assign(
       page_title: "All Organizations",
-      feed_title: title
+      feed_title: title,
+      without_sidebar: true
     )}
   end
 
-  defdelegate handle_params(params, attrs, socket), to: Bonfire.Common.LiveHandlers
-  def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
-  def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+  defdelegate handle_params(params, attrs, socket), to: Bonfire.UI.Common.LiveHandlers
+  def handle_event(action, attrs, socket), do: Bonfire.UI.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
+  def handle_info(info, socket), do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 end

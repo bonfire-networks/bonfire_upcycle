@@ -34,5 +34,9 @@
       resource_name={@resource_name}
       resource_quantity={@resource_quantity}
        />
+    {#match "bookmarked"}
+    <Bonfire.UI.Upcycle.BookmarkedLive />
+    {#match _}
+      
   {/case}
 </main>

@@ -1,21 +1,22 @@
 defmodule Bonfire.Upcycle.IntentLive do
-  use Bonfire.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
-
+  use Bonfire.UI.Common.Web, :surface_view
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
+  import Bonfire.Upcycle.Integration
 
   alias Bonfire.UI.ValueFlows.{IntentCreateActivityLive, CreateMilestoneLive, ProposalFeedLive, FiltersLive}
-  alias Bonfire.Web.LivePlugs
+  alias Bonfire.UI.Me.LivePlugs
   alias Bonfire.Me.Users
-  alias Bonfire.Me.Web.{CreateUserLive, LoggedDashboardLive}
+  alias Bonfire.UI.Me.{CreateUserLive, LoggedDashboardLive}
 
   prop selected_tab, :string, default: "discover"
 
   def mount(params, session, socket) do
-    LivePlugs.live_plug params, session, socket, [
+    live_plug params, session, socket, [
       LivePlugs.LoadCurrentAccount,
       LivePlugs.LoadCurrentUser,
-      LivePlugs.StaticChanged,
-      LivePlugs.Csrf, LivePlugs.Locale,
+      Bonfire.UI.Common.LivePlugs.StaticChanged,
+      Bonfire.UI.Common.LivePlugs.Csrf,
+      Bonfire.UI.Common.LivePlugs.Locale,
       &mounted/3,
     ]
   end
@@ -34,7 +35,8 @@ defmodule Bonfire.Upcycle.IntentLive do
     |> assign(
       page_title: "Intent",
       intent: intent,
-      matches: ValueFlows.Util.search_for_matches(intent)
+      matches: ValueFlows.Util.search_for_matches(intent),
+      without_sidebar: true
     )} #|> IO.inspect
     end
   end
@@ -81,36 +83,8 @@ defmodule Bonfire.Upcycle.IntentLive do
 def intent(params \\ %{}, socket), do: liveql(socket, :intent, params)
 
 
-def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
-def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+def handle_event(action, attrs, socket), do: Bonfire.UI.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
+def handle_info(info, socket), do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 
-defp get_creation_date(date) do
-  week = case Date.day_of_week(date) do
-    0 -> "Sun"
-    1 -> "Mon"
-    2 -> "Tue"
-    3 -> "Wed"
-    4 -> "Thu"
-    5 -> "Fri"
-    6 -> "Sat"
-  end
-
-  month = case date.month do
-    1 -> "Jan"
-    2 -> "Feb"
-    3 -> "Mar"
-    4 -> "Apr"
-    5 -> "May"
-    6 -> "Jun"
-    7 -> "Jul"
-    8 -> "Aug"
-    9 -> "Sep"
-    10 -> "Oct"
-    11 -> "Nov"
-    12 -> "Dev"
-  end
-
-  "#{week} #{month} #{date.day} #{date.year}"
-end
 
 end

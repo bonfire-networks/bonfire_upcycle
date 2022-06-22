@@ -18,7 +18,7 @@
         {/if}
       {/for}
 
-      <p class="ml-auto text-gray-500">Last Activity {get_last_activity(@resource.updated_at)}</p>
+      <p class="ml-auto text-gray-500">{format_date(@resource.updated_at)}</p>
     </div>
 
     <h3 class="font-bold text-lg">Description</h3>

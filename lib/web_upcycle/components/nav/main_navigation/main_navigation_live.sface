@@ -15,6 +15,8 @@
     </li>
     <li class={"bordered": @page == "transfers"}>
       <LivePatch to={"/upcycle/transfers"}>{l "Transfers"}</LivePatch>
+    <li class={"bordered": @page == "bookmarked"}>
+      <LivePatch  to={"/upcycle/bookmarked"}>{l "Bookmarked"}</LivePatch>
     </li>
   </ul>
 </div>

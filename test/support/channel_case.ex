@@ -26,17 +26,13 @@ defmodule Bonfire.Upcycle.ChannelCase do
       import Bonfire.Upcycle.ChannelCase
 
       # The default endpoint for testing
-      @endpoint Bonfire.Common.Config.get!(:endpoint_module)
+      @endpoint Application.compile_env!(:bonfire, :endpoint_module)
     end
   end
 
   setup tags do
 
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(repo())
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(repo(), {:shared, self()})
-    end
+    Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 
     :ok
   end

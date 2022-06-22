@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.OffersTest do
-  use Bonfire.Upcycle.ConnDataCase
+  use Bonfire.Upcycle.ConnDataCase, async: true
   import Bonfire.Common.Simulation
   import ValueFlows.Simulate
   import ValueFlows.Test.Faking

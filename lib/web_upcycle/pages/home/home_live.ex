@@ -1,21 +1,22 @@
 defmodule Bonfire.Upcycle.Web.HomeLive do
-  use Bonfire.Web, {:surface_view, [layout: {Bonfire.UI.Social.Web.LayoutView, "without_sidebar.html"}]}
+  use Bonfire.UI.Common.Web, :surface_view
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
   alias Bonfire.UI.ValueFlows.{IntentCreateActivityLive, CreateMilestoneLive, ProposalFeedLive, FiltersLive}
-  alias Bonfire.Web.LivePlugs
+  alias Bonfire.UI.Me.LivePlugs
   alias Bonfire.Me.Users
-  alias Bonfire.Me.Web.{CreateUserLive, LoggedDashboardLive}
+  alias Bonfire.UI.Me.{CreateUserLive, LoggedDashboardLive}
 
   prop selected_tab, :string, default: "discover"
 
   def mount(params, session, socket) do
-    LivePlugs.live_plug params, session, socket, [
+    live_plug params, session, socket, [
       LivePlugs.LoadCurrentAccount,
       LivePlugs.LoadCurrentUser,
-      LivePlugs.StaticChanged,
-      LivePlugs.Csrf, LivePlugs.Locale,
+      Bonfire.UI.Common.LivePlugs.StaticChanged,
+      Bonfire.UI.Common.LivePlugs.Csrf,
+      Bonfire.UI.Common.LivePlugs.Locale,
       &mounted/3,
     ]
   end
@@ -30,7 +31,8 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
       intent_url: "/upcycle/intent/",
       resource_id: 0,
       resource_name: "",
-      resource_quantity: 0
+      resource_quantity: 0,
+      without_sidebar: true
     )}
   end
 
@@ -77,6 +79,17 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      assign(socket,
        selected_tab: tab,
        intents: my_agent
+     )}
+  end
+
+  def do_handle_params(%{"tab" => "bookmarked" = tab} = _params, _url, socket) do
+    current_user = current_user(socket)
+
+    # TODO
+
+    {:noreply,
+     assign(socket,
+       selected_tab: tab
      )}
   end
 
@@ -135,9 +148,12 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   end
 
   def handle_params(params, uri, socket) do
-    undead_params(socket, fn ->
-      do_handle_params(params, uri, socket)
-    end)
+    # poor man's hook I guess
+    with {_, socket} <- Bonfire.UI.Common.LiveHandlers.handle_params(params, uri, socket) do
+      undead_params(socket, fn ->
+        do_handle_params(params, uri, socket)
+      end)
+    end
   end
 
   @graphql """
@@ -173,7 +189,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   """
   def intents(params \\ %{}, socket), do: liveql(socket, :intents, params)
 
-  # defdelegate handle_params(params, attrs, socket), to: Bonfire.Common.LiveHandlers
+  # defdelegate handle_params(params, attrs, socket), to: Bonfire.UI.Common.LiveHandlers
 
   def handle_event("my_agent", %{}, socket) do
     my_agent = my_agent(socket)
@@ -209,6 +225,6 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   end
 
   @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
-  def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
-  def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+  def handle_event(action, attrs, socket), do: Bonfire.UI.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
+  def handle_info(info, socket), do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 end
