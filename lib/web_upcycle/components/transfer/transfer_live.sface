@@ -7,7 +7,7 @@
                 </span>
                 <div class="flex">
                     <div class="rounded-md border-2">
-                        <img class="rounded-md p-2" src={"#{avatar_url(e(@transfer, :provider, nil))}"}}/>
+                        <Bonfire.UI.Common.AvatarLive class="w-8 h-8 rounded-md p-2" user={e(@transfer, :provider, nil)}/>
                     </div>
                     <div class="p-4 grid grid-rows-3">
                         <span class="font-bold text-black">
@@ -27,9 +27,7 @@
                     {l "TO"}
                 </span>
                 <div class="flex">
-                    <div class="rounded-md border-2 p-2">
-                        <img src={"#{avatar_url(e(@transfer, :receiver, nil))}"}}/>
-                    </div>
+                    <Bonfire.UI.Common.AvatarLive class="rounded-md border-2 p-2" user={e(@transfer, :receiver, nil)}/>
                     <div class="p-4 grid grid-rows-3">
                         <span class="font-bold text-black">
                             {e(@transfer, :receiver, :name, "[organization A]")}
