@@ -28,7 +28,7 @@
             <Bonfire.UI.Social.LikeActionWithoutLabelLive  
             id={ComponentID.new(Bonfire.UI.Social.LikeActionWithoutLabelLive, e(@intent, :id, nil))} 
             object_id={e(@intent, :id, nil)}
-            current_user={current_user(assigns)} 
+            current_user={current_user(@__context__)} 
             />
           </div> -->
         <div class="flex space-x-3 items-top ">
