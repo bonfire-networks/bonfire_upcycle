@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.Web.TransferLive do
-  use Bonfire.UI.Common.Web, :surface_view
+  use Bonfire.UI.Common.Web, :surface_live_view
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
   prop action, :any, default: "transfer"
@@ -119,6 +119,6 @@ defmodule Bonfire.Upcycle.Web.TransferLive do
   end
 
   @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
-  def handle_event(action, attrs, socket), do: Bonfire.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
-  def handle_info(info, socket), do: Bonfire.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+  def handle_event(action, attrs, socket), do: Bonfire.UI.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
+  def handle_info(info, socket), do: Bonfire.Common.UI.LiveHandlers.handle_info(info, socket, __MODULE__)
 end

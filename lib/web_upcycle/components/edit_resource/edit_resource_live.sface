@@ -57,10 +57,10 @@
 
   <!--Hidden Inputs-->
   <HiddenInput name="action" value={@action} />
-  <HiddenInput :if={e(assigns, :input_of_id, nil)} name="input_of_id" value={e(assigns, :input_of_id, "")} />
-  <HiddenInput :if={e(assigns, :output_of_id, nil)} name="output_of_id" value={e(assigns, :output_of_id, "")} />
-  <HiddenInput :if={e(assigns, :resource_inventoried_as, nil)} name="resource_inventoried_as" value={{@resource}} />
-  <HiddenInput :if={e(assigns, :resource_conforms_to, nil)} name="resource_conforms_to" value={{@resource.conformsTo}} />
+  <HiddenInput :if={e(@input_of_id, nil)} name="input_of_id" value={e(@input_of_id, "")} />
+  <HiddenInput :if={e(@output_of_id, nil)} name="output_of_id" value={e(@output_of_id, "")} />
+  <HiddenInput :if={e(@resource_inventoried_as, nil)} name="resource_inventoried_as" value={{@resource}} />
+  <HiddenInput :if={e(@resource_conforms_to, nil)} name="resource_conforms_to" value={{@resource.conformsTo}} />
   
   <div hidden=true>
     {#if e(@resource, :conformsTo, nil)}
@@ -98,10 +98,10 @@
   {l "The new quantity will be"}
     <span class="font-semibold">
       <Label :if={@action == "raise"}>
-        {e(@resource, :onhandQuantity, :hasNumericalValue, 0) + e(assigns, :edit_resource_value, 10)}
+        {e(@resource, :onhandQuantity, :hasNumericalValue, 0) + e(@edit_resource_value, 10)}
       </Label>
       <Label :if={@action == "lower" or @action=="consume"}>
-        {e(@resource, :onhandQuantity, :hasNumericalValue, 0) - e(assigns, :edit_resource_value, 10)}
+        {e(@resource, :onhandQuantity, :hasNumericalValue, 0) - e(@edit_resource_value, 10)}
       </Label>
     </span>
   </div>

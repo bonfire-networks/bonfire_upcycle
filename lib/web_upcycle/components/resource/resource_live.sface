@@ -12,7 +12,7 @@
             <div class="flex items-center p-1">
             {#if @editable}
             <LivePatch to={"/user/"<>e(@resource, :primaryAccountable, :displayUsername, nil, "[displayUsername]")} class="flex items-center text-black">
-                <Bonfire.UI.Common.AvatarLive class="w-8 h-8 rounded-lg p-1 bg-gray-200" user={e(@resource, :primaryAccountable, nil) || @resource)}/>
+                <Bonfire.UI.Common.AvatarLive class="w-8 h-8 rounded-lg p-1 bg-gray-200" user={e(@resource, :primaryAccountable, nil) || @resource}/>
                 <Label class="hover:underline pl-2 font-semibold">{e(@resource, :primaryAccountable, :name, "[user's name]")}</Label>
                 <Label class="hover:underline pl-3 text-gray-400">{"@" <> e(@resource, :primaryAccountable, :displayUsername, "[username]")}</Label>
             </LivePatch>

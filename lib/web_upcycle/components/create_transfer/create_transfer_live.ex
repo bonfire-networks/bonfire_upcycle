@@ -10,7 +10,13 @@ defmodule Bonfire.UI.Upcycle.CreateTransferLive do
 
   prop intents, :any
 
+  prop receiver, :any, default: nil
+  prop provider, :any, default: nil
+
   prop resource_id, :string
   prop resource_name, :string
   prop resource_quantity, :any
+
+  prop users_autocomplete, :any, default: nil
+
 end

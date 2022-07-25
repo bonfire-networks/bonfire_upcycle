@@ -6,8 +6,8 @@
     >
 
     <HiddenInput name="action" value={@action} />
-    <HiddenInput :if={e(assigns, :input_of_id, nil)} name="input_of_id" value={e(assigns, :input_of_id, "")} />
-    <HiddenInput :if={e(assigns, :output_of_id, nil)} name="output_of_id" value={e(assigns, :output_of_id, "")} />
+    <HiddenInput :if={e(@input_of_id, nil)} name="input_of_id" value={e(@input_of_id, "")} />
+    <HiddenInput :if={e(@output_of_id, nil)} name="output_of_id" value={e(@output_of_id, "")} />
 
     <div class="flex justify-center">
         <Label class="font-bold text-lg text-black">
@@ -19,12 +19,12 @@
     <div class="bg-gray-100 p-2 rounded-md m-1">
     {l "Specify the resource you want to add"}
         <Bonfire.UI.Common.MultiselectLive
-            preloaded_options={e(assigns, :resource_specifications_autocomplete, [])}
-            selected_options={e(assigns, :resource_specification_selected, [])}
+            preloaded_options={e(@resource_specifications_autocomplete, [])}
+            selected_options={e(@resource_specification_selected, [])}
             label={"Pick a type of resource..."}
             form_input_name={"resource_conforms_to"}
-            pick_event={e(assigns, :pick_event, "ValueFlows.Knowledge.ResourceSpecification:select")}
-            remove_event={e(assigns, :remove_event, "")}
+            pick_event={e(@pick_event, "ValueFlows.Knowledge.ResourceSpecification:select")}
+            remove_event={e(@remove_event, "")}
             focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"/>
     </div>
 

@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.IntentLive do
-  use Bonfire.UI.Common.Web, :surface_view
+  use Bonfire.UI.Common.Web, :surface_live_view
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
   import Bonfire.Upcycle.Integration
 

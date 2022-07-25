@@ -26,8 +26,8 @@
           <span/>
           <!-- <div class="fixed right-w-full/2">
             <Bonfire.UI.Social.LikeActionWithoutLabelLive  
-            id={ComponentID.new(Bonfire.UI.Social.LikeActionWithoutLabelLive, e(@intent, :id, nil))} 
-            object_id={e(@intent, :id, nil)}
+            id={ComponentID.new(Bonfire.UI.Social.LikeActionWithoutLabelLive, ulid(@intent))} 
+            object_id={ulid(@intent)}
             current_user={current_user(@__context__)} 
             />
           </div> -->
@@ -71,10 +71,10 @@
         </div>
 
         <div class="mt-6 -m-3">
-        <h1 class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(assigns, :matches, "nbHits", l "No")} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</h1>
+        <h1 class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l "No")} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</h1>
 
           <Bonfire.Upcycle.MatchesLive
-            hits={e(assigns, :matches, :hits, [])}
+            hits={e(@matches, :hits, [])}
           />
         </div>
       </section>

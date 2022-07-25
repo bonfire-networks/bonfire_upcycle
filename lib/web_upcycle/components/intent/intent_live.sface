@@ -11,7 +11,7 @@
     {/if}
     
     <div class="flex-auto">
-      <LiveRedirect to={"/upcycle/intent/#{e(@intent, :id, nil)}"}>
+      <LiveRedirect to={"/upcycle/intent/#{ulid(@intent)}"}>
         <h3 class="text-base leading-snug text-base-content hover:underline font-regular">{e(@intent, :name, "ResourceNameNotSet")} : {e(@intent, :resourceQuantity, :hasNumericalValue, "AmountNotSet")}</h3>
       </LiveRedirect>
     </div>
