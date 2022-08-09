@@ -57,10 +57,10 @@
 
   <!--Hidden Inputs-->
   <HiddenInput name="action" value={@action} />
-  <HiddenInput :if={e(@input_of_id, nil)} name="input_of_id" value={e(@input_of_id, "")} />
-  <HiddenInput :if={e(@output_of_id, nil)} name="output_of_id" value={e(@output_of_id, "")} />
-  <HiddenInput :if={e(@resource_inventoried_as, nil)} name="resource_inventoried_as" value={{@resource}} />
-  <HiddenInput :if={e(@resource_conforms_to, nil)} name="resource_conforms_to" value={{@resource.conformsTo}} />
+  <HiddenInput :if={@input_of_id} name="input_of_id" value={e(@input_of_id, "")} />
+  <HiddenInput :if={@output_of_id} name="output_of_id" value={e(@output_of_id, "")} />
+  <HiddenInput :if={@resource_inventoried_as} name="resource_inventoried_as" value={{@resource}} />
+  <HiddenInput :if={@resource_conforms_to} name="resource_conforms_to" value={{@resource.conformsTo}} />
   
   <div hidden=true>
     {#if e(@resource, :conformsTo, nil)}

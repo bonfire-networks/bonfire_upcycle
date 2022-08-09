@@ -6,8 +6,8 @@
     >
 
     <HiddenInput name="action" value={@action} />
-    <HiddenInput :if={e(@input_of_id, nil)} name="input_of_id" value={e(@input_of_id, "")} />
-    <HiddenInput :if={e(@output_of_id, nil)} name="output_of_id" value={e(@output_of_id, "")} />
+    <HiddenInput :if={@input_of_id} name="input_of_id" value={e(@input_of_id, "")} />
+    <HiddenInput :if={@output_of_id} name="output_of_id" value={e(@output_of_id, "")} />
 
     <!-- Header -->
     <div class="flex justify-center">
@@ -66,8 +66,8 @@
             </div>
           </div>
           <div x-show="open" @click.away="open = false"> 
-          {#if e(@intents, nil)} 
-            {#for resource <- e(@intents, nil)}
+          {#if @intents} 
+            {#for resource <- @intents}
               {#if resource.onhandQuantity}
                 {#if resource.onhandQuantity.hasNumericalValue > 0}
                 <div>
