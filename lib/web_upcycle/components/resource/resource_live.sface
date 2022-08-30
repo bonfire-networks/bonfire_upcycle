@@ -60,7 +60,6 @@
                     </div>
                     {/if}
                     <div class="col-span-2">
-                        {l ""}
                     </div>
                     <div class="w-full">
                         {#if @editable}
