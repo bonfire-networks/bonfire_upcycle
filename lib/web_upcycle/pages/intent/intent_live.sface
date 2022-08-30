@@ -2,7 +2,7 @@
   <Bonfire.UI.Upcycle.MainNavigationLive/>
   <div class="flex flex-col w-full mx-auto">
     <main class="flex flex-col items-center w-full">
-      <section class="p-3 mb-4 bg-white rounded-lg shadow dark:bg-blueGray-700 w-center">
+      <section class="p-3 mb-4 bg-white rounded-lg shadow  w-center">
         <span class="grid-item flex gap-2">
           {#if @intent.is_offer}
             <span class="flex rounded-md px-2 py-1 bg-pink-600 border-1 text-white justify-center">
