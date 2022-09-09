@@ -1,5 +1,5 @@
 defmodule Bonfire.Upcycle.MapLive do
-  use Bonfire.UI.Common.Web, {:live_view, [layout: {Bonfire.Upcycle.LayoutView, "live.html"}]}
+  use Bonfire.UI.Common.Web, :live_view
 
   use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
 
