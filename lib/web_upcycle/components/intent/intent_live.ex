@@ -4,6 +4,4 @@ defmodule Bonfire.UI.Upcycle.IntentLive do
 
   prop resourceQuantity, :integer
   prop intent, :any
-
-
 end

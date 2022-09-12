@@ -1,52 +1,57 @@
 <div class="w-full">
-<div>
-  <Bonfire.UI.Upcycle.MainNavigationLive />
-</div>
+  <div>
+    <Bonfire.UI.Upcycle.MainNavigationLive />
+  </div>
 
-<div class="bg-base-100 card shadow w-full">
-  <div class="card-body">
-    <h2 class="card-title text-4xl">{@resource.name}</h2>
+  <div class="bg-base-100 card shadow w-full">
+    <div class="card-body">
+      <h2 class="card-title text-4xl">{@resource.name}</h2>
 
-    <div class="flex items-center mb-8">
-      <Bonfire.UI.Common.AvatarLive class="rounded-lg bg-base-100 mr-2 w-8 h-8" user={@user}/>
-      <p class="font-bold mr-2">{e(@user, :profile, :name, "Anonymous")}</p>
-      <p class="mr-2">@{e(@user, :character, :username, "")}</p>
+      <div class="flex items-center mb-8">
+        <Bonfire.UI.Common.AvatarLive class="rounded-lg bg-base-100 mr-2 w-8 h-8" user={@user} />
+        <p class="font-bold mr-2">{e(@user, :profile, :name, "Anonymous")}</p>
+        <p class="mr-2">@{e(@user, :character, :username, "")}</p>
 
-      {#for organization <- @organizations}
-        {#if e(organization, :shared_user, :label, "") != ""}
-          <div class="badge">{organization.shared_user.label}</div>
-        {/if}
-      {/for}
+        {#for organization <- @organizations}
+          {#if e(organization, :shared_user, :label, "") != ""}
+            <div class="badge">{organization.shared_user.label}</div>
+          {/if}
+        {/for}
 
-      <p class="ml-auto text-gray-500">{format_date(@resource.updated_at)}</p>
-    </div>
+        <p class="ml-auto text-gray-500">{format_date(@resource.updated_at)}</p>
+      </div>
 
-    <h3 class="font-bold text-lg">Description</h3>
-    <p>{@resource.note}</p>
+      <h3 class="font-bold text-lg">Description</h3>
+      <p>{@resource.note}</p>
 
-    {#if @resource.image == nil}
-      <p class="italic mb-4 mt-4">(no image)</p>
-    {#else}
-      <img class="m-4" src={"#{@resource.image}"} alt="Resource image" />
-    {/if}
+      {#if @resource.image == nil}
+        <p class="italic mb-4 mt-4">(no image)</p>
+      {#else}
+        <img class="m-4" src={"#{@resource.image}"} alt="Resource image">
+      {/if}
 
-    <dl>
-      <dt class="font-bold inline-block w-32">Specification:</dt>
-      <dd class="inline">Dummy</dd>
-      <br />
-      <dt class="font-bold inline-block w-32">Quantity:</dt>
-      <dd class="inline">{@resource.accounting_quantity.has_numerical_value}</dd>
-      <br />
-      <dt class="font-bold inline-block w-32">Units:</dt>
-      <dd class="inline">{@unit.symbol}</dd>
-      <br />
-      <dt class="font-bold inline-block w-32">Location:</dt>
-      <dd class="inline">Dummy</dd>
-    </dl>
-    <div class="mt-6 -m-3">
-      <Bonfire.UI.Social.ThreadLive id={@resource.id} thread_id={@resource.id} smart_input_placeholder={l "Post a comment..."}
-      smart_input_text={e(@resource, :receiver, :display_username, "")<>e(@resource, :provider, :display_username, "")<>" "} />
+      <dl>
+        <dt class="font-bold inline-block w-32">Specification:</dt>
+        <dd class="inline">Dummy</dd>
+        <br>
+        <dt class="font-bold inline-block w-32">Quantity:</dt>
+        <dd class="inline">{@resource.accounting_quantity.has_numerical_value}</dd>
+        <br>
+        <dt class="font-bold inline-block w-32">Units:</dt>
+        <dd class="inline">{@unit.symbol}</dd>
+        <br>
+        <dt class="font-bold inline-block w-32">Location:</dt>
+        <dd class="inline">Dummy</dd>
+      </dl>
+      <div class="mt-6 -m-3">
+        <Bonfire.UI.Social.ThreadLive
+          id={@resource.id}
+          thread_id={@resource.id}
+          smart_input_placeholder={l("Post a comment...")}
+          smart_input_text={e(@resource, :receiver, :display_username, "") <>
+            e(@resource, :provider, :display_username, "") <> " "}
+        />
+      </div>
     </div>
   </div>
-</div>
 </div>

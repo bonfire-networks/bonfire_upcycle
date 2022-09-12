@@ -1,7 +1,9 @@
 defmodule Bonfire.UI.Upcycle.CreateTransferLive do
   use Bonfire.UI.Common.Web, :stateless_component
 
-  use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
+  use AbsintheClient,
+    schema: Bonfire.API.GraphQL.Schema,
+    action: [mode: :internal]
 
   prop action, :string, default: "transfer"
   prop input_of_id, :string
@@ -18,5 +20,4 @@ defmodule Bonfire.UI.Upcycle.CreateTransferLive do
   prop resource_quantity, :any
 
   prop users_autocomplete, :any, default: nil
-
 end

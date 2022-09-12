@@ -6,18 +6,21 @@
     </div>
     <Label>{l" "}</Label>
     <Label>{l" "}</Label> -->
-    <LivePatch to={"/upcycle/publish-offer"} class="w-full btn btn-primary bg-pink-600 border-transparent text-white hover:bg-pink-400">
-      {l "Create a new offer"}
+    <LivePatch
+      to="/upcycle/publish-offer"
+      class="w-full btn btn-primary bg-pink-600 border-transparent text-white hover:bg-pink-400"
+    >
+      {l("Create a new offer")}
     </LivePatch>
   </div>
- {#for intent <- @intents}
-      <Bonfire.UI.Upcycle.IntentLive
-        key={e(intent, :id)}
-        name={e(intent, :name, nil)}
-        note={e(intent, :note, nil)}
-        intent={intent}
-       />
-    {#else}
-      No items
-    {/for}
+  {#for intent <- @intents}
+    <Bonfire.UI.Upcycle.IntentLive
+      key={e(intent, :id)}
+      name={e(intent, :name, nil)}
+      note={e(intent, :note, nil)}
+      intent={intent}
+    />
+  {#else}
+    No items
+  {/for}
 </div>

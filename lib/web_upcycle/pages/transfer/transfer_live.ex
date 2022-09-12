@@ -1,40 +1,43 @@
 defmodule Bonfire.Upcycle.Web.TransferLive do
   use Bonfire.UI.Common.Web, :surface_live_view
-  use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
+
+  use AbsintheClient,
+    schema: Bonfire.API.GraphQL.Schema,
+    action: [mode: :internal]
 
   prop action, :any, default: "transfer"
 
   alias Bonfire.UI.Me.LivePlugs
 
   def mount(params, session, socket) do
-    live_plug params, session, socket, [
+    live_plug(params, session, socket, [
       LivePlugs.LoadCurrentAccount,
       LivePlugs.LoadCurrentUser,
       Bonfire.UI.Common.LivePlugs.StaticChanged,
       Bonfire.UI.Common.LivePlugs.Csrf,
       Bonfire.UI.Common.LivePlugs.Locale,
-      &mounted/3,
-    ]
+      &mounted/3
+    ])
   end
-
 
   defp mounted(params, session, socket) do
     current_user = current_user(socket)
     economic_events = my_agent(socket).myAgent.economicEvents
     resources = my_agent(socket).myAgent.inventoriedEconomicResources
 
-    {:ok, socket
-    |> assign(
-      user: current_user,
-      changeset: ValueFlows.EconomicEvent.validate_changeset(),
-      action: "transfer",
-      economic_events: economic_events,
-      resources: resources,
-      resource_id: 0,
-      resource_name: "",
-      resource_quantity: 0,
-      without_sidebar: true
-    )}
+    {:ok,
+     assign(
+       socket,
+       user: current_user,
+       changeset: ValueFlows.EconomicEvent.validate_changeset(),
+       action: "transfer",
+       economic_events: economic_events,
+       resources: resources,
+       resource_id: 0,
+       resource_name: "",
+       resource_quantity: 0,
+       without_sidebar: true
+     )}
   end
 
   @graphql """
@@ -111,14 +114,34 @@ defmodule Bonfire.Upcycle.Web.TransferLive do
   """
   def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
 
-  def handle_event("resource_click", %{"id" => id, "name" => name, "quantity" => quantity}, socket) do
+  def handle_event(
+        "resource_click",
+        %{"id" => id, "name" => name, "quantity" => quantity},
+        socket
+      ) do
     IO.puts("lolXD")
     IO.inspect(socket)
+
     {:noreply,
-      socket |> assign(resource_id: id, resource_name: name, resource_quantity: quantity)}
+     assign(
+       socket,
+       resource_id: id,
+       resource_name: name,
+       resource_quantity: quantity
+     )}
   end
 
-  @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
-  def handle_event(action, attrs, socket), do: Bonfire.UI.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
-  def handle_info(info, socket), do: Bonfire.Common.UI.LiveHandlers.handle_info(info, socket, __MODULE__)
+  @spec handle_event(any, any, any) ::
+          {any, any} | {:ok, any, any} | {:reply, any, any}
+  def handle_event(action, attrs, socket),
+    do:
+      Bonfire.UI.Common.LiveHandlers.handle_event(
+        action,
+        attrs,
+        socket,
+        __MODULE__
+      )
+
+  def handle_info(info, socket),
+    do: Bonfire.Common.UI.LiveHandlers.handle_info(info, socket, __MODULE__)
 end

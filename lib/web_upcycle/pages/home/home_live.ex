@@ -1,42 +1,49 @@
 defmodule Bonfire.Upcycle.Web.HomeLive do
   use Bonfire.UI.Common.Web, :surface_live_view
 
-  use AbsintheClient, schema: Bonfire.API.GraphQL.Schema, action: [mode: :internal]
+  use AbsintheClient,
+    schema: Bonfire.API.GraphQL.Schema,
+    action: [mode: :internal]
 
-  alias Bonfire.UI.ValueFlows.{IntentCreateActivityLive, CreateMilestoneLive, ProposalFeedLive, FiltersLive}
+  alias Bonfire.UI.ValueFlows.IntentCreateActivityLive
+  alias Bonfire.UI.ValueFlows.CreateMilestoneLive
+  alias Bonfire.UI.ValueFlows.ProposalFeedLive
+  alias Bonfire.UI.ValueFlows.FiltersLive
+
   alias Bonfire.UI.Me.LivePlugs
   alias Bonfire.Me.Users
-  alias Bonfire.UI.Me.{CreateUserLive, LoggedDashboardLive}
+  alias Bonfire.UI.Me.CreateUserLive
+  alias Bonfire.UI.Me.LoggedDashboardLive
 
   prop selected_tab, :string, default: "discover"
-
 
   declare_extension("Upcycle", icon: "fluent:laser-tool-20-filled")
 
   def mount(params, session, socket) do
-    live_plug params, session, socket, [
+    live_plug(params, session, socket, [
       LivePlugs.LoadCurrentAccount,
       LivePlugs.LoadCurrentUser,
       Bonfire.UI.Common.LivePlugs.StaticChanged,
       Bonfire.UI.Common.LivePlugs.Csrf,
       Bonfire.UI.Common.LivePlugs.Locale,
-      &mounted/3,
-    ]
+      &mounted/3
+    ])
   end
 
   defp mounted(params, session, socket) do
-    {:ok, socket
-    |> assign(
-      page_title: "Upcycle",
-      page: "publish-offer",
-      action_id: "work",
-      intent_type: "offer",
-      intent_url: "/upcycle/intent/",
-      resource_id: 0,
-      resource_name: "",
-      resource_quantity: 0,
-      without_sidebar: true
-    )}
+    {:ok,
+     assign(
+       socket,
+       page_title: "Upcycle",
+       page: "publish-offer",
+       action_id: "work",
+       intent_type: "offer",
+       intent_url: "/upcycle/intent/",
+       resource_id: 0,
+       resource_name: "",
+       resource_quantity: 0,
+       without_sidebar: true
+     )}
   end
 
   def do_handle_params(%{"tab" => "discover" = tab} = _params, _url, socket) do
@@ -46,8 +53,8 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
     {:noreply,
      assign(socket,
-        selected_tab: tab,
-        intents: intents
+       selected_tab: tab,
+       intents: intents
      )}
   end
 
@@ -67,6 +74,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
     current_user = current_user(socket)
     intents = intents(%{provider: "me"}, socket)
     IO.inspect(intents)
+
     {:noreply,
      assign(socket,
        selected_tab: tab,
@@ -74,7 +82,11 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(%{"tab" => "publish-offer" = tab} = _params, _url, socket) do
+  def do_handle_params(
+        %{"tab" => "publish-offer" = tab} = _params,
+        _url,
+        socket
+      ) do
     current_user = current_user(socket)
     my_agent = my_agent(socket)
 
@@ -105,17 +117,24 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(%{"tab" => "create-resource" = tab} = _params, _url, socket) do
+  def do_handle_params(
+        %{"tab" => "create-resource" = tab} = _params,
+        _url,
+        socket
+      ) do
     current_user = current_user(socket)
 
     {:noreply,
      assign(socket,
-       selected_tab: tab,
+       selected_tab: tab
      )}
   end
 
-
-  def do_handle_params(%{"tab" => "create-transfer" = tab} = _params, _url, socket) do
+  def do_handle_params(
+        %{"tab" => "create-transfer" = tab} = _params,
+        _url,
+        socket
+      ) do
     current_user = current_user(socket)
     my_agent = my_agent(socket)
 
@@ -133,8 +152,8 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
     {:noreply,
      assign(socket,
-        selected_tab: "discover",
-        intents: intents
+       selected_tab: "discover",
+       intents: intents
      )}
   end
 
@@ -145,14 +164,15 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
     {:noreply,
      assign(socket,
-        selected_tab: "discover",
-        intents: intents
+       selected_tab: "discover",
+       intents: intents
      )}
   end
 
   def handle_params(params, uri, socket) do
     # poor man's hook I guess
-    with {_, socket} <- Bonfire.UI.Common.LiveHandlers.handle_params(params, uri, socket) do
+    with {_, socket} <-
+           Bonfire.UI.Common.LiveHandlers.handle_params(params, uri, socket) do
       undead_params(socket, fn ->
         do_handle_params(params, uri, socket)
       end)
@@ -196,7 +216,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
   def handle_event("my_agent", %{}, socket) do
     my_agent = my_agent(socket)
-    {:noreply, socket |> assign(intents: my_agent)}
+    {:noreply, assign(socket, intents: my_agent)}
   end
 
   @graphql """
@@ -220,14 +240,34 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   """
   def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
 
-  def handle_event("resource_click", %{"id" => id, "name" => name, "quantity" => quantity}, socket) do
+  def handle_event(
+        "resource_click",
+        %{"id" => id, "name" => name, "quantity" => quantity},
+        socket
+      ) do
     IO.puts("lolXD")
     IO.inspect(socket)
+
     {:noreply,
-      socket |> assign(resource_id: id, resource_name: name, resource_quantity: quantity)}
+     assign(
+       socket,
+       resource_id: id,
+       resource_name: name,
+       resource_quantity: quantity
+     )}
   end
 
-  @spec handle_event(any, any, any) :: {any, any} | {:ok, any, any} | {:reply, any, any}
-  def handle_event(action, attrs, socket), do: Bonfire.UI.Common.LiveHandlers.handle_event(action, attrs, socket, __MODULE__)
-  def handle_info(info, socket), do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+  @spec handle_event(any, any, any) ::
+          {any, any} | {:ok, any, any} | {:reply, any, any}
+  def handle_event(action, attrs, socket),
+    do:
+      Bonfire.UI.Common.LiveHandlers.handle_event(
+        action,
+        attrs,
+        socket,
+        __MODULE__
+      )
+
+  def handle_info(info, socket),
+    do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
 end

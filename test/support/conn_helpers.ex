@@ -1,5 +1,4 @@
 defmodule Bonfire.Upcycle.Test.ConnHelpers do
-
   import ExUnit.Assertions
   import Plug.Conn
   import Phoenix.ConnTest
@@ -15,7 +14,6 @@ defmodule Bonfire.Upcycle.Test.ConnHelpers do
 
   ### conn
 
-  def session_conn(conn \\ build_conn()), do: Plug.Test.init_test_session(conn, %{})
-
-
+  def session_conn(conn \\ build_conn()),
+    do: Plug.Test.init_test_session(conn, %{})
 end

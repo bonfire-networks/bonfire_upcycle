@@ -6,5 +6,4 @@ defmodule Bonfire.UI.Upcycle.CreateNeedLive do
   prop output_of_id, :string, required: false
   prop title, :string, default: "Create a need"
   prop intent_type, :string, default: "need"
-
 end

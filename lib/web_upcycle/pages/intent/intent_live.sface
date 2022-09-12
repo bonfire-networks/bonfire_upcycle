@@ -1,57 +1,63 @@
 <main class="flex flex-col items-center mx-auto mt-8 w-full max-w-screen-md">
-  <Bonfire.UI.Upcycle.MainNavigationLive/>
+  <Bonfire.UI.Upcycle.MainNavigationLive />
   <div class="flex flex-col w-full mx-auto">
     <main class="flex flex-col items-center w-full">
       <section class="p-3 mb-4 bg-white rounded-lg shadow  w-center">
         <span class="grid-item flex gap-2">
           {#if @intent.is_offer}
             <span class="flex rounded-md px-2 py-1 bg-pink-600 border-1 text-white justify-center">
-              {l "offer"}
+              {l("offer")}
             </span>
-            {#else}
+          {#else}
             <span class="flex rounded-md px-2 py-1 bg-blue-600 border-1 text-white justify-center">
-              {l "need"}
+              {l("need")}
             </span>
           {/if}
-          <h3 class="text-xl text-black font-semibold hover:underline"> 
+          <h3 class="text-xl text-black font-semibold hover:underline">
             {#if @intent.resourceInventoriedAs}
-            <LivePatch to={"/resource/" <> @intent.resourceInventoriedAs.id}>
-              <span data-test-id="intent_name"> {e(@intent, :name, nil)} </span> : {e(@intent, :resourceQuantity, :hasNumericalValue, :nil)}
-            </LivePatch>
+              <LivePatch to={"/resource/" <> @intent.resourceInventoriedAs.id}>
+                <span data-test-id="intent_name">
+                  {e(@intent, :name, nil)}
+                </span>
+                : {e(@intent, :resourceQuantity, :hasNumericalValue, nil)}
+              </LivePatch>
             {#else}
-              <span data-test-id="intent_name"> {e(@intent, :name, nil)} </span> : {e(@intent, :resourceQuantity, :hasNumericalValue, :nil)}
+              <span data-test-id="intent_name">
+                {e(@intent, :name, nil)}
+              </span>
+              : {e(@intent, :resourceQuantity, :hasNumericalValue, nil)}
             {/if}
           </h3>
         </span>
-          <span/>
-          <!-- <div class="fixed right-w-full/2">
+        <span />
+        <!-- <div class="fixed right-w-full/2">
             <Bonfire.UI.Social.LikeActionWithoutLabelLive  
             id={ComponentID.new(Bonfire.UI.Social.LikeActionWithoutLabelLive, ulid(@intent))} 
             object_id={ulid(@intent)}
              
             />
           </div> -->
-        <div class="flex space-x-3 items-top ">
+        <div class="flex space-x-3 items-top">
           <div class="flex-1">
             <div class="block pt-2 pb-4">
               <div class="flex items-center pb-3">
                 <div class="flex items-center space-x-2">
                   <Label class="text-s tracking-wide text-black hover:underline font-regular">{"TODO Organization"}</Label>
                 </div>
-                <span class="text-s tracking-wide text-black font-regular"> - {format_date(e(@intent, :has_beginning, nil))}</span>
+                <span class="text-s tracking-wide text-black font-regular">- {format_date(e(@intent, :has_beginning, nil))}</span>
               </div>
 
               <div class="flex items-center pb-1">
-                <span class="text-s tracking-wide text-black font-regular">Located at: </span>
+                <span class="text-s tracking-wide text-black font-regular">Located at:</span>
                 <div class="flex items-center space-x-2">
                   <Label class="text-s tracking-wide text-black hover:underline font-regular">{"TODO"}</Label>
                 </div>
               </div>
 
               <div class="flex items-center">
-                <span class="text-s tracking-wide text-black font-regular">Offered until: </span>
+                <span class="text-s tracking-wide text-black font-regular">Offered until:</span>
                 <span class="text-s tracking-wide text-black font-regular">
-                  { e(@intent, :due, :nil) }
+                  {e(@intent, :due, nil)}
                 </span>
               </div>
             </div>
@@ -63,19 +69,17 @@
         </div>
 
         <div class="mt-6 -m-3">
-          <Bonfire.UI.Social.ThreadLive 
+          <Bonfire.UI.Social.ThreadLive
             id={e(@intent, :id, "")}
             thread_id={e(@intent, :id, "")}
-            smart_input_placeholder={l "Post a comment..."}
+            smart_input_placeholder={l("Post a comment...")}
           />
         </div>
 
         <div class="mt-6 -m-3">
-        <h1 class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l "No")} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</h1>
+          <h1 class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l("No"))} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</h1>
 
-          <Bonfire.Upcycle.MatchesLive
-            hits={e(@matches, :hits, [])}
-          />
+          <Bonfire.Upcycle.MatchesLive hits={e(@matches, :hits, [])} />
         </div>
       </section>
     </main>

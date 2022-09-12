@@ -47,7 +47,6 @@ defmodule Bonfire.Upcycle.OffersTest do
     refute has_offer?(view, "Definitely not the name")
   end
 
-
   test "displays offer on my offers" do
     agent = fake_agent!()
     account = fake_account!()
@@ -73,7 +72,7 @@ defmodule Bonfire.Upcycle.OffersTest do
   end
 
   defp has_offer?(view, name) do
-    has_element?(view, "[data-test-id=intent_name]", "offer") and has_element?(view, "h3", name)
+    has_element?(view, "[data-test-id=intent_name]", "offer") and
+      has_element?(view, "h3", name)
   end
-
 end
