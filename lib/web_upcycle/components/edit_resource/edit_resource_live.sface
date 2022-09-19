@@ -1,4 +1,4 @@
-<div class="bg-white border-2 border-gray-400 rounded-md text-black p-4">
+<div class="border-2 border-gray-400 rounded-md text-black p-4">
   <!-- Modal Label -->
   <div class="flex justify-center">
     <Label class="font-bold text-lg text-black">
@@ -9,7 +9,7 @@
   </div>
 
   <!-- Select event -->
-  <div class="grid h-12 grid-cols-3 bg-gray-100 p-2 rounded-md m-1 capitalize">
+  <div class="grid h-12 grid-cols-3 p-2 rounded-md m-1 capitalize">
     <div
       phx-value-id="raise"
       phx-click="toggle_action"
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Quantity -->
-    <div class="bg-gray-100 p-2 rounded-md m-1">
+    <div class="p-2 rounded-md m-1">
       <div class="flex">
         {l("Specify the quantity to ")}
         <span class="font-semibold">{l(" ")}{@action}</span>
@@ -136,10 +136,10 @@
     </div>
 
     <!-- Description -->
-    <div class="bg-gray-100 p-2 rounded-md m-1">
+    <div class="p-2 rounded-md m-1">
       {l("Add an optional note")}
       <Field name={:note}>
-        <TextArea class="w-full rounded-md" />
+        <TextArea class="textarea w-full rounded-md" />
       </Field>
     </div>
 

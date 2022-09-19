@@ -29,13 +29,13 @@
     <!-- Create a title input form field -->
     <Field class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300" name={:org}>
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Select for which organization")}</Label>
-      <Select class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      <Select class="input block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
     </Field>
     <Field class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300" name={:name}>
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Resource I need")}</Label>
       <TextInput
         opts={required: true}
-        class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        class="input block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
       />
     </Field>
     <Inputs for={:resource_quantity}>
@@ -45,13 +45,13 @@
           <Field name={:has_numerical_value} class="w-full">
             <NumberInput
               opts={placeholder: "00.00", min: 1, required: true}
-              class="w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="input w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </Field>
           <Field name={:has_unit} class="w-full">
             <Select
               options={"TODO units": "todo"}
-              class="w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="select w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </Field>
         </div>
@@ -63,13 +63,13 @@
         <DateTimeLocalInput
           name="due"
           opts={required: true}
-          class="block w-full text-base-content rounded-box focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          class="input block w-full text-base-content rounded-box focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </Field>
     </div>
     <Field name={:note} class="w-full p-2 rounded-lg shadow-inner bg-base-300">
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Write an optional description")}</Label>
-      <TextArea class="block w-full text-base-content rounded-box focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      <TextArea class="textarea block w-full text-base-content rounded-box focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
     </Field>
     <button type="submit" class="w-full btn btn-primary">{l("Publish")}</button>
   </Form>

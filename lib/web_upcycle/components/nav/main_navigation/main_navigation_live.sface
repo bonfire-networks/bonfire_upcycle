@@ -1,22 +1,22 @@
 <div class="flex items-center w-full px-3 mb-4 shadow-lg rounded-md menu bg-base-100 horizontal">
   <ul class="flex items-stretch flex-1 w-full">
     <li class={bordered: @page == "discover"}>
-      <LivePatch to="/upcycle/discover">{l("Discover")}</LivePatch>
+      <LiveRedirect to="/upcycle/discover">{l("Discover")}</LiveRedirect>
     </li>
     <li class={bordered: @page == "my-needs"}>
-      <LivePatch to="/upcycle/my-needs">{l("My needs")}</LivePatch>
+      <LiveRedirect to="/upcycle/my-needs">{l("My needs")}</LiveRedirect>
     </li>
     <li class={bordered: @page == "my-offers"}>
-      <LivePatch to="/upcycle/my-offers">{l("My offers")}</LivePatch>
+      <LiveRedirect to="/upcycle/my-offers">{l("My offers")}</LiveRedirect>
     </li>
     <li class={bordered: @page == "inventory"}>
-      <LivePatch to="/upcycle/inventory">{l("Inventory")}</LivePatch>
+      <LiveRedirect to="/upcycle/inventory">{l("Inventory")}</LiveRedirect>
     </li>
     <li class={bordered: @page == "transfers"}>
-      <LivePatch to="/upcycle/transfers">{l("Transfers")}</LivePatch>
+      <LiveRedirect to="/upcycle/transfers">{l("Transfers")}</LiveRedirect>
     </li>
     <li class={bordered: @page == "bookmarked"}>
-      <LivePatch to="/upcycle/bookmarked">{l("Bookmarked")}</LivePatch>
+      <LiveRedirect to="/upcycle/bookmarked">{l("Bookmarked")}</LiveRedirect>
     </li>
   </ul>
 </div>

@@ -2,19 +2,19 @@
   <div class="grid h-100 grid-cols-4 gap-1 p-1 m-2 w-full">
     <span>
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Search for")}</Label>
-      <SearchInput class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+      <SearchInput class="input block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
     </span>
     <div>
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Show")}</Label>
       <Select
-        class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        class="select block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         options={All: "all", "Needs only": "showneeds", "Offers only": "showoffers"}
       />
     </div>
     <div>
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Sort by")}</Label>
       <Select
-        class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        class="select block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         options={
           "Date Posted": "dateposted",
           "Expiration Date": "expirationdate",

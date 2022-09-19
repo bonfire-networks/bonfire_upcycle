@@ -16,7 +16,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
 
   prop selected_tab, :string, default: "discover"
 
-  declare_extension("Upcycle", icon: "fluent:laser-tool-20-filled")
+  declare_extension("Upcycle", icon: "twemoji:alembic")
 
   def mount(params, session, socket) do
     live_plug(params, session, socket, [

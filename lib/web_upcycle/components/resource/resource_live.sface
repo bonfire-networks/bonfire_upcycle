@@ -1,5 +1,5 @@
 <div class="w-full" x-data="{ open: false }">
-  <div class="p-4 m-4 rounded-md bg-white text-black">
+  <div class="p-4 m-4 rounded-md  text-black">
     <div class="relative items-center p-1">
       <LivePatch
         to={"/resource/" <> e(@resource, :id, nil, "id")}

@@ -1,5 +1,5 @@
 <Form
-  class="bg-white border-2 border-gray-400 rounded-md text-black p-4"
+  class="border-2 border-gray-400 rounded-md text-black p-4"
   for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
   opts={autocomplete: "off"}
   submit="ValueFlows.EconomicEvent:create"
@@ -16,7 +16,7 @@
   </div>
 
   <!-- Specification -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Specify the resource you want to add")}
     <Bonfire.UI.Common.MultiselectLive
       preloaded_options={e(@resource_specifications_autocomplete, [])}
@@ -30,38 +30,38 @@
   </div>
 
   <!-- Name -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Specify a name")}
     <Field name={:resource_name}>
-      <TextInput opts={required: true} class="w-full rounded-md" />
+      <TextInput opts={required: true} class="input w-full rounded-md" />
     </Field>
   </div>
 
   <!-- Quantity and Units -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Specify the quantity and units")}
     <div class="flex">
       <Inputs for={:resource_quantity}>
         <Field name={:has_numerical_value} class="flex-grow">
-          <NumberInput opts={required: true, min: 1} class="rounded-tl-lg rounded-bl-lg w-full" />
+          <NumberInput opts={required: true, min: 1} class="input rounded-tl-lg rounded-bl-lg w-full" />
         </Field>
         <Field name={:has_unit}>
-          <Select options={"TODO units": "todo"} class="rounded-tr-lg rounded-br-lg" />
+          <Select options={"TODO units": "todo"} class="select rounded-tr-lg rounded-br-lg" />
         </Field>
       </Inputs>
     </div>
   </div>
 
   <!-- Description -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Add an optional resource description")}
     <Field name={:resource_note}>
-      <TextArea class="w-full rounded-md" />
+      <TextArea class="textarea w-full rounded-md" />
     </Field>
   </div>
 
   <!-- Image -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Add an optional image")}
     <div class="flex justify-center">
       <Field name={:resource_image}>

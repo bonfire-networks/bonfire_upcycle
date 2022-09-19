@@ -1,5 +1,5 @@
 <div class="w-full" x-data="{ open: false }">
-  <div class="p-4 m-4 rounded-md bg-white text-black">
+  <div class="p-4 m-4 rounded-md  text-black">
     <div class="grid grid-cols-3">
       <div>
         <span class="font-bold text-xl text-black">

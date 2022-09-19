@@ -1,5 +1,5 @@
 <Form
-  class="bg-white border-2 border-gray-400 rounded-md text-black p-4"
+  class="border-2 border-gray-400 rounded-md text-black p-4"
   for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
   opts={autocomplete: "off"}
   submit="ValueFlows.EconomicEvent:create"
@@ -17,12 +17,12 @@
   </div>
 
   <!-- From -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("From: ")}
   </div>
 
   <!-- Receiver -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Specify the receiver")}
     <div :if={@action == "transfer"} class="flex flex-col">
       <Bonfire.UI.Common.MultiselectLive.UserSelectorLive
@@ -35,7 +35,7 @@
   </div>
 
   <!-- Resource (Bonfire Component) -->
-  <!-- <div class="bg-gray-100 p-2 rounded-md m-1">
+  <!-- <div class="p-2 rounded-md m-1">
     {l "Specify which resource to transfer"}
         <div class="relative flex-1">
             <Bonfire.UI.Common.MultiselectLive
@@ -53,17 +53,17 @@
   <!-- Resource Drop-down -->
   <div hidden="true">
     <Field name={:resource_inventoried_as}>
-      <TextInput value={@resource_id} />
+      <TextInput value={@resource_id} class="input" />
     </Field>
   </div>
   <div x-data="{ open: false }">
-    <Field name={:resource_name} class="bg-gray-100 p-2 rounded-md m-1">
+    <Field name={:resource_name} class="p-2 rounded-md m-1">
       {l("Resource I can offer")}
       <div class="flex w-full h-full">
         <TextInput
           value={@resource_name}
           opts={required: true, placeholder: "Select a resource"}
-          class="rounded-md block w-full text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          class="input rounded-md block w-full text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
         <div class="absolute w-full">
           <button @click="open = !open" class="w-full h-full text-2xl" phx-click="my_agent">{l(" ")}</button>
@@ -81,7 +81,7 @@
                     phx-value-name={resource.name}
                     phx-value-quantity={resource.onhandQuantity.hasNumericalValue}
                     phx-click="resource_click"
-                    class="block border-2 rounded-md bg-white text-black p-1 hover:bg-blue-500 hover:text-white"
+                    class="block border-2 rounded-md  text-black p-1 hover:bg-blue-500 hover:text-white"
                   >
                     {l("   ")}{resource.name}{" - "}{resource.onhandQuantity.hasNumericalValue}
                   </label>
@@ -95,28 +95,28 @@
   </div>
 
   <!-- Quantity and Units -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Specify the quantity and units")}
     <div class="flex">
       <Inputs for={:resource_quantity}>
         <Field name={:has_numerical_value} class="flex-grow">
           <NumberInput
             opts={required: true, min: 1, max: @resource_quantity}
-            class="rounded-tl-lg rounded-bl-lg w-full"
+            class="input rounded-tl-lg rounded-bl-lg w-full"
           />
         </Field>
         <Field name={:has_unit}>
-          <Select options={"TODO units": "todo"} class="rounded-tr-lg rounded-br-lg" />
+          <Select options={"TODO units": "todo"} class="select rounded-tr-lg rounded-br-lg" />
         </Field>
       </Inputs>
     </div>
   </div>
 
   <!-- Description -->
-  <div class="bg-gray-100 p-2 rounded-md m-1">
+  <div class="p-2 rounded-md m-1">
     {l("Add an optional note about the transfer")}
     <Field name={:resource_note}>
-      <TextArea class="w-full rounded-md" />
+      <TextArea class="textarea w-full rounded-md" />
     </Field>
   </div>
 
