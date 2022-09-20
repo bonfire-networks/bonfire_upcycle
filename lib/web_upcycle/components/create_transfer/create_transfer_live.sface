@@ -28,8 +28,8 @@
       <Bonfire.UI.Common.MultiselectLive.UserSelectorLive
         label="Select a receiver"
         form_input_name="receiver"
-        preloaded_options={e(@users_autocomplete, [])}
-        selected_options={e(@receiver, [])}
+        preloaded_options={@users_autocomplete}
+        selected_options={@receiver}
       />
     </div>
   </div>
@@ -44,7 +44,7 @@
             label={"Pick a resource..."}
             form_input_name={"resource_inventoried_as"}
             pick_event={e(@pick_event, "ValueFlows.EconomicResource:select")}
-            remove_event={e(@remove_event, "")}
+            remove_event={@remove_event}
             focus_event="ValueFlows.EconomicResource:autocomplete"
             />
         </div>

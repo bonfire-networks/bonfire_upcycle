@@ -19,12 +19,13 @@
   <div class="p-2 rounded-md m-1">
     {l("Specify the resource you want to add")}
     <Bonfire.UI.Common.MultiselectLive
-      preloaded_options={e(@resource_specifications_autocomplete, [])}
-      selected_options={e(@resource_specification_selected, [])}
+      id="resource_conforms_to"
+      preloaded_options={@resource_specifications_autocomplete}
+      selected_options={@resource_specification_selected}
       label="Pick a type of resource..."
       form_input_name="resource_conforms_to"
       pick_event={e(@pick_event, "ValueFlows.Knowledge.ResourceSpecification:select")}
-      remove_event={e(@remove_event, "")}
+      remove_event={@remove_event}
       focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"
     />
   </div>
