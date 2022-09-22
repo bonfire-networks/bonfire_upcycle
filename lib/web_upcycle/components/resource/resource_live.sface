@@ -1,10 +1,10 @@
 <div class="w-full" x-data="{ open: false }">
   <div class="p-4 m-4 rounded-md  text-black">
     <div class="relative items-center p-1">
-      <LivePatch
+      <LiveRedirect
         to={"/resource/" <> e(@resource, :id, nil, "id")}
         class="font-bold text-2xl text-black"
-      >{e(@resource, :name, "[resource name]")}</LivePatch> {#if @editable}
+      >{e(@resource, :name, "[resource name]")}</LiveRedirect> {#if @editable}
         <button class="p-2 bg-indigo-600 hover:bg-indigo-400 rounded-md place-self-end absolute right-0">
           <img
             class="w-6 invert"
@@ -16,7 +16,7 @@
     <div class="relative">
       <div class="flex items-center p-1">
         {#if @editable}
-          <LivePatch
+          <LiveRedirect
             to={"/user/" <> e(@resource, :primaryAccountable, :displayUsername, nil, "[displayUsername]")}
             class="flex items-center text-black"
           >
@@ -24,7 +24,7 @@
               class="w-8 h-8 rounded-lg p-1 bg-gray-200"
               user={e(@resource, :primaryAccountable, nil) || @resource}
             /> <Label class="hover:underline pl-2 font-semibold">{e(@resource, :primaryAccountable, :name, "[user's name]")}</Label> <Label class="hover:underline pl-3 text-gray-400">{"@" <> e(@resource, :primaryAccountable, :displayUsername, "[username]")}</Label>
-          </LivePatch>
+          </LiveRedirect>
           <div class="pl-3">
             <span class="rounded-full border-0 px-3 py-1 bg-blue-400 border-1 text-white justify-center">{l("[Organization Name]")}</span>
           </div>

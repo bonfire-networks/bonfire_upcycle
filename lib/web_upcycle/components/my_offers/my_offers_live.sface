@@ -6,12 +6,12 @@
     </div>
     <Label>{l" "}</Label>
     <Label>{l" "}</Label> -->
-    <LivePatch
+    <LiveRedirect
       to="/upcycle/publish-offer"
       class="w-full btn btn-primary bg-pink-600 border-transparent text-white hover:bg-pink-400"
     >
       {l("Create a new offer")}
-    </LivePatch>
+    </LiveRedirect>
   </div>
   {#for intent <- @intents}
     <Bonfire.UI.Upcycle.IntentLive

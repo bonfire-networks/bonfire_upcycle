@@ -3,12 +3,12 @@
     <!-- <Select class="block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" options={"Organization": "sortby"}/> -->
     <div />
     <div />
-    <LivePatch
+    <LiveRedirect
       to="/upcycle/publish-need"
       class="w-full btn btn-primary bg-blue-600 border-transparent text-white hover:bg-blue-400"
     >
       {l("Create a new need")}
-    </LivePatch>
+    </LiveRedirect>
   </div>
   {#for intent <- @intents}
     <Bonfire.UI.Upcycle.IntentLive

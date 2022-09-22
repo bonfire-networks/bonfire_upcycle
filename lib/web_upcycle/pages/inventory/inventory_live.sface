@@ -23,12 +23,12 @@
       <div class="absolute right-0">
         <div class="flex">
           <div>
-            <LivePatch
+            <LiveRedirect
               to="/upcycle/resources"
               class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400"
             >
               {l("Goto Resource Specifications")}
-            </LivePatch>
+            </LiveRedirect>
             <button class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400">
               {l("Receive Transfer")}
             </button>
