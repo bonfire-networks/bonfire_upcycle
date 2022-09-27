@@ -16,7 +16,10 @@
       <LiveRedirect to="/upcycle/transfers">{l("Transfers")}</LiveRedirect>
     </li>
     <li class={bordered: @page == "bookmarked"}>
-      <LiveRedirect to="/upcycle/bookmarked">{l("Bookmarked")}</LiveRedirect>
+      <LiveRedirect to="/upcycle/bookmarked">{l("Starred ")}</LiveRedirect>
+    </li>
+    <li class={bordered: @page == "settings"}>
+      <LiveRedirect to={path(Bonfire.UI.ValueFlows.SettingsLive)}>{l("Settings")}</LiveRedirect>
     </li>
   </ul>
 </div>
