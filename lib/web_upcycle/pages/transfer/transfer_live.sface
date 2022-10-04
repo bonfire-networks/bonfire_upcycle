@@ -39,7 +39,7 @@
           {/if}
         {/if}
       {#else}
-        <div class="p-4 m-4 text-black">
+        <div class="p-4 m-4">
           {l("No Transfers.")}
         </div>
       {/for}

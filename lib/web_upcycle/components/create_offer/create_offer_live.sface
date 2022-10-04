@@ -64,7 +64,7 @@
                         phx-value-name={resource.name}
                         phx-value-quantity={resource.onhandQuantity.hasNumericalValue}
                         phx-click="resource_click"
-                        class="block  text-black p-1 hover:bg-blue-500 hover:text-white"
+                        class="block   p-1 hover:bg-blue-500 hover:text-white"
                       >
                         {l("   ")}{resource.name}{" - "}{resource.onhandQuantity.hasNumericalValue}
                       </label>
@@ -76,7 +76,7 @@
             <div>
               <label
                 @click="create = !create; open = false"
-                class="w-full block  text-black p-1 border-2 border-black hover:bg-blue-300 hover:border-white hover:text-white"
+                class="w-full block   p-1 border-2 border-black hover:bg-blue-300 hover:border-white hover:text-white"
               >
                 {l("   Create a new resource")}
               </label>

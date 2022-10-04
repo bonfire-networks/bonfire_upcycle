@@ -4,12 +4,16 @@ defmodule Bonfire.Upcycle.Web.Routes do
       # pages anyone can view
       scope "/upcycle", Bonfire.Upcycle do
         pipe_through(:browser)
+
+        live("/intent/:id", IntentLive, as: ValueFlows.Planning.Intent)
       end
 
       # pages you need an account to view
-      scope "/upcycle", Bonfire.Upcycle do
+      scope "/upcycle" do
         pipe_through(:browser)
         pipe_through(:account_required)
+
+        live("/settings/", Bonfire.UI.ValueFlows.SettingsLive, as: :upcycle_settings)
       end
 
       # VF pages you need to view as a user
@@ -21,7 +25,7 @@ defmodule Bonfire.Upcycle.Web.Routes do
         live("/transfers", Web.TransferLive)
         live("/", Web.HomeLive)
         live("/:tab", Web.HomeLive)
-        live("/intent/:id", IntentLive, as: ValueFlows.Planning.Intent)
+
         # live "/lists", ProcessesLive
         # live "/list/:milestone_id", ProcessLive
         # live "/create-intent", CreateIntentLive

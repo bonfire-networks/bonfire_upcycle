@@ -1,5 +1,5 @@
 <Form
-  class="border-2 border-gray-400 rounded-md text-black p-4"
+  class="border-2 border-gray-400 rounded-md  p-4"
   for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
   opts={autocomplete: "off"}
   submit="ValueFlows.EconomicEvent:create"
@@ -10,7 +10,7 @@
   <HiddenInput :if={@output_of_id} name="output_of_id" value={e(@output_of_id, "")} />
 
   <div class="flex justify-center">
-    <Label class="font-bold text-lg text-black">
+    <Label class="font-bold text-lg">
       {l("Add a Resource to Inventory")}
     </Label>
   </div>

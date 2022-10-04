@@ -1,10 +1,7 @@
 <div class="w-full" x-data="{ open: false }">
-  <div class="p-4 m-4 rounded-md  text-black">
+  <div class="p-4 m-4 rounded-md">
     <div class="relative items-center p-1">
-      <LiveRedirect
-        to={"/resource/" <> e(@resource, :id, nil, "id")}
-        class="font-bold text-2xl text-black"
-      >{e(@resource, :name, "[resource name]")}</LiveRedirect> {#if @editable}
+      <LiveRedirect to={"/resource/" <> e(@resource, :id, nil, "id")} class="font-bold text-2xl">{e(@resource, :name, "[resource name]")}</LiveRedirect> {#if @editable}
         <button class="p-2 bg-indigo-600 hover:bg-indigo-400 rounded-md place-self-end absolute right-0">
           <img
             class="w-6 invert"
@@ -18,7 +15,7 @@
         {#if @editable}
           <LiveRedirect
             to={"/user/" <> e(@resource, :primaryAccountable, :displayUsername, nil, "[displayUsername]")}
-            class="flex items-center text-black"
+            class="flex items-center"
           >
             <Bonfire.UI.Common.AvatarLive
               class="w-8 h-8 rounded-lg p-1 bg-gray-200"

@@ -13,7 +13,7 @@
               {l("need")}
             </span>
           {/if}
-          <h3 class="text-xl text-black font-semibold hover:underline">
+          <h3 class="text-xl  font-semibold hover:underline">
             {#if @intent.resourceInventoriedAs}
               <LiveRedirect to={"/resource/" <> @intent.resourceInventoriedAs.id}>
                 <span data-test-id="intent_name">
@@ -42,28 +42,28 @@
             <div class="block pt-2 pb-4">
               <div class="flex items-center pb-3">
                 <div class="flex items-center space-x-2">
-                  <Label class="text-s tracking-wide text-black hover:underline font-regular">{"TODO Organization"}</Label>
+                  <Label class="text-s tracking-wide  hover:underline font-regular">{"TODO Organization"}</Label>
                 </div>
-                <span class="text-s tracking-wide text-black font-regular">- {format_date(e(@intent, :has_beginning, nil))}</span>
+                <span class="text-s tracking-wide  font-regular">- {format_date(e(@intent, :has_beginning, nil))}</span>
               </div>
 
               <div class="flex items-center pb-1">
-                <span class="text-s tracking-wide text-black font-regular">Located at:</span>
+                <span class="text-s tracking-wide  font-regular">Located at:</span>
                 <div class="flex items-center space-x-2">
-                  <Label class="text-s tracking-wide text-black hover:underline font-regular">{"TODO"}</Label>
+                  <Label class="text-s tracking-wide  hover:underline font-regular">{"TODO"}</Label>
                 </div>
               </div>
 
               <div class="flex items-center">
-                <span class="text-s tracking-wide text-black font-regular">Offered until:</span>
-                <span class="text-s tracking-wide text-black font-regular">
+                <span class="text-s tracking-wide  font-regular">Offered until:</span>
+                <span class="text-s tracking-wide  font-regular">
                   {e(@intent, :due, nil)}
                 </span>
               </div>
             </div>
 
             <div class="flex items-center">
-              <span class="text-s tracking-wide text-black font-regular">{e(@intent, :note, nil)}</span>
+              <span class="text-s tracking-wide  font-regular">{e(@intent, :note, nil)}</span>
             </div>
           </div>
         </div>

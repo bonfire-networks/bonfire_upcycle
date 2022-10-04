@@ -1,7 +1,7 @@
-<div class="border-2 border-gray-400 rounded-md text-black p-4">
+<div class="border-2 border-gray-400 rounded-md  p-4">
   <!-- Modal Label -->
   <div class="flex justify-center">
-    <Label class="font-bold text-lg text-black">
+    <Label class="font-bold text-lg">
       {l("Edit Resource ")}
       {e(@resource, :name, "[name]")}
       {e(@resource, :onhandQuantity, :hasNumericalValue, "[quantity]")}
