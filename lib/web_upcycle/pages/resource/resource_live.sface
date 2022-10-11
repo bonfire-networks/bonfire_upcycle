@@ -48,8 +48,11 @@
           id={@resource.id}
           thread_id={@resource.id}
           smart_input_placeholder={l("Post a comment...")}
-          smart_input_text={e(@resource, :receiver, :display_username, "") <>
-            e(@resource, :provider, :display_username, "") <> " "}
+          smart_input_opts={
+            text:
+              e(@resource, :receiver, :display_username, "") <>
+                e(@resource, :provider, :display_username, "") <> " "
+          }
         />
       </div>
     </div>
