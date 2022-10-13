@@ -32,9 +32,9 @@ defmodule ValueFlows.EconomicEvent.LiveHandler do
       # debug(created: event)
 
       if e(event, :economic_resource, :id, nil) do
-        {:noreply, push_redirect(socket, to: "/upcycle/inventory")}
+        {:noreply, redirect_to(socket, "/upcycle/inventory")}
       else
-        {:noreply, push_redirect(socket, to: "/upcycle/inventory")}
+        {:noreply, redirect_to(socket, "/upcycle/inventory")}
 
         # {:noreply, socket |> put_flash(:success, "Event recorded!")}
       end
