@@ -31,8 +31,8 @@
         </span>
         <span />
         <!-- <div class="fixed right-w-full/2">
-            <Bonfire.UI.Social.LikeActionWithoutLabelLive  
-            id={ComponentID.new(Bonfire.UI.Social.LikeActionWithoutLabelLive, ulid(@intent))} 
+            <Bonfire.UI.Social.LikeActionLive  
+            id={ComponentID.new(Bonfire.UI.Social.LikeActionLive, ulid(@intent))} 
             object_id={ulid(@intent)}
              
             />
