@@ -17,6 +17,10 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   prop selected_tab, :string, default: "discover"
 
   declare_extension("Upcycle", icon: "twemoji:alembic")
+  declare_nav_link([
+    {l("Discover"), href: "/upcycle", icon: "heroicons-solid:newspaper"},
+    {l("My ads"), href: "/upcycle/my-ads", icon: "heroicons-solid:newspaper"}
+  ])
 
   def mount(params, session, socket) do
     live_plug(params, session, socket, [
@@ -41,7 +45,20 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
        resource_id: 0,
        resource_name: "",
        resource_quantity: 0,
-       without_sidebar: true
+       create_object_type: :ads,
+       smart_input_prompt: l("New ads"),
+       sidebar_widgets: [
+        users: [
+          secondary: [
+            {Bonfire.UI.ValueFlows.FilterIntentsLive, []}
+          ]
+        ],
+        guests: [
+          secondary: [
+            {Bonfire.Tag.Web.WidgetTagsLive, []}
+          ]
+        ]
+      ]
      )}
   end
 
@@ -57,75 +74,39 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(%{"tab" => "my-needs" = tab} = _params, _url, socket) do
+  # def do_handle_params(%{"tab" => "my-needs" = tab} = _params, _url, socket) do
+  #   current_user = current_user(socket)
+  #   intents = intents(%{receiver: "me"}, socket)
+  #   IO.inspect(intents)
+
+  #   {:noreply,
+  #    assign(socket,
+  #      selected_tab: tab,
+  #      intents: intents
+  #    )}
+  # end
+
+  # def do_handle_params(%{"tab" => "my-offers" = tab} = _params, _url, socket) do
+  #   current_user = current_user(socket)
+  #   intents = intents(%{provider: "me"}, socket)
+  #   IO.inspect(intents)
+
+  #   {:noreply,
+  #    assign(socket,
+  #      selected_tab: tab,
+  #      intents: intents
+  #    )}
+  # end
+
+  def do_handle_params(%{"tab" => "my-ads" = tab} = _params, _url, socket) do
     current_user = current_user(socket)
-    intents = intents(%{receiver: "me"}, socket)
-    IO.inspect(intents)
+    offers = intents(%{provider: "me"}, socket)
+    needs = intents(%{provider: "me"}, socket)
 
     {:noreply,
      assign(socket,
        selected_tab: tab,
-       intents: intents
-     )}
-  end
-
-  def do_handle_params(%{"tab" => "my-offers" = tab} = _params, _url, socket) do
-    current_user = current_user(socket)
-    intents = intents(%{provider: "me"}, socket)
-    IO.inspect(intents)
-
-    {:noreply,
-     assign(socket,
-       selected_tab: tab,
-       intents: intents
-     )}
-  end
-
-  def do_handle_params(
-        %{"tab" => "publish-offer" = tab} = _params,
-        _url,
-        socket
-      ) do
-    current_user = current_user(socket)
-    my_agent = my_agent(socket)
-
-    {:noreply,
-     assign(socket,
-       selected_tab: tab,
-       intents: my_agent
-     )}
-  end
-
-  def do_handle_params(%{"tab" => "bookmarked" = tab} = _params, _url, socket) do
-    current_user = current_user(socket)
-
-    # TODO
-
-    {:noreply,
-     assign(socket,
-       selected_tab: tab
-     )}
-  end
-
-  def do_handle_params(%{"tab" => "publish-need" = tab} = _params, _url, socket) do
-    current_user = current_user(socket)
-
-    {:noreply,
-     assign(socket,
-       selected_tab: tab
-     )}
-  end
-
-  def do_handle_params(
-        %{"tab" => "create-resource" = tab} = _params,
-        _url,
-        socket
-      ) do
-    current_user = current_user(socket)
-
-    {:noreply,
-     assign(socket,
-       selected_tab: tab
+       intents: offers ++ needs
      )}
   end
 

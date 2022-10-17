@@ -6,6 +6,9 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
     schema: Bonfire.API.GraphQL.Schema,
     action: [mode: :internal]
 
+  declare_nav_link(l("My inventory"), icon: "heroicons-solid:newspaper")
+
+  
   def mount(params, session, socket),
     do:
       live_plug(params, session, socket, [
@@ -25,12 +28,26 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
      assign(
        socket,
        user: current_user,
+       page_title: l("My inventory"),
        resources: resources,
+       create_object_type: :resource,
+       smart_input_prompt: l("New resource"),
        changeset: ValueFlows.EconomicEvent.validate_changeset(),
        action: "raise",
        edit_resource_value: 100,
-       without_sidebar: true
-     )}
+       sidebar_widgets: [
+         users: [
+           secondary: [
+             {Bonfire.UI.ValueFlows.FilterIntentsLive, []}
+           ]
+         ],
+         guests: [
+           secondary: [
+             {Bonfire.Tag.Web.WidgetTagsLive, []}
+           ]
+         ]
+       ]
+      )}
   end
 
   @graphql """

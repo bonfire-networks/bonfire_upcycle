@@ -1,5 +1,5 @@
 <Form
-  class="border-2 border-gray-400 rounded-md  p-4"
+  class="relative p-4 bg-base-100"
   for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
   opts={autocomplete: "off"}
   submit="ValueFlows.EconomicEvent:create"
@@ -9,17 +9,11 @@
   <HiddenInput :if={@input_of_id} name="input_of_id" value={e(@input_of_id, "")} />
   <HiddenInput :if={@output_of_id} name="output_of_id" value={e(@output_of_id, "")} />
 
-  <div class="flex justify-center">
-    <Label class="font-bold text-lg">
-      {l("Add a Resource to Inventory")}
-    </Label>
-  </div>
-
   <!-- Specification -->
-  <div class="p-2 rounded-md m-1">
+  <!-- <div class="p-2 m-1 rounded-md">
     {l("Specify the resource you want to add")}
     <Bonfire.UI.Common.MultiselectLive
-      id="resource_conforms_to"
+      id="new_resource_conforms_to"
       preloaded_options={@resource_specifications_autocomplete}
       selected_options={@resource_specification_selected}
       label="Pick a type of resource..."
@@ -28,43 +22,43 @@
       remove_event={@remove_event}
       focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"
     />
-  </div>
+  </div> -->
 
   <!-- Name -->
-  <div class="p-2 rounded-md m-1">
+  <div class="p-2 m-0">
     {l("Specify a name")}
     <Field name={:resource_name}>
-      <TextInput opts={required: true} class="input w-full rounded-md" />
+      <TextInput opts={required: true} placeholder="Type the resource name..." class="w-full mt-2 rounded-md input-bordered input" />
     </Field>
   </div>
 
   <!-- Quantity and Units -->
-  <div class="p-2 rounded-md m-1">
+  <div class="p-2">
     {l("Specify the quantity and units")}
-    <div class="flex">
+    <div class="flex mt-2">
       <Inputs for={:resource_quantity}>
-        <Field name={:has_numerical_value} class="flex-grow">
-          <NumberInput opts={required: true, min: 1} class="input rounded-tl-lg rounded-bl-lg w-full" />
+        <Field name={:has_numerical_value} class="flex-grow border rounded-lg rounded-r-none border-base-content/20">
+          <NumberInput opts={required: true, min: 1} class="w-full min-h-0 input" />
         </Field>
-        <Field name={:has_unit}>
-          <Select options={"TODO units": "todo"} class="select rounded-tr-lg rounded-br-lg" />
+        <Field name={:has_unit} class="border border-l-0 rounded-r-lg border-base-content/20">
+          <Select options={"TODO units": "todo"} class="min-h-0 select" />
         </Field>
       </Inputs>
     </div>
   </div>
 
   <!-- Description -->
-  <div class="p-2 rounded-md m-1">
+  <div class="p-2">
     {l("Add an optional resource description")}
-    <Field name={:resource_note}>
-      <TextArea class="textarea w-full rounded-md" />
+    <Field class="mt-2" name={:resource_note}>
+      <TextArea class="w-full textarea-bordered textarea" />
     </Field>
   </div>
 
   <!-- Image -->
-  <div class="p-2 rounded-md m-1">
+  <div class="p-2">
     {l("Add an optional image")}
-    <div class="flex justify-center">
+    <div class="mt-2">
       <Field name={:resource_image}>
         <img class="rounded-md" src="https://placekitten.com/150/150">
       </Field>
@@ -72,10 +66,10 @@
   </div>
 
   <!-- Submit Button -->
-  <div class="flex justify-center">
+  <div class="flex justify-center mt-4">
     <button
       type="submit"
-      class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400"
+      class="w-full normal-case btn btn-primary"
     >
       {l("Add Resource")}
     </button>
