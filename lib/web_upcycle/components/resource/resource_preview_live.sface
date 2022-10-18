@@ -1,14 +1,14 @@
 <div class="flex items-start gap-6 p-4 rounded-md shadow bg-base-100">
-  <img class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]" src={image_url(e(@resource, :image, nil))}>
+  <img
+    class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]"
+    src={image_url(e(@resource, :image, nil))}
+  />
   <div class="flex flex-col flex-1 gap-1">
     <div class="relative items-center">
       <LiveRedirect to={path(@resource)} class="text-lg font-medium link link-hover">{e(@resource, :name, "[resource name]")}</LiveRedirect>
 
       {#if @editable}
-        <Bonfire.UI.Common.OpenModalLive
-            id={Pointers.ULID.generate()}
-            title_text={l("Edit resource")}
-          >
+        <Bonfire.UI.Common.OpenModalLive id={Pointers.ULID.generate()} title_text={l("Edit resource")}>
           <Bonfire.Upcycle.Web.EditResourceLive
             resource={@resource}
             action={@action}
@@ -19,8 +19,7 @@
               <Icon solid="pencil" class="w-4 h-4" />
             </button>
           </:open_btn>
-        </Bonfire.UI.Common.OpenModalLive>  
-        
+        </Bonfire.UI.Common.OpenModalLive>
       {/if}
     </div>
     <div class="flex items-center gap-3">
@@ -32,18 +31,16 @@
         <LiveRedirect
           to={"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-1"
-          >
+        >
           <Bonfire.UI.Common.AvatarLive
             class="w-6 h-6 rounded-lg"
             user={e(@resource, :primary_accountable, nil) || @resource}
-          /> 
+          />
           <div class="link link-hover">{e(@resource, :primary_accountable, :name, "[user's name]")}</div>
         </LiveRedirect>
       {/if}
-      
     </div>
-      
+
     <div class="text-sm">{e(@resource, :note, "")}</div>
   </div>
 </div>
-

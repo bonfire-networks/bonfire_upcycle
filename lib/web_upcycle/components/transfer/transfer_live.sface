@@ -8,11 +8,11 @@
         <LiveRedirect
           to={"/user/" <> e(@event, :provider, :name, "Unknown")}
           class="flex items-center gap-3"
-          >
+        >
           <Bonfire.UI.Common.AvatarLive
             class="w-12 h-12 rounded-lg bg-base-content/5"
             user={e(@event, :provider, nil) || @event}
-          /> 
+          />
           <div class="text-lg font-semibold link link-hover">{e(@event, :provider, :name, "Unknown")}</div>
         </LiveRedirect>
       </div>
@@ -23,11 +23,11 @@
         <LiveRedirect
           to={"/user/" <> e(@event, :receiver, :name, "Unknown")}
           class="flex items-center gap-3"
-          >
+        >
           <Bonfire.UI.Common.AvatarLive
             class="w-12 h-12 rounded-lg bg-base-content/5"
             user={e(@event, :receiver, nil) || @event}
-          /> 
+          />
           <div class="text-lg font-semibold link link-hover">{e(@event, :receiver, :name, "Unknown")}</div>
         </LiveRedirect>
       </div>

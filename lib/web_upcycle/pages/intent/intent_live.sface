@@ -1,31 +1,25 @@
 <Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
 <section class="p-6 mt-6 rounded-lg shadow bg-base-100">
   <div class="grid grid-cols-[600px_1fr] gap-6">
-    <img src="#" class="h-[400px] w-full rounded-lg bg-base-content/5" />
+    <img src="#" class="h-[400px] w-full rounded-lg bg-base-content/5">
     <div class="flex flex-col justify-between">
       <div class="">
         <div class="flex items-center justify-between gap-2 pb-4 border-b border-base-content/30">
           <span class="font-medium badge">Category</span>
           <div class="flex items-center gap-2">
             {#if @intent.is_offer}
-              <div
-                data-test-id="intent_name"
-                class="badge badge-accent"
-                >
+              <div data-test-id="intent_name" class="badge badge-accent">
                 {l("offer")}
               </div>
             {#else}
-              <div
-                data-test-id="intent_name"
-                class="badge badge-secondary"
-                >
+              <div data-test-id="intent_name" class="badge badge-secondary">
                 {l("need")}
               </div>
             {/if}
           </div>
         </div>
         <div class="mt-4 text-sm font-medium tracking-wide text-base-content/80">{format_date(e(@intent, :has_beginning, nil))}</div>
-        <div class="mt-4 text-2xl font-semibold ">
+        <div class="mt-4 text-2xl font-semibold">
           {#if @intent.resource_inventoried_as}
             <LiveRedirect class="link link-hover" to={"/resource/" <> @intent.resource_inventoried_as.id}>
               <span data-test-id="intent_name">
@@ -48,46 +42,45 @@
           <LiveRedirect
             to={"/user/" <> e(@intent, :provider, :display_username, "[display_username]")}
             class="flex items-center gap-3"
-            >
+          >
             <Bonfire.UI.Common.AvatarLive
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :provider, nil) || @intent}
-            /> 
+            />
             <div class="text-lg font-semibold link link-hover">{e(@intent, :provider, :name, "[user's name]")}</div>
           </LiveRedirect>
         {#else}
           <LiveRedirect
             to={"/user/" <> e(@intent, :receiver, :display_username, "[display_username]")}
             class="flex items-center gap-3"
-            >
+          >
             <Bonfire.UI.Common.AvatarLive
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :receiver, nil) || @intent}
-            /> 
+            />
             <div class="text-lg font-semibold link link-hover">{e(@intent, :receiver, :name, "[user's name]")}</div>
           </LiveRedirect>
         {/if}
-        
       </div>
     </div>
   </div>
   <div class="mt-6">
-    <div class="text-lg font-semibold">{l ("Description")}</div>
+    <div class="text-lg font-semibold">{l("Description")}</div>
     <article class="w-full mt-3 prose prose-lg font-regular">{e(@intent, :note, nil)}</article>
   </div>
 </section>
 
-  <div class="mt-6">
-    <div class="mb-3 text-lg font-semibold">{l ("Comments")}</div>
-    <Bonfire.UI.Social.ThreadLive
-      id={e(@intent, :id, "")}
-      thread_id={e(@intent, :id, "")}
-      smart_input_placeholder={l("Post a comment...")}
-    />
-  </div>
+<div class="mt-6">
+  <div class="mb-3 text-lg font-semibold">{l("Comments")}</div>
+  <Bonfire.UI.Social.ThreadLive
+    id={e(@intent, :id, "")}
+    thread_id={e(@intent, :id, "")}
+    smart_input_placeholder={l("Post a comment...")}
+  />
+</div>
 
-  <div class="mt-6">
-    <div class="mb-3 text-lg font-semibold">{l ("You may be interested in")}</div>
-    <!-- <div class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l("No"))} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</div> -->
-    <Bonfire.Upcycle.MatchesLive hits={e(@matches, :hits, [])} />
-  </div>
+<div class="mt-6">
+  <div class="mb-3 text-lg font-semibold">{l("You may be interested in")}</div>
+  <!-- <div class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l("No"))} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</div> -->
+  <Bonfire.Upcycle.MatchesLive hits={e(@matches, :hits, [])} />
+</div>

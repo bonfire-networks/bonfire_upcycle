@@ -1,17 +1,11 @@
 <div class="flex flex-col gap-2 p-3 rounded-md shadow bg-base-100">
   <div class="flex items-center gap-3">
     {#if e(@intent, :provider, nil)}
-      <div
-        data-test-id="intent_name"
-        class="badge badge-accent"
-        >
+      <div data-test-id="intent_name" class="badge badge-accent">
         {l("offer")}
       </div>
     {#else}
-      <div
-        data-test-id="intent_name"
-        class="badge badge-secondary"
-        >
+      <div data-test-id="intent_name" class="badge badge-secondary">
         {l("need")}
       </div>
     {/if}
