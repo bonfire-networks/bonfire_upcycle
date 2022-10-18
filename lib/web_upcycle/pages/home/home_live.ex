@@ -181,6 +181,9 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
         }
         resource_quantity {
           has_numerical_value
+          has_unit {
+            label
+          }
         }
         receiver {
           name

@@ -1,46 +1,37 @@
 <div class="w-full" x-data="{ open: false }">
   <div class="p-4 m-4 rounded-md">
-    <div class="grid grid-cols-3">
+    <div class="grid grid-cols-2 p-3 rounded-lg shadow bg-base-100">
       <div>
-        <span class="font-bold text-xl">
-          {l("FROM")}
-        </span>
-        <div class="flex">
-          <div class="rounded-md border-2">
-            <Bonfire.UI.Common.AvatarLive class="w-8 h-8 rounded-md p-2" user={e(@event, :provider, nil)} />
-          </div>
-          <div class="p-4 grid grid-rows-3">
-            <span class="font-bold">
-              {e(@event, :provider, :name, "[organization A]")}
-            </span>
-            <span class="text-gray-400">
-              {e(@event, :provider, :display_username, "[org_A_handle]")}
-            </span>
-            <span>
-              {l(" ")}
-            </span>
-          </div>
+        <div class="text-xl font-bold">
+          {l("From")}
         </div>
+        <LiveRedirect
+          to={"/user/" <> e(@event, :provider, :name, "Unknown")}
+          class="flex items-center gap-3"
+          >
+          <Bonfire.UI.Common.AvatarLive
+            class="w-12 h-12 rounded-lg bg-base-content/5"
+            user={e(@event, :provider, nil) || @event}
+          /> 
+          <div class="text-lg font-semibold link link-hover">{e(@event, :provider, :name, "Unknown")}</div>
+        </LiveRedirect>
       </div>
       <div>
-        <span class="font-bold text-xl">
-          {l("TO")}
-        </span>
-        <div class="flex">
-          <Bonfire.UI.Common.AvatarLive class="rounded-md border-2 p-2" user={e(@event, :receiver, nil)} /> <div class="p-4 grid grid-rows-3">
-            <span class="font-bold">
-              {e(@event, :receiver, :name, "[organization A]")}
-            </span>
-            <span class="text-gray-400">
-              {e(@event, :receiver, :display_username, "[org_A_handle]")}
-            </span>
-            <span>
-              {l(" ")}
-            </span>
-          </div>
+        <div class="text-xl font-bold">
+          {l("To")}
         </div>
+        <LiveRedirect
+          to={"/user/" <> e(@event, :receiver, :name, "Unknown")}
+          class="flex items-center gap-3"
+          >
+          <Bonfire.UI.Common.AvatarLive
+            class="w-12 h-12 rounded-lg bg-base-content/5"
+            user={e(@event, :receiver, nil) || @event}
+          /> 
+          <div class="text-lg font-semibold link link-hover">{e(@event, :receiver, :name, "Unknown")}</div>
+        </LiveRedirect>
       </div>
-      <div class="grid grid-rows-5 grid-cols-2">
+      <!-- <div class="grid grid-cols-2 grid-rows-5">
         <span>
           {l(" ")}
         </span>
@@ -59,7 +50,7 @@
         <span>
           {e(@event, :at_location, :name, "[location]")}
         </span>
-      </div>
+      </div> -->
     </div>
     <br> <span class="font-bold">
       {l("Transfer Description")}
@@ -77,7 +68,7 @@
   <div
     x-show="open"
     @click.away="open = false"
-    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4"
+    class="absolute w-1/4 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
   >
     <div>
       <!--  -->

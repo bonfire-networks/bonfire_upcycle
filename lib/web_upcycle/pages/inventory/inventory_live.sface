@@ -1,12 +1,14 @@
 <Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
-{#for %{onhand_quantity: %{has_numerical_value: value}} = resource <- @resources}
-  {#if value > 0}
-    <Bonfire.Upcycle.Web.ResourcePreviewLive
-      resource={resource}
-      action={@action}
-      edit_resource_value={@edit_resource_value}
-    />
-  {/if}
-{#else}
-  <Bonfire.UI.Common.EmptyFeed />
-{/for}
+<div class="flex flex-col gap-3">
+  {#for %{onhand_quantity: %{has_numerical_value: value}} = resource <- @resources}
+    {#if value > 0}
+      <Bonfire.Upcycle.Web.ResourcePreviewLive
+        resource={resource}
+        action={@action}
+        edit_resource_value={@edit_resource_value}
+      />
+    {/if}
+  {#else}
+    <Bonfire.UI.Common.EmptyFeed />
+  {/for}
+</div>

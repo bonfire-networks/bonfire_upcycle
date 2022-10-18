@@ -1,21 +1,11 @@
-<div class="border-2 border-gray-400 rounded-md  p-4">
-  <!-- Modal Label -->
-  <div class="flex justify-center">
-    <Label class="font-bold text-lg">
-      {l("Edit Resource ")}
-      {e(@resource, :name, "[name]")}
-      {e(@resource, :onhand_quantity, :has_numerical_value, "[quantity]")}
-    </Label>
-  </div>
-
-  <!-- Select event -->
-  <div class="grid h-12 grid-cols-3 p-2 rounded-md m-1 capitalize">
+<div class="">
+  <div class="tabs tabs-boxed">
     <div
       phx-value-id="raise"
       phx-click="toggle_action"
       class={
-        "hover:bg-indigo-400 cursor-pointer flex items-center justify-center px-4 text-sm font-medium text-center text-base-content rounded-md",
-        "text-secondary-content bg-indigo-600": @action == "raise"
+        "tab",
+        "tab-active": @action == "raise"
       }
     >
       {l("raise")}
@@ -25,8 +15,8 @@
       phx-value-id="lower"
       phx-click="toggle_action"
       class={
-        "hover:bg-indigo-400 cursor-pointer flex items-center justify-center px-4 text-sm font-medium text-center text-base-content rounded-md",
-        "text-secondary-content bg-indigo-600": @action == "lower"
+        "tab",
+        "tab-active": @action == "lower"
       }
     >
       {l("lower")}
@@ -36,8 +26,8 @@
       phx-value-id="consume"
       phx-click="toggle_action"
       class={
-        "hover:bg-indigo-400 cursor-pointer flex items-center justify-center px-4 text-sm font-medium text-center text-base-content rounded-md",
-        "text-secondary-content bg-indigo-600": @action == "consume"
+        "tab",
+        "tab-active": @action == "consume"
       }
     >
       {l("consume")}
@@ -71,22 +61,10 @@
     </div>
 
     <!-- Quantity -->
-    <div class="p-2 rounded-md m-1">
+    <div class="p-2 m-1 rounded-md">
       <div class="flex">
         {l("Specify the quantity to ")}
         <span class="font-semibold">{l(" ")}{@action}</span>
-        <img
-          :if={@action == "lower" or @action == "raise"}
-          src="https://cdn3.iconfinder.com/data/icons/ui-ux-web-application-simplicon-set/102/question-mark-512.png"
-          style="cursor:pointer; width:15px; height:15px;"
-          title="Use lower or raise to fix mistakes when inventorying."
-        />
-        <img
-          :if={@action == "consume"}
-          src="https://cdn3.iconfinder.com/data/icons/ui-ux-web-application-simplicon-set/102/question-mark-512.png"
-          style="cursor:pointer; width:15px; height:15px;"
-          title="Use consume if the resource is being physically used."
-        />
         {l(" by")}
       </div>
       <div class="flex">
@@ -98,7 +76,7 @@
             <NumberInput
               :if={@action == "raise"}
               opts={placeholder: "00.00", step: "any", min: 1, required: true}
-              class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              class="flex-1 block w-full font-bold border-gray-300 rounded-md shadow-sm text-primary-content-800 bg-base-100 text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
               placeholder="0.0"
             />
             <NumberInput
@@ -110,14 +88,14 @@
                 required: true,
                 max: e(@resource, :onhand_quantity, :has_numerical_value, nil)
               }
-              class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              class="flex-1 block w-full font-bold border-gray-300 rounded-md shadow-sm text-primary-content-800 bg-base-100 text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
               placeholder="0.0"
             />
           </Field>
           <Field name={:has_unit}>
             <Select
               options={units()}
-              class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              class="flex-1 block w-full font-bold border-gray-300 rounded-md shadow-sm text-primary-content-800 bg-base-100 text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
             />
           </Field>
         </Inputs>
@@ -136,10 +114,10 @@
     </div>
 
     <!-- Description -->
-    <div class="p-2 rounded-md m-1">
+    <div class="p-2 m-1 rounded-md">
       {l("Add an optional note")}
       <Field name={:note}>
-        <TextArea class="textarea w-full rounded-md" />
+        <TextArea class="w-full rounded-md textarea" />
       </Field>
     </div>
 
@@ -147,7 +125,7 @@
     <div class="flex justify-center">
       <button
         type="submit"
-        class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400"
+        class="text-base font-normal normal-case bg-indigo-600 border-0 rounded-md btn hover:bg-indigo-400"
       >
         <p class="capitalize">
           {@action}

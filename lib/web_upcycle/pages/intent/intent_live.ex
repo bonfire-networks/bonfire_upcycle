@@ -44,6 +44,7 @@ defmodule Bonfire.Upcycle.IntentLive do
        assign(
          socket,
          page_title: "Intent",
+         without_sidebar: true,
          intent: intent,
          reply_to_id: ulid(intent),
          smart_input_prompt:
@@ -71,6 +72,9 @@ defmodule Bonfire.Upcycle.IntentLive do
         resource_quantity {
           id
           has_numerical_value
+          has_unit {
+            label
+          }
         }
         at_location {
           id
