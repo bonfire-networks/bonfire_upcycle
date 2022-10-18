@@ -7,12 +7,12 @@
         <Bonfire.UI.Common.AvatarLive class="rounded-lg bg-base-100 mr-2 w-8 h-8" user={@user} />
         <p class="font-bold mr-2">{e(@user, :profile, :name, "Anonymous")}</p>
         <p class="mr-2">@{e(@user, :character, :username, "")}</p>
-
+        <!-- 
         {#for organization <- @organizations}
           {#if e(organization, :shared_user, :label, "") != ""}
             <div class="badge">{organization.shared_user.label}</div>
           {/if}
-        {/for}
+        {/for} -->
 
         <p class="ml-auto text-gray-500">{format_date(@resource.updated_at)}</p>
       </div>

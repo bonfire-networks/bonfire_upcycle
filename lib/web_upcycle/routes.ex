@@ -6,6 +6,7 @@ defmodule Bonfire.Upcycle.Web.Routes do
         pipe_through(:browser)
 
         live("/intent/:id", IntentLive, as: ValueFlows.Planning.Intent)
+        live("/resource/:id", ResourceLive, as: ValueFlows.EconomicResource)
       end
 
       # pages you need an account to view

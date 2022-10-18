@@ -48,9 +48,12 @@ defmodule Bonfire.Upcycle.IntentLive do
          page_title: "Intent",
          without_sidebar: true,
          intent: intent,
-         reply_to_id: ulid(intent),
+         reply_to_id: intent,
+         create_object_type: :upcycle_intent,
          smart_input_prompt:
            if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need")),
+         #  smart_input_prompt:
+         #  if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need")),
          matches: ValueFlows.Util.search_for_matches(intent)
          #  without_sidebar: true
        )}

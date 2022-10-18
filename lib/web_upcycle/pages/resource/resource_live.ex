@@ -1,6 +1,10 @@
 defmodule Bonfire.Upcycle.Web.ResourceLive do
   use Bonfire.UI.Common.Web, :surface_live_view
 
+  use AbsintheClient,
+    schema: Bonfire.API.GraphQL.Schema,
+    action: [mode: :internal]
+
   alias Bonfire.UI.Me.LivePlugs
   import Bonfire.Upcycle.Integration
 
@@ -16,36 +20,56 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
   end
 
   defp mounted(%{"id" => id}, _session, socket) do
-    {:ok, resource} = ValueFlows.EconomicResource.EconomicResources.one({:id, id})
-
-    resource = Bonfire.Repo.preload(resource, :accounting_quantity)
-    resource = Bonfire.Repo.preload(resource, :primary_accountable)
-    resource = Bonfire.Repo.preload(resource, :image)
-    unit = Bonfire.Repo.preload(resource.accounting_quantity, :unit).unit
-    user = current_user(socket) |> Bonfire.Repo.preload(:accounted)
-    user = Bonfire.Repo.preload(user, :character)
-    user = Bonfire.Repo.preload(user, :profile)
-
-    {:ok, account} = Bonfire.Me.Accounts.fetch_current(user.accounted.account_id)
-
-    organizations =
-      if module_enabled?(Bonfire.Data.SharedUser),
-        do: Bonfire.Me.SharedUsers.by_account(account)
-
-    title = resource.name
+    {:ok, resource} = resource({:id, id})
 
     {:ok,
      assign(
        socket,
        page_title: resource.name,
        resource: resource,
-       unit: unit,
-       user: user,
-       organizations: organizations,
-       feed_title: title
+       #  unit: unit,
+       # TODO
+       user: nil,
+       organizations: [],
+       feed_title: resource.name
        #  without_sidebar: true
      )}
   end
+
+  @graphql """
+  query($id: ID) {
+    economic_resource(id: $id) {
+      id
+      name
+      note
+      image
+      conforms_to{
+        id
+        name
+      }
+      primary_accountable {
+        display_username
+        name
+        image
+      }
+      onhand_quantity {
+        has_numerical_value
+        has_unit {
+          label
+          symbol
+        }
+      }
+      conforms_to {
+        name
+      }
+      current_location {
+        display_username
+        canonical_url
+      }
+    }
+  }
+  """
+  def resource(params \\ %{}, socket), do: liveql(socket, :economic_resource, params)
 
   defdelegate handle_params(params, attrs, socket),
     to: Bonfire.UI.Common.LiveHandlers
