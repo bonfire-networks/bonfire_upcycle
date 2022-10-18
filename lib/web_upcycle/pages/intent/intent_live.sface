@@ -1,5 +1,4 @@
 <main class="flex flex-col items-center mx-auto mt-8 w-full max-w-screen-md">
-  <Bonfire.UI.Upcycle.MainNavigationLive />
   <div class="flex flex-col w-full mx-auto">
     <main class="flex flex-col items-center w-full">
       <section class="p-3 mb-4  rounded-lg shadow  w-center">
@@ -14,18 +13,18 @@
             </span>
           {/if}
           <h3 class="text-xl  font-semibold hover:underline">
-            {#if @intent.resourceInventoriedAs}
-              <LiveRedirect to={"/resource/" <> @intent.resourceInventoriedAs.id}>
+            {#if @intent.resource_inventoried_as}
+              <LiveRedirect to={"/resource/" <> @intent.resource_inventoried_as.id}>
                 <span data-test-id="intent_name">
                   {e(@intent, :name, nil)}
                 </span>
-                : {e(@intent, :resourceQuantity, :hasNumericalValue, nil)}
+                : {e(@intent, :resource_quantity, :has_numerical_value, nil)}
               </LiveRedirect>
             {#else}
               <span data-test-id="intent_name">
                 {e(@intent, :name, nil)}
               </span>
-              : {e(@intent, :resourceQuantity, :hasNumericalValue, nil)}
+              : {e(@intent, :resource_quantity, :has_numerical_value, nil)}
             {/if}
           </h3>
         </span>

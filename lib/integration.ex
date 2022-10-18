@@ -1,5 +1,7 @@
 defmodule Bonfire.Upcycle.Integration do
-  def repo, do: Bonfire.Common.Config.get!(:repo_module)
+  use Arrows
+
+  # def repo, do: Bonfire.Common.Config.get!(:repo_module)
 
   def mailer, do: Bonfire.Common.Config.get!(:mailer_module)
 
@@ -11,4 +13,9 @@ defmodule Bonfire.Upcycle.Integration do
   end
 
   def format_date(_), do: nil
+
+  def units() do
+    Bonfire.Quantify.Units.many()
+    ~> Enum.map(&{&1.label, &1.id})
+  end
 end

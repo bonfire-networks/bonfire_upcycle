@@ -1,20 +1,12 @@
-
 <Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
-{#for resource <- @resources}
-  {#if resource}
-    {#if resource.onhandQuantity}
-      {#if resource.onhandQuantity.hasNumericalValue}
-        {#if resource.onhandQuantity.hasNumericalValue > 0}
-          <Bonfire.UI.Upcycle.ResourceLive
-            resource={resource}
-            action={@action}
-            edit_resource_value={@edit_resource_value}
-          />
-        {/if}
-      {/if}
-    {/if}
+{#for %{onhand_quantity: %{has_numerical_value: value}} = resource <- @resources}
+  {#if value > 0}
+    <Bonfire.Upcycle.Web.ResourcePreviewLive
+      resource={resource}
+      action={@action}
+      edit_resource_value={@edit_resource_value}
+    />
   {/if}
-{/for}
-{#if Enum.count(@resources) == 0}
+{#else}
   <Bonfire.UI.Common.EmptyFeed />
-{/if}
+{/for}

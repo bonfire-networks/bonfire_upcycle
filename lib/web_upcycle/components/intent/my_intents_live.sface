@@ -1,0 +1,20 @@
+<div class="flex flex-col w-full space-y-2">
+  <!-- <div class="grid h-12 grid-cols-4 gap-1 p-1 m-2">
+    <LiveRedirect
+      to="/upcycle/publish-need"
+      class="w-full text-white bg-blue-600 border-transparent btn btn-primary hover:bg-blue-400"
+    >
+      {l("Create a new need")}
+    </LiveRedirect>
+  </div> -->
+  {#for intent <- @intents}
+    <Bonfire.Upcycle.Web.IntentLive
+      key={e(intent, :id)}
+      name={e(intent, :name, nil)}
+      note={e(intent, :note, nil)}
+      intent={intent}
+    />
+  {#else}
+    <Bonfire.UI.Common.EmptyFeed feedback_title={l("No items were found")} />
+  {/for}
+</div>

@@ -1,0 +1,58 @@
+<div class="w-full" x-data="{ open: false }">
+  <div>
+    <div class="relative text-white">
+      <div class="absolute left-0">
+        <div class="flex">
+          <div>
+            <Select class="select rounded-md h-full border-0" options={Filters: "org"} />
+          </div>
+          <div class="pl-2">
+            <SearchInput
+              class="input h-full  border-0 rounded-tl-lg rounded-bl-lg"
+              opts={placeholder: "Search..."}
+            />
+          </div>
+          <button class="p-2 bg-indigo-600 hover:bg-indigo-400 rounded-br-lg rounded-tr-lg">
+            <img
+              class="w-8 border-0 invert"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg"
+            />
+          </button>
+        </div>
+      </div>
+      <!-- <div class="absolute right-0">
+        <button
+          @click="open = !open"
+          class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400"
+        >
+          {l("Create New Transfer")}
+        </button>
+      </div> -->
+    </div>
+    <div class="py-10">
+      {#for event <- @economic_events}
+        {#if event}
+          {#if event.action.id == "transfer"}
+            <Bonfire.Upcycle.Web.TransferLive event={event} />
+          {/if}
+        {/if}
+      {#else}
+        <div class="p-4 m-4">
+          {l("No Transfers.")}
+        </div>
+      {/for}
+    </div>
+  </div>
+  <!-- <div
+    x-show="open"
+    @click.away="open = false"
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4"
+  >
+    <Bonfire.Upcycle.Web.CreateTransferLive
+      resources={@resources}
+      resource_id={@resource_id}
+      resource_name={@resource_name}
+      resource_quantity={@resource_quantity}
+    />
+  </div> -->
+</div>

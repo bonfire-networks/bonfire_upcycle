@@ -45,8 +45,11 @@ defmodule Bonfire.Upcycle.IntentLive do
          socket,
          page_title: "Intent",
          intent: intent,
-         matches: ValueFlows.Util.search_for_matches(intent),
-         without_sidebar: true
+         reply_to_id: ulid(intent),
+         smart_input_prompt:
+           if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need")),
+         matches: ValueFlows.Util.search_for_matches(intent)
+         #  without_sidebar: true
        )}
 
       # |> IO.inspect
@@ -61,15 +64,15 @@ defmodule Bonfire.Upcycle.IntentLive do
         note
         due
         finished
-        resourceInventoriedAs {
+        resource_inventoried_as {
           id
         }
         has_beginning
-        resourceQuantity {
+        resource_quantity {
           id
-          hasNumericalValue
+          has_numerical_value
         }
-        atLocation {
+        at_location {
           id
           name
         }
@@ -78,7 +81,7 @@ defmodule Bonfire.Upcycle.IntentLive do
           name
           display_username
           image
-          primaryLocation {
+          primary_location {
             id
             name
           }

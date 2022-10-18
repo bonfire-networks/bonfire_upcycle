@@ -7,17 +7,14 @@
         </span>
         <div class="flex">
           <div class="rounded-md border-2">
-            <Bonfire.UI.Common.AvatarLive
-              class="w-8 h-8 rounded-md p-2"
-              user={e(@transfer, :provider, nil)}
-            />
+            <Bonfire.UI.Common.AvatarLive class="w-8 h-8 rounded-md p-2" user={e(@event, :provider, nil)} />
           </div>
           <div class="p-4 grid grid-rows-3">
             <span class="font-bold">
-              {e(@transfer, :provider, :name, "[organization A]")}
+              {e(@event, :provider, :name, "[organization A]")}
             </span>
             <span class="text-gray-400">
-              {e(@transfer, :provider, :displayUsername, "[org_A_handle]")}
+              {e(@event, :provider, :display_username, "[org_A_handle]")}
             </span>
             <span>
               {l(" ")}
@@ -30,15 +27,12 @@
           {l("TO")}
         </span>
         <div class="flex">
-          <Bonfire.UI.Common.AvatarLive
-            class="rounded-md border-2 p-2"
-            user={e(@transfer, :receiver, nil)}
-          /> <div class="p-4 grid grid-rows-3">
+          <Bonfire.UI.Common.AvatarLive class="rounded-md border-2 p-2" user={e(@event, :receiver, nil)} /> <div class="p-4 grid grid-rows-3">
             <span class="font-bold">
-              {e(@transfer, :receiver, :name, "[organization A]")}
+              {e(@event, :receiver, :name, "[organization A]")}
             </span>
             <span class="text-gray-400">
-              {e(@transfer, :receiver, :displayUsername, "[org_A_handle]")}
+              {e(@event, :receiver, :display_username, "[org_A_handle]")}
             </span>
             <span>
               {l(" ")}
@@ -63,7 +57,7 @@
           {l("Location: ")}
         </span>
         <span>
-          {e(@transfer, :atLocation, :name, "[location]")}
+          {e(@event, :at_location, :name, "[location]")}
         </span>
       </div>
     </div>
@@ -71,12 +65,12 @@
       {l("Transfer Description")}
     </span>
     <p>
-      {e(@transfer, :note, "[description]")}
+      {e(@event, :note, "[description]")}
     </p>
     <br> <hr> <br> <div class="border-2 rounded-md">
-      <Bonfire.UI.Upcycle.ResourceLive
+      <Bonfire.Upcycle.Web.ResourcePreviewLive
         editable={false}
-        resource={e(@transfer, :resourceInventoriedAs, nil)}
+        resource={e(@event, :resource_inventoried_as, nil)}
       />
     </div>
   </div>

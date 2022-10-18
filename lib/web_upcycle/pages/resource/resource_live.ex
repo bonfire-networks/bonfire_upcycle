@@ -42,8 +42,8 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
        unit: unit,
        user: user,
        organizations: organizations,
-       feed_title: title,
-       without_sidebar: true
+       feed_title: title
+       #  without_sidebar: true
      )}
   end
 

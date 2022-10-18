@@ -1,0 +1,158 @@
+<div class="border-2 border-gray-400 rounded-md  p-4">
+  <!-- Modal Label -->
+  <div class="flex justify-center">
+    <Label class="font-bold text-lg">
+      {l("Edit Resource ")}
+      {e(@resource, :name, "[name]")}
+      {e(@resource, :onhand_quantity, :has_numerical_value, "[quantity]")}
+    </Label>
+  </div>
+
+  <!-- Select event -->
+  <div class="grid h-12 grid-cols-3 p-2 rounded-md m-1 capitalize">
+    <div
+      phx-value-id="raise"
+      phx-click="toggle_action"
+      class={
+        "hover:bg-indigo-400 cursor-pointer flex items-center justify-center px-4 text-sm font-medium text-center text-base-content rounded-md",
+        "text-secondary-content bg-indigo-600": @action == "raise"
+      }
+    >
+      {l("raise")}
+    </div>
+
+    <div
+      phx-value-id="lower"
+      phx-click="toggle_action"
+      class={
+        "hover:bg-indigo-400 cursor-pointer flex items-center justify-center px-4 text-sm font-medium text-center text-base-content rounded-md",
+        "text-secondary-content bg-indigo-600": @action == "lower"
+      }
+    >
+      {l("lower")}
+    </div>
+
+    <div
+      phx-value-id="consume"
+      phx-click="toggle_action"
+      class={
+        "hover:bg-indigo-400 cursor-pointer flex items-center justify-center px-4 text-sm font-medium text-center text-base-content rounded-md",
+        "text-secondary-content bg-indigo-600": @action == "consume"
+      }
+    >
+      {l("consume")}
+    </div>
+  </div>
+
+  <Form
+    for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
+    opts={autocomplete: "off"}
+    submit="ValueFlows.EconomicEvent:create"
+    change="edit_resource_change"
+  >
+    <!-- Hidden Inputs -->
+    <HiddenInput name="action" value={@action} />
+    <!-- <HiddenInput :if={@input_of_id} name="input_of_id" value={@input_of_id} />
+    <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} /> -->
+    <!-- <HiddenInput :if={@resource_inventoried_as} name="resource_inventoried_as" value={{@resource}} /> -->
+    <!-- <HiddenInput
+      :if={@resource_conforms_to}
+      name="resource_conforms_to"
+      value={{@resource.conforms_to}}
+    /> -->
+
+    <div hidden="true">
+      {#if e(@resource, :conforms_to, nil)}
+        <TextInput opts={value: e(@resource, :conforms_to, :id, nil)} />
+      {/if}
+      <Field name={:resource_inventoried_as} class="flex flex-col p-3 rounded-xl bg-base-200">
+        <TextInput opts={value: e(@resource, :id, nil)} />
+      </Field>
+    </div>
+
+    <!-- Quantity -->
+    <div class="p-2 rounded-md m-1">
+      <div class="flex">
+        {l("Specify the quantity to ")}
+        <span class="font-semibold">{l(" ")}{@action}</span>
+        <img
+          :if={@action == "lower" or @action == "raise"}
+          src="https://cdn3.iconfinder.com/data/icons/ui-ux-web-application-simplicon-set/102/question-mark-512.png"
+          style="cursor:pointer; width:15px; height:15px;"
+          title="Use lower or raise to fix mistakes when inventorying."
+        />
+        <img
+          :if={@action == "consume"}
+          src="https://cdn3.iconfinder.com/data/icons/ui-ux-web-application-simplicon-set/102/question-mark-512.png"
+          style="cursor:pointer; width:15px; height:15px;"
+          title="Use consume if the resource is being physically used."
+        />
+        {l(" by")}
+      </div>
+      <div class="flex">
+        <Inputs for={:resource_quantity}>
+          <Field
+            name={:has_numerical_value}
+            class="relative flex items-stretch flex-grow focus-within:z-10"
+          >
+            <NumberInput
+              :if={@action == "raise"}
+              opts={placeholder: "00.00", step: "any", min: 1, required: true}
+              class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="0.0"
+            />
+            <NumberInput
+              :if={@action == "lower" or @action == "consume"}
+              opts={
+                placeholder: "00.00",
+                step: "any",
+                min: 1,
+                required: true,
+                max: e(@resource, :onhand_quantity, :has_numerical_value, nil)
+              }
+              class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="0.0"
+            />
+          </Field>
+          <Field name={:has_unit}>
+            <Select
+              options={units()}
+              class="flex-1 block w-full font-bold text-primary-content-800 bg-base-100 border-gray-300 rounded-md shadow-sm text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </Field>
+        </Inputs>
+      </div>
+      {l("The new quantity will be")}
+      <span class="font-semibold">
+        <Label :if={@action == "raise"}>
+          {e(@resource, :onhand_quantity, :has_numerical_value, 0) +
+            e(@edit_resource_value, 10)}
+        </Label>
+        <Label :if={@action == "lower" or @action == "consume"}>
+          {e(@resource, :onhand_quantity, :has_numerical_value, 0) -
+            e(@edit_resource_value, 10)}
+        </Label>
+      </span>
+    </div>
+
+    <!-- Description -->
+    <div class="p-2 rounded-md m-1">
+      {l("Add an optional note")}
+      <Field name={:note}>
+        <TextArea class="textarea w-full rounded-md" />
+      </Field>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-center">
+      <button
+        type="submit"
+        class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400"
+      >
+        <p class="capitalize">
+          {@action}
+        </p>
+      </button>
+    </div>
+  </Form>
+</div>

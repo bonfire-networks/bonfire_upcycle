@@ -1,18 +1,18 @@
-  <Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
-  {#case @selected_tab}
-    {#match "discover"}
-      <Bonfire.UI.Upcycle.DiscoverLive intents={@intents} />
-    {#match "my-ads"}
-      <Bonfire.UI.Upcycle.MyIntentsLive intents={@intents} />
-    {#match "create-resource"}
-      <Bonfire.UI.Upcycle.CreateResourceLive />
-    {#match "create-transfer"}
-      <Bonfire.UI.Upcycle.CreateTransferLive
-        intents={@intents}
-        resource_id={@resource_id}
-        resource_name={@resource_name}
-        resource_quantity={@resource_quantity}
-      />
-    {#match _}
-      <Bonfire.UI.Upcycle.DiscoverLive intents={@intents} />
-  {/case}
+<Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
+{#case @selected_tab}
+  {#match "discover"}
+    <Bonfire.Upcycle.Web.DiscoverLive intents={@intents} />
+  {#match "my-intents"}
+    <Bonfire.Upcycle.Web.MyIntentsLive intents={@intents} />
+  {#match "create-resource"}
+    <Bonfire.Upcycle.Web.CreateResourceLive />
+  {#match "create-transfer"}
+    <Bonfire.Upcycle.Web.CreateTransferLive
+      intents={@intents}
+      resource_id={@resource_id}
+      resource_name={@resource_name}
+      resource_quantity={@resource_quantity}
+    />
+  {#match _}
+    <Bonfire.Upcycle.Web.DiscoverLive intents={@intents} />
+{/case}

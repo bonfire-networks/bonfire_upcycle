@@ -1,8 +1,4 @@
 <div class="w-full">
-  <div>
-    <Bonfire.UI.Upcycle.MainNavigationLive />
-  </div>
-
   <div class="bg-base-100 card shadow w-full">
     <div class="card-body">
       <h2 class="card-title text-4xl">{@resource.name}</h2>

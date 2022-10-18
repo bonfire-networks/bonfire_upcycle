@@ -1,4 +1,4 @@
-defmodule Bonfire.Web.TransferLive do
+defmodule Bonfire.Web.TransfersLive do
   use Bonfire.UI.Common.Web, :live_view
 
   alias Bonfire.UI.Me.LivePlugs

@@ -15,7 +15,6 @@ defmodule Bonfire.Upcycle.Web.Routes do
 
         live("/settings/", Bonfire.UI.ValueFlows.SettingsLive, as: :upcycle_settings)
       end
-      
 
       # VF pages you need to view as a user
       scope "/upcycle", Bonfire.Upcycle do
@@ -23,8 +22,8 @@ defmodule Bonfire.Upcycle.Web.Routes do
         pipe_through(:user_required)
 
         live("/inventory", Web.InventoryLive)
-        live("/transfers", Web.TransferLive)
-        live("/starred", Web.StarredIntentsLive)
+        live("/transfers", Web.TransfersLive)
+        live("/starred", Web.StarredLive)
         live("/", Web.HomeLive)
         live("/:tab", Web.HomeLive)
 

@@ -1,0 +1,151 @@
+<Form
+  class="p-4"
+  for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
+  opts={autocomplete: "off", "phx-target": "#smart_input"}
+  submit="ValueFlows.EconomicEvent:create"
+  change="Bonfire.UI.ValueFlows.CreateEconomicEventLive:autocomplete"
+>
+  <HiddenInput name="action" value={@action} />
+  <HiddenInput :if={@input_of_id} name="input_of_id" value={@input_of_id} />
+  <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} />
+  <HiddenInput name="redirect_after" value="/upcycle/transfers?created=" />
+
+  <!-- Header -->
+  <div class="flex justify-center">
+    <Label class="font-bold text-lg">
+      {l("Transfer a Resource")}
+    </Label>
+  </div>
+
+  <!-- From -->
+  <div class="p-2 rounded-md m-1">
+    {l("From: ")}
+  </div>
+
+  <!-- Receiver -->
+  <div class="p-2 rounded-md m-1">
+    {l("Specify the receiver")}
+    <div :if={@action == "transfer"} class="flex flex-col">
+      <Bonfire.UI.Common.MultiselectLive.UserSelectorLive
+        label="Select a receiver"
+        form_input_name="receiver"
+        preloaded_options={@users_autocomplete}
+        selected_options={@receiver}
+      />
+    </div>
+  </div>
+
+  <!-- Resource (Bonfire Component) -->
+  <!-- <div class="p-2 rounded-md m-1">
+    {l "Specify which resource to transfer"}
+        <div class="relative flex-1">
+            <Bonfire.UI.Common.MultiselectLive
+            preloaded_options={e(@economic_resources_autocomplete, [])}
+            selected_options={e(@economic_resource_selected, [])} 
+            label={"Pick a resource..."}
+            form_input_name={"resource_inventoried_as"}
+            pick_event={e(@pick_event, "ValueFlows.EconomicResource:select")}
+            remove_event={@remove_event}
+            focus_event="ValueFlows.EconomicResource:autocomplete"
+            />
+        </div>
+    </div> -->
+
+  <!-- Resource Drop-down -->
+  <!-- <Field name={:resource_inventoried_as}>
+    <HiddenInput value={@resource_id} />
+  </Field> -->
+  <input name="economic_event[resource_inventoried_as]" value={@resource_id} type="hidden">
+
+  <div id="select_resource" x-data="{ open: false }">
+    <Field name={:resource_name} class="p-2 rounded-md m-1">
+      {l("Resource I can offer")}
+      <div class="flex w-full h-full" @click="open = !open">
+        <TextInput
+          value={@resource_name}
+          opts={required: true, placeholder: "Select a resource"}
+          class="input rounded-md block w-full text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div x-show="open" @click.away="open = false">
+        {#if @resources || @smart_input_opts[:resources]}
+          {#for %{id: id, name: name, onhand_quantity: %{has_numerical_value: value, has_unit: %{label: unit}}} <-
+              @resources || @smart_input_opts[:resources]}
+            {#if value > 0}
+              <div>
+                <label
+                  @click="open = false"
+                  phx-value-resource_id={id}
+                  phx-value-resource_name={name}
+                  phx-value-resource_quantity={value}
+                  phx-click="assign"
+                  phx-target="#select_resource"
+                  class="block border-2 rounded-md   p-1 hover:bg-blue-500 hover:text-white"
+                >
+                  {name} - {value} {unit}
+                </label>
+              </div>
+            {/if}
+          {/for}
+        {/if}
+      </div>
+    </Field>
+  </div>
+
+  <!-- Quantity and Units -->
+  <div class="p-2 rounded-md m-1">
+    {l("Specify the quantity and units")}
+    <div class="flex">
+      <Inputs for={:resource_quantity}>
+        <Field name={:has_numerical_value} class="flex-grow">
+          <NumberInput
+            opts={required: true, min: 1, max: @resource_quantity}
+            class="input rounded-tl-lg rounded-bl-lg w-full"
+          />
+        </Field>
+        <Field name={:has_unit}>
+          <Select options={units()} class="select rounded-tr-lg rounded-br-lg" />
+        </Field>
+      </Inputs>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="p-2 rounded-md m-1">
+    {l("Add an optional note about the transfer")}
+    <Field name={:resource_note}>
+      <TextArea class="textarea w-full rounded-md" />
+    </Field>
+  </div>
+
+  <!-- Submit Button -->
+  <!-- <div class="flex justify-center">
+    <button
+      type="submit"
+      class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400"
+    >
+      {l("Create Transfer")}
+    </button>
+  </div> -->
+
+  <div class="mt-2 -mx-2">
+    <Bonfire.UI.Common.InputBoundariesLive
+      create_object_type={:intent}
+      to_boundaries={@to_boundaries}
+      open_boundaries={@open_boundaries}
+    />
+  </div>
+
+  <Bonfire.UI.Common.InputControlsLive
+    smart_input_opts={@smart_input_opts}
+    thread_mode={@thread_mode}
+    reply_to_id={@reply_to_id}
+    context_id={@context_id}
+    create_object_type={@create_object_type}
+    to_boundaries={@to_boundaries}
+    to_circles={@to_circles}
+    showing_within={@showing_within}
+    uploads={@uploads}
+    uploaded_files={@uploaded_files}
+  />
+</Form>

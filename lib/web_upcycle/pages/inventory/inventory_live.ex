@@ -6,9 +6,8 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
     schema: Bonfire.API.GraphQL.Schema,
     action: [mode: :internal]
 
-  declare_nav_link(l("My inventory"), icon: "heroicons-solid:newspaper")
+  declare_nav_link(l("Inventory"), icon: "ph:ladder")
 
-  
   def mount(params, session, socket),
     do:
       live_plug(params, session, socket, [
@@ -22,15 +21,15 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
 
   defp mounted(params, session, socket) do
     current_user = current_user(socket)
-    resources = resources(socket).myAgent.inventoriedEconomicResources
+    resources = my_agent(socket).inventoried_economic_resources
 
     {:ok,
      assign(
        socket,
        user: current_user,
-       page_title: l("My inventory"),
+       page_title: l("Inventory"),
        resources: resources,
-       create_object_type: :resource,
+       create_object_type: :upcycle_resource,
        smart_input_prompt: l("New resource"),
        changeset: ValueFlows.EconomicEvent.validate_changeset(),
        action: "raise",
@@ -47,45 +46,45 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
            ]
          ]
        ]
-      )}
+     )}
   end
 
   @graphql """
   query {
-    myAgent {
-      inventoriedEconomicResources {
+    my_agent {
+      inventoried_economic_resources {
         id
         name
         note
         image
-        conformsTo{
+        conforms_to{
           id
           name
         }
-        primaryAccountable {
-          displayUsername
+        primary_accountable {
+          display_username
           name
           image
         }
-        onhandQuantity {
-          hasNumericalValue
-          hasUnit {
+        onhand_quantity {
+          has_numerical_value
+          has_unit {
             label
             symbol
           }
         }
-        conformsTo {
+        conforms_to {
           name
         }
-        currentLocation {
-          displayUsername
-          canonicalUrl
+        current_location {
+          display_username
+          canonical_url
         }
       }
     }
   }
   """
-  def resources(params \\ %{}, socket), do: liveql(socket, :resources, params)
+  def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
 
   def handle_event("toggle_action", %{"id" => id}, socket) do
     debug(id)

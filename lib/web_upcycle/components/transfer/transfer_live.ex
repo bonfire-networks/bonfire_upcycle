@@ -1,5 +1,5 @@
-defmodule Bonfire.UI.Upcycle.TransferLive do
+defmodule Bonfire.Upcycle.Web.TransferLive do
   use Bonfire.UI.Common.Web, :stateless_component
 
-  prop transfer, :any
+  prop event, :any
 end
