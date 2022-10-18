@@ -14,7 +14,7 @@
     </LiveRedirect>
   </div>
   {#for intent <- @intents}
-    <Bonfire.Upcycle.Web.IntentLive
+    <Bonfire.Upcycle.Web.IntentPreviewLive
       key={e(intent, :id)}
       name={e(intent, :name, nil)}
       note={e(intent, :note, nil)}

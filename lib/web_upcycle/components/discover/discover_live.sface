@@ -1,6 +1,6 @@
 <div class="flex flex-col w-full space-y-2">
   {#for intent <- @intents}
-    <Bonfire.Upcycle.Web.IntentLive
+    <Bonfire.Upcycle.Web.IntentPreviewLive
       key={e(intent, :id)}
       name={e(intent, :name, nil)}
       note={e(intent, :note, nil)}

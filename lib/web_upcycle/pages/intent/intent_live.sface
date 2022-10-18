@@ -1,7 +1,7 @@
 <Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
 <section class="p-6 mt-6 rounded-lg shadow bg-base-100">
   <div class="grid grid-cols-[600px_1fr] gap-6">
-    <img src="#" class="h-[400px] w-full rounded-lg bg-base-content/5">
+    <img src={image_url(@intent)} class="h-[400px] w-full rounded-lg bg-base-content/5">
     <div class="flex flex-col justify-between">
       <div class="">
         <div class="flex items-center justify-between gap-2 pb-4 border-b border-base-content/30">

@@ -30,7 +30,9 @@ defmodule Bonfire.Upcycle.IntentLive do
   end
 
   defp mounted(%{"id" => id} = _params, _session, socket) do
-    intent = intent(%{id: id}, socket)
+    intent =
+      intent(%{id: id}, socket)
+      |> debug("theintent")
 
     if !intent || intent == %{intent: nil} do
       {:error, :not_found}
@@ -63,6 +65,7 @@ defmodule Bonfire.Upcycle.IntentLive do
         id
         name
         note
+        image
         due
         finished
         resource_inventoried_as {

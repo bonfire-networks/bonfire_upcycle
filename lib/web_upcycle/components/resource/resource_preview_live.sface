@@ -1,7 +1,8 @@
 <div class="flex items-start gap-6 p-4 rounded-md shadow bg-base-100">
   <img
-    class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]"
-    src={image_url(e(@resource, :image, nil))}
+    :if={e(@resource, :image, nil)}
+    class="object-contain bg-base-content/5 rounded-xl max-h-[120px] w-[160px]"
+    src={image_url(@resource)}
   />
   <div class="flex flex-col flex-1 gap-1">
     <div class="relative items-center">

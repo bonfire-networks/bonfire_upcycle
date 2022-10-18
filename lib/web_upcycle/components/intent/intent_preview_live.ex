@@ -1,4 +1,4 @@
-defmodule Bonfire.Upcycle.Web.IntentLive do
+defmodule Bonfire.Upcycle.Web.IntentPreviewLive do
   use Bonfire.UI.Common.Web, :stateless_component
   import Bonfire.Upcycle.Integration
 

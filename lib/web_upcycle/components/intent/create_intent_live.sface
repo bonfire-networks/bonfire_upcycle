@@ -10,6 +10,7 @@
     )}
     opts={autocomplete: "off", "phx-target": "#smart_input"}
     submit="ValueFlows.Planning.Intent:create"
+    change="validate"
   >
     <HiddenInput :if={@intent_url} name="redirect_after" value={@intent_url} />
     <HiddenInput :if={@action_id} name="action_id" value={@action_id} />

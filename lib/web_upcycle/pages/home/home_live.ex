@@ -174,6 +174,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
         has_beginning
         has_point_in_time
         note
+        image
         provider {
           name
           id
