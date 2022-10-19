@@ -1,4 +1,4 @@
-defmodule Bonfire.Upcycle.Web.ResourceLive do
+defmodule Bonfire.Upcycle.ResourceLive do
   use Bonfire.UI.Common.Web, :surface_live_view
 
   use AbsintheClient,
@@ -19,8 +19,8 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
     ])
   end
 
-  defp mounted(%{"id" => id}, _session, socket) do
-    {:ok, resource} = resource({:id, id})
+  defp mounted(%{"id" => id} = _params, _session, socket) do
+    {:ok, resource} = resource(%{id: id}, socket) |> debug("theresource")
 
     {:ok,
      assign(
@@ -43,29 +43,6 @@ defmodule Bonfire.Upcycle.Web.ResourceLive do
       name
       note
       image
-      conforms_to{
-        id
-        name
-      }
-      primary_accountable {
-        display_username
-        name
-        image
-      }
-      onhand_quantity {
-        has_numerical_value
-        has_unit {
-          label
-          symbol
-        }
-      }
-      conforms_to {
-        name
-      }
-      current_location {
-        display_username
-        canonical_url
-      }
     }
   }
   """

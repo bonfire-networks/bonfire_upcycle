@@ -1,4 +1,8 @@
 <div class="">
+
+
+      
+<!--       
   <div class="tabs tabs-boxed">
     <div
       phx-value-id="raise"
@@ -32,7 +36,7 @@
     >
       {l("consume")}
     </div>
-  </div>
+  </div> -->
 
   <Form
     for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
@@ -41,7 +45,7 @@
     change="edit_resource_change"
   >
     <!-- Hidden Inputs -->
-    <HiddenInput name="action" value={@action} />
+    <!-- <HiddenInput name="action" value={@action} /> -->
     <!-- <HiddenInput :if={@input_of_id} name="input_of_id" value={@input_of_id} />
     <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} /> -->
     <!-- <HiddenInput :if={@resource_inventoried_as} name="resource_inventoried_as" value={{@resource}} /> -->
@@ -50,6 +54,49 @@
       name="resource_conforms_to"
       value={{@resource.conforms_to}}
     /> -->
+
+    <fieldset class="mt-4">
+        <legend class="text-sm font-normal text-base-content/70">{l("Action")}</legend>
+        <div class="flex items-center mt-2 border rounded-lg border-base-content/10 bg-base-100">
+          <div class="flex items-center flex-1 p-3">
+            <input
+              id="Raise"
+              name={:action}
+              value="raise"
+              type="radio"
+              class="w-5 h-5 radio"
+            />
+            <label for="Raise" class="block ml-3 text-sm text-base-content/70">
+              {l("Raise")}
+            </label>
+          </div>
+          <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
+            <input
+              id="Lower"
+              name={:action}
+              value="lower"
+              type="radio"
+              class="w-5 h-5 radio"
+            />
+            <label for="Lower" class="block ml-3 text-sm text-base-content/70">
+              {l("Lower")}
+            </label>
+          </div>
+          <!-- <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
+            <input
+              id="consume"
+              name="action"
+              value="consume"
+              type="radio"
+              class="w-5 h-5 radio"
+            />
+            <label for="consume" class="block ml-3 text-sm text-base-content/70">
+              {l("Consume")}
+            </label>
+          </div> -->
+        </div>
+      </fieldset>
+
 
     <div hidden="true">
       {#if e(@resource, :conforms_to, nil)}
@@ -61,22 +108,18 @@
     </div>
 
     <!-- Quantity -->
-    <div class="p-2 m-1 rounded-md">
-      <div class="flex">
-        {l("Specify the quantity to ")}
-        <span class="font-semibold">{l(" ")}{@action}</span>
-        {l(" by")}
-      </div>
+    <div class="mt-4">
+      <legend class="mb-2 text-sm font-normal text-base-content/70">{l("Quantity")}</legend>
       <div class="flex">
         <Inputs for={:resource_quantity}>
           <Field
             name={:has_numerical_value}
-            class="relative flex items-stretch flex-grow focus-within:z-10"
+            class=""
           >
             <NumberInput
               :if={@action == "raise"}
               opts={placeholder: "00.00", step: "any", min: 1, required: true}
-              class="flex-1 block w-full font-bold border-gray-300 rounded-md shadow-sm text-primary-content-800 bg-base-100 text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              class="input input-bordered h-[2.5rem]"
               placeholder="0.0"
             />
             <NumberInput
@@ -88,19 +131,19 @@
                 required: true,
                 max: e(@resource, :onhand_quantity, :has_numerical_value, nil)
               }
-              class="flex-1 block w-full font-bold border-gray-300 rounded-md shadow-sm text-primary-content-800 bg-base-100 text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              class="input input-bordered h-[2.5rem]"
               placeholder="0.0"
             />
           </Field>
-          <Field name={:has_unit}>
+          <Field class="ml-2" name={:has_unit}>
             <Select
               options={units()}
-              class="flex-1 block w-full font-bold border-gray-300 rounded-md shadow-sm text-primary-content-800 bg-base-100 text-opacity-60 placeholder-opacity-60 focus:ring-secondary-500 focus:border-indigo-500 sm:text-sm"
+              class="input input-bordered h-[2.5rem]"
             />
           </Field>
         </Inputs>
       </div>
-      {l("The new quantity will be")}
+      <!-- {l("The new quantity will be")}
       <span class="font-semibold">
         <Label :if={@action == "raise"}>
           {e(@resource, :onhand_quantity, :has_numerical_value, 0) +
@@ -110,27 +153,17 @@
           {e(@resource, :onhand_quantity, :has_numerical_value, 0) -
             e(@edit_resource_value, 10)}
         </Label>
-      </span>
+      </span> -->
     </div>
 
     <!-- Description -->
-    <div class="p-2 m-1 rounded-md">
-      {l("Add an optional note")}
+    <div class="mt-4">
+      <legend class="mb-2 text-sm font-normal text-base-content/70"> {l("Add an optional note")}</legend>
       <Field name={:note}>
-        <TextArea class="w-full rounded-md textarea" />
+        <TextArea class="w-full textarea-bordered textarea" />
       </Field>
     </div>
 
     <!-- Submit Button -->
-    <div class="flex justify-center">
-      <button
-        type="submit"
-        class="text-base font-normal normal-case bg-indigo-600 border-0 rounded-md btn hover:bg-indigo-400"
-      >
-        <p class="capitalize">
-          {@action}
-        </p>
-      </button>
-    </div>
   </Form>
 </div>
