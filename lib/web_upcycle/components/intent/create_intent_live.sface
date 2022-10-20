@@ -13,9 +13,16 @@
     change="validate"
   >
     <HiddenInput :if={@intent_url} name="redirect_after" value={@intent_url} />
-    <HiddenInput :if={@action_id} name="action_id" value={@action_id} />
-    <HiddenInput :if={@intent_type == "need"} name="receiver" value={ulid(@current_user)} />
-    <HiddenInput :if={@intent_type == "offer"} name="provider" value={ulid(@current_user)} />
+    <HiddenInput name="action_id" value={@action_id} />
+    <HiddenInput
+      name="resource_inventoried_as"
+      value={e(@smart_input_opts, :resource_inventoried_as, nil)}
+    />
+    <HiddenInput
+      name="resource_conforms_to"
+      value={e(@smart_input_opts, :resource_conforms_to, nil)}
+    />
+
     <HiddenInput name="classified_as[]" value={Bonfire.Upcycle.Integration.remote_tag_id()} />
 
     <div hidden="true">
@@ -30,13 +37,28 @@
       <legend class="text-sm font-normal text-base-content/70">{l("Type")}</legend>
       <div class="flex items-center mt-2 border rounded-lg border-base-content/20 bg-base-100">
         <div class="flex items-center flex-1 p-3">
-          <input id="Need" name="type" type="radio" checked class="w-5 h-5 radio">
+          <input
+            id="Need"
+            name="type"
+            type="radio"
+            value="need"
+            checked={(e(@smart_input_opts, :intent_type, nil) || @intent_type) in [:need, "need"]}
+            class="w-5 h-5 radio"
+          />
+
           <label for="Need" class="block ml-3 text-sm text-base-content/70">
             {l("I need")}
           </label>
         </div>
         <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
-          <input id="Offer" name="type" type="radio" class="w-5 h-5 radio">
+          <input
+            id="Offer"
+            name="type"
+            type="radio"
+            value="offer"
+            checked={(e(@smart_input_opts, :intent_type, nil) || @intent_type) in [:offer, "offer"]}
+            class="w-5 h-5 radio"
+          />
           <label for="Offer" class="block ml-3 text-sm text-base-content/70">
             {l("I offer")}
           </label>
@@ -61,12 +83,18 @@
             class="w-full border border-r-0 rounded-l-lg border-base-content/20"
           >
             <NumberInput
+              value={e(@reply_to_id, :resource_quantity, :has_numerical_value, nil) ||
+                e(@reply_to_id, :resource_quantity, nil)}
               opts={placeholder: "00.00", min: 1, required: true}
               class="w-full input h-[2.5rem]"
             />
           </Field>
           <Field name={:has_unit} class="w-full border rounded-r-lg border-base-content/20">
-            <Select options={units()} class="w-full select !min-h-0 h-[2.5rem]" />
+            <Select
+              options={units()}
+              selected={e(@reply_to_id, :unit_id, nil)}
+              class="w-full select !min-h-0 h-[2.5rem]"
+            />
           </Field>
         </div>
       </div>

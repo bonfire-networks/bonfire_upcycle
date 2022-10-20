@@ -4,7 +4,7 @@
       <Bonfire.UI.Common.BackButtonLive />
       <div class="text-2xl">{e(@resource, :name, "unknown resource")}</div>
     </div>
-    <div class="pt-3 mt-3 border-t border-base-content/20">
+    <!-- <div class="pt-3 mt-3 border-t border-base-content/20">
       <div class="flex items-center justify-between gap-2">
           <span class="font-medium badge-lg badge">Category</span>
           <div class="flex items-center gap-2">
@@ -13,48 +13,56 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> -->
   </div>
   <div class="grid mt-4 grid-cols-[1fr_320px] gap-4">
     <div>
-    
       <figure class="max-h-[400px] h-full bg-base-content/5">
         {#if @resource.image == nil}
           <div class="flex items-center w-full h-full opacity-30 place-content-center">
             <Icon iconify="ant-design:picture-filled" class="w-24 h-24 text-base-content" />
           </div>
         {#else}
-          <img class="max-h-[400px] object-contain w-full" src={image_url(@resource)} "} alt="Resource image">
+          <img
+            class="max-h-[400px] object-contain w-full"
+            src={image_url(@resource)}
+            "}
+            alt="Resource image"
+          />
         {/if}
       </figure>
-      
+
       <div class="p-3 mt-3 rounded shadow bg-base-100">
-      <div class="text-sm font-bold text-base-content/70">Description</div>
-    
-      <div class="pt-2 pb-3 prose">{@resource.note}</div>
-      <div class="pt-3 pb-3 text-sm font-bold border-t border-base-content/20 text-base-content/70">{l ("Leave a message")}</div>
-      <Bonfire.UI.Social.ThreadLive
-        id={@resource.id}
-        thread_id={@resource.id}
-        smart_input_placeholder={l("Post a comment...")}
-        smart_input_opts={
-          text:
-            e(@resource, :receiver, :display_username, "") <>
-              e(@resource, :provider, :display_username, "") <> " "
-        }
-      />
-    </div>
-      
+        {#if @resource.note}
+          <div class="text-sm font-bold text-base-content/70">{l("Description")}</div>
+          <div class="pt-2 pb-3 prose">{@resource.note}</div>
+        {/if}
+
+        <Bonfire.UI.Social.Activity.ActionsLive
+          object={@resource}
+          object_type={ValueFlows.EconomicResource}
+          object_type_readable="resource"
+          permalink={@current_url}
+          viewing_main_object
+        />
+
+        <div class="pt-3 pb-3 text-sm font-bold text-base-content/70">{l("Join the discussion")}</div>
+
+        <Bonfire.UI.Social.ThreadLive
+          id={@id}
+          thread_id={@id}
+          smart_input_placeholder={l("Post a comment...")}
+        />
+      </div>
     </div>
 
     <div class="flex flex-col gap-5 p-3 rounded shadow bg-base-100">
-
       <div class="flex flex-col gap-2">
-        <div class="text-sm font-bold text-base-content/70">{l "Owner"}</div>
+        <div class="text-sm font-bold text-base-content/70">{l("Owner")}</div>
         <LiveRedirect
           to={"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-3"
-          >
+        >
           <Bonfire.UI.Common.AvatarLive
             class="w-12 h-12 rounded-lg bg-base-content/5"
             user={e(@resource, :primary_accountable, nil) || @resource}
@@ -63,26 +71,30 @@
         </LiveRedirect>
       </div>
 
-      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
+      <!-- <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
         <div class="text-sm font-bold text-base-content/70">{l "Specification"}</div>
         <div>Dummy</div>
-      </div>
+      </div> -->
 
       <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
-        <div class="text-sm font-bold text-base-content/70">{l "Quantity"}</div>
+        <div class="text-sm font-bold text-base-content/70">{l("Quantity")}</div>
         <div>{@resource.onhand_quantity.has_numerical_value} {@resource.onhand_quantity.has_unit.symbol}</div>
-         <Bonfire.Upcycle.Web.ResourceActionsLive
-            resource={@resource}
-            editable={@editable || involved?(@resource, @__context__)}
-          />
       </div>
-      
-      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
-        <div class="text-sm font-bold text-base-content/70">{l "Location"}</div>
-        <div>Dummy</div>
+
+      <div
+        :if={e(@resource, :current_location, :name, nil) ||
+          e(@resource, :primary_accountable, :primary_location, :name, nil)}
+        class="flex flex-col gap-2 pt-5 border-t border-base-content/20"
+      >
+        <div class="text-sm font-bold text-base-content/70">{l("Location")}</div>
+        <div>{e(@resource, :current_location, :name, nil) ||
+            e(@resource, :primary_accountable, :primary_location, :name, nil)}</div>
       </div>
-             
+
+      <Bonfire.Upcycle.Web.ResourceActionsLive
+        resource={@resource}
+        editable={@editable || involved?(@resource, @__context__)}
+      />
     </div>
   </div>
-  
 </div>

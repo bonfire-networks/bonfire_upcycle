@@ -45,11 +45,14 @@ defmodule Bonfire.Upcycle.IntentLive do
       {:ok,
        assign(
          socket,
-         page_title: "Intent",
+         page_title: if(intent.is_offer, do: l("Offer"), else: l("Need")),
          without_sidebar: true,
+         id: ulid(intent),
          intent: intent,
          reply_to_id: intent,
-         create_object_type: :upcycle_intent,
+         object_type_readable: if(intent.is_offer, do: l("offer"), else: l("need")),
+         current_url: path(intent),
+         #  create_object_type: :upcycle_intent, # TODO: reply with an intent
          smart_input_prompt:
            if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need")),
          #  smart_input_prompt:
@@ -73,6 +76,9 @@ defmodule Bonfire.Upcycle.IntentLive do
         finished
         resource_inventoried_as {
           id
+          name
+          image
+          note
         }
         has_beginning
         resource_quantity {
@@ -101,6 +107,10 @@ defmodule Bonfire.Upcycle.IntentLive do
           name
           display_username
           image
+          primary_location {
+            id
+            name
+          }
         }
       }
     }

@@ -6,7 +6,7 @@ defmodule Bonfire.Upcycle.Web.CreateOfferLive do
   prop action_id, :string, required: false, default: "work"
   prop output_of_id, :string, required: false
   prop title, :string, default: "Create an offer"
-  prop intent_type, :string, default: "offer"
+  prop intent_type, :string, default: :offer
 
   prop intents, :any, default: []
 

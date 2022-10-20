@@ -5,9 +5,12 @@
         <Icon iconify="ant-design:picture-filled" class="w-16 h-16 text-base-content" />
       </div>
     {#else}
-      <img 
-        class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]" 
-        src={image_url(@resource)} "} alt="Resource image">
+      <img
+        class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]"
+        src={image_url(@resource)}
+        "}
+        alt="Resource image"
+      />
     {/if}
   </figure>
   <!-- <img
@@ -36,7 +39,7 @@
         <LiveRedirect
           to={"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-1"
-          >
+        >
           <Bonfire.UI.Common.AvatarLive
             class="w-6 h-6 rounded-lg"
             user={e(@resource, :primary_accountable, nil) || @resource}

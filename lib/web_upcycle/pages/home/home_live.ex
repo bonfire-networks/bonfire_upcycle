@@ -52,7 +52,6 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
        page_title: "Upcycle",
        page: "publish-offer",
        action_id: "work",
-       intent_type: "offer",
        intent_url: "/upcycle/intent/",
        resource_id: 0,
        resource_name: "",
@@ -82,7 +81,8 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
     {:noreply,
      assign(socket,
        selected_tab: tab,
-       intents: intents
+       intents: intents,
+       page_title: l("Upcycle: offers & needs")
      )}
   end
 
@@ -118,7 +118,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      assign(socket,
        selected_tab: tab,
        intents: intents,
-       page_title: "My offers & needs"
+       page_title: l("My offers & needs")
      )}
   end
 
@@ -137,16 +137,8 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(_params, _url, socket) do
-    current_user = current_user(socket)
-    intents = intents(socket)
-    IO.inspect(intents)
-
-    {:noreply,
-     assign(socket,
-       selected_tab: "discover",
-       intents: intents
-     )}
+  def do_handle_params(params, url, socket) do
+    do_handle_params(Map.merge(params, %{"tab" => "discover"}), url, socket)
   end
 
   def handle_params(params, uri, socket) do
@@ -190,6 +182,9 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
           name
           id
           display_username
+        }
+        resource_inventoried_as {
+          image
         }
       }
   }

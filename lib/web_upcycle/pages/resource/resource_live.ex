@@ -27,7 +27,9 @@ defmodule Bonfire.Upcycle.ResourceLive do
      assign(
        socket,
        page_title: name,
+       id: ulid(resource),
        resource: resource,
+       current_url: path(resource),
        editable: involved?(resource, socket),
        #  unit: unit,
        # TODO
@@ -54,6 +56,9 @@ defmodule Bonfire.Upcycle.ResourceLive do
         display_username
         name
         image
+        primary_location {
+          name
+        }
       }
       # accounting_quantity {
       #   has_numerical_value
@@ -71,10 +76,9 @@ defmodule Bonfire.Upcycle.ResourceLive do
           symbol
         }
       }
-      # current_location {
-      #   display_username
-      #   canonical_url
-      # }
+      current_location {
+        name
+      }
     }
   }
   """

@@ -2,22 +2,25 @@
   <div class="p-4 mt-6 rounded shadow bg-base-100">
     <div class="flex items-center gap-2">
       <Bonfire.UI.Common.BackButtonLive />
-      {#if @intent.resource_inventoried_as}
-        <LiveRedirect class="text-2xl link link-hover" to={"/resource/" <> @intent.resource_inventoried_as.id}>
-          <span data-test-id="intent_name">
-            {e(@intent, :name, nil)}
-          </span>
-        </LiveRedirect>
-      {#else}
-        <span class="text-2xl" data-test-id="intent_name">
-          {e(@intent, :name, nil)}
-        </span>
-      {/if}
-
+      <div class="breadcrumbs">
+        <ul>
+          {#if @intent.resource_inventoried_as}
+            <li><LiveRedirect class="text-2xl link link-hover" to={path(@intent.resource_inventoried_as)}>
+                <span data-test-id="intent_name">
+                  {e(@intent, :resource_inventoried_as, :name, nil)}
+                </span>
+              </LiveRedirect>
+            </li>
+          {/if}
+          <li><span class="text-2xl" data-test-id="intent_name">
+              {e(@intent, :name, nil)}
+            </span></li>
+        </ul>
+      </div>
     </div>
     <div class="pt-3 mt-3 border-t border-base-content/20">
       <div class="flex items-center justify-between gap-2">
-        <span class="font-medium badge">Category</span>
+        <!-- <span class="font-medium badge">Category</span> -->
         <div class="flex items-center gap-4">
           <div class="text-sm font-medium tracking-wide text-base-content/80">{format_date(e(@intent, :has_beginning, nil))}</div>
           {#if @intent.is_offer}
@@ -36,26 +39,45 @@
 
   <div class="grid mt-4 grid-cols-[1fr_320px] gap-4">
     <div>
-    
-      <figure class="max-h-[400px] h-full bg-base-content/5">
-        {#if @intent.image == nil}
-          <div class="flex items-center w-full h-full opacity-30 place-content-center">
+      {#if not is_nil(@intent.image) or not is_nil(e(@intent, :resource_inventoried_as, :image, nil))}
+        <figure class="max-h-[400px] h-full bg-base-content/5">
+          <!-- <div class="flex items-center w-full h-full opacity-30 place-content-center">
             <Icon iconify="ant-design:picture-filled" class="w-24 h-24 text-base-content" />
-          </div>
-        {#else}
-          <img class="max-h-[400px] object-contain w-full" src={image_url(@intent)}} alt="Intent image">
-        {/if}
-      </figure>
-    
-      <div class="p-3 mt-3 rounded shadow bg-base-100">
-        <div class="text-sm font-bold text-base-content/70">Description</div>
+          </div> -->
+          <img
+            class="max-h-[400px] object-contain w-full"
+            src={image_url(@intent) || image_url(e(@intent, :resource_inventoried_as, nil))}
+            alt="Intent image"
+          />
+        </figure>
+      {/if}
+
+      <div :if={e(@intent, :note, nil)} class="p-3 mt-3 rounded shadow bg-base-100">
+        <div class="text-sm font-bold text-base-content/70">{if @intent.is_offer, do: l("About this offer"), else: l("About this need")}</div>
         <div class="pt-2 pb-3 prose">{@intent.note}</div>
       </div>
-      
-      <div class="pt-3 pb-3 text-sm font-bold text-base-content/70">{l ("Join the discussion")}</div>
+
+      <div
+        :if={e(@intent, :resource_inventoried_as, :note, nil)}
+        class="p-3 mt-3 rounded shadow bg-base-100"
+      >
+        <div class="text-sm font-bold text-base-content/70">{l("Resource description")}</div>
+        <div class="pt-2 pb-3 prose">{e(@intent, :resource_inventoried_as, :note, nil)}</div>
+      </div>
+
+      <Bonfire.UI.Social.Activity.ActionsLive
+        object={@intent}
+        object_type={ValueFlows.Planning.Intent}
+        object_type_readable={@object_type_readable}
+        permalink={@current_url}
+        viewing_main_object
+      />
+
+      <div class="pt-3 pb-3 text-sm font-bold text-base-content/70">{l("Join the discussion")}</div>
+
       <Bonfire.UI.Social.ThreadLive
-        id={e(@intent, :id, "")}
-        thread_id={e(@intent, :id, "")}
+        id={@id}
+        thread_id={@id}
         smart_input_placeholder={l("Post a comment...")}
       />
 
@@ -64,18 +86,13 @@
         <!-- <div class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l("No"))} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</div> -->
         <Bonfire.Upcycle.MatchesLive hits={e(@matches, :hits, [])} />
       </div>
-      
-  </div>
+    </div>
 
     <div class="flex flex-col gap-5 p-3 rounded shadow bg-base-100">
-
       <div class="flex flex-col gap-2">
-        <div class="text-sm font-bold text-base-content/70">{l "Intent creator"}</div>
         {#if @intent.is_offer}
-          <LiveRedirect
-            to={"/user/" <> e(@intent, :provider, :display_username, "[display_username]")}
-            class="flex items-center gap-3"
-          >
+          <div class="text-sm font-bold text-base-content/70">{l("Offered by")}</div>
+          <LiveRedirect to={path(e(@intent, :provider, nil))} class="flex items-center gap-3">
             <Bonfire.UI.Common.AvatarLive
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :provider, nil) || @intent}
@@ -83,10 +100,8 @@
             <div class="text-lg font-semibold link link-hover">{e(@intent, :provider, :name, "[user's name]")}</div>
           </LiveRedirect>
         {#else}
-          <LiveRedirect
-            to={"/user/" <> e(@intent, :receiver, :display_username, "[display_username]")}
-            class="flex items-center gap-3"
-          >
+          <div class="text-sm font-bold text-base-content/70">{l("Needed by")}</div>
+          <LiveRedirect to={path(e(@intent, :receiver, nil))} class="flex items-center gap-3">
             <Bonfire.UI.Common.AvatarLive
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :receiver, nil) || @intent}
@@ -96,29 +111,28 @@
         {/if}
       </div>
 
-      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
+      <!-- <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
         <div class="text-sm font-bold text-base-content/70">{l "Specification"}</div>
         <div>Dummy</div>
+      </div> -->
+
+      <div
+        :if={e(@intent, :resource_quantity, :has_numerical_value, nil)}
+        class="flex flex-col gap-2 pt-5 border-t border-base-content/20"
+      >
+        <div class="text-sm font-bold text-base-content/70">{l("Quantity")}</div>
+        <div>{e(@intent, :resource_quantity, :has_numerical_value, nil)} {e(@intent, :resource_quantity, :has_unit, :label, "[units]")}</div>
       </div>
 
-      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
-        <div class="text-sm font-bold text-base-content/70">{l "Quantity"}</div>
-        <div>{e(@intent, :resource_quantity, :has_numerical_value, "[#]")} {e(@intent, :resource_quantity, :has_unit, :label, "[units]")}</div>
+      <div
+        :if={e(@intent, :at_location, :name, nil) || e(@intent, :provider, :primary_location, :name, nil) ||
+          e(@intent, :receiver, :primary_location, :name, nil)}
+        class="flex flex-col gap-2 pt-5 border-t border-base-content/20"
+      >
+        <div class="text-sm font-bold text-base-content/70">{l("Location")}</div>
+        <div>{e(@intent, :at_location, :name, nil) || e(@intent, :provider, :primary_location, :name, nil) ||
+            e(@intent, :receiver, :primary_location, :name, nil)}</div>
       </div>
-      
-      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
-        <div class="text-sm font-bold text-base-content/70">{l "Location"}</div>
-        <div>Dummy</div>
-      </div>
-             
     </div>
-
-
-
-        
-      </div>
-     
-
-
-
+  </div>
 </div>

@@ -1,35 +1,75 @@
 {#if @editable}
-<div class="flex items-center gap-3">
-  <Bonfire.UI.Common.OpenModalLive id={Pointers.ULID.generate()} title_text={l("Edit resource")}>
-    <Bonfire.Upcycle.Web.EditResourceLive resource={@resource} action={@action} />
-    <:open_btn>
-      <button class="flex gap-2 normal-case btn btn-sm">
-        <Icon solid="pencil" class="w-4 h-4" />
-        <span :if={!@without_label}>{l "Edit"}</span>
-      </button>
-    </:open_btn>
-    <:action_btns>
-      <button type="submit" class="normal-case btn btn-primary btn-sm">{l("Submit")}</button>
-    </:action_btns>
-  </Bonfire.UI.Common.OpenModalLive>
+  <div class="flex items-center gap-3">
+    <Bonfire.UI.Common.OpenModalLive id={Pointers.ULID.generate()} title_text={l("Edit resource")}>
+      <Bonfire.Upcycle.Web.EditResourceLive resource={@resource} action={@action} />
+      <:open_btn>
+        <button class="flex gap-2 normal-case btn btn-sm">
+          <Icon solid="pencil" class="w-4 h-4" />
+          <span :if={!@without_label}>{l("Edit")}</span>
+        </button>
+      </:open_btn>
+      <:action_btns>
+        <button type="submit" class="normal-case btn btn-primary btn-sm">{l("Submit")}</button>
+      </:action_btns>
+    </Bonfire.UI.Common.OpenModalLive>
 
-  <button
-    phx-click="select_smart_input"
-    phx-target="#smart_input"
-    phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateTransferLive"
-    phx-value-reply_to={Jason.encode!(%{
-      "id" => ulid(@resource),
-      "name" => e(@resource, :name, nil),
-      "unit_id" => e(@resource, :onhand_quantity, :has_unit, :id, nil),
-      "resource_quantity" => e(@resource, :onhand_quantity, :has_numerical_value, nil),
-      "unit_name" => e(@resource, :onhand_quantity, :has_unit, :label, nil)
-    })}
-    @click={"show_smart_input('#{l("Record a transfer")}')"}
-    type="button"
-    class="flex gap-2 normal-case btn btn-sm"
-  >
-    <Icon iconify="tabler:arrows-exchange" class="w-4 h-4" />
-    <span :if={!@without_label}>{l("Transfer")}</span>
-  </button>
+    {#case Jason.encode(%{
+        "id" => ulid(@resource),
+        "name" => e(@resource, :name, nil),
+        "unit_id" => e(@resource, :onhand_quantity, :has_unit, :id, nil),
+        "resource_quantity" => e(@resource, :onhand_quantity, :has_numerical_value, nil),
+        "unit_name" => e(@resource, :onhand_quantity, :has_unit, :label, nil)
+      })}
+      {#match {:ok, reply_to}}
+        <button
+          phx-click="select_smart_input"
+          phx-target="#smart_input"
+          phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateTransferLive"
+          phx-value-reply_to={reply_to}
+          @click={"show_smart_input('#{l("Record a transfer")}')"}
+          type="button"
+          class="flex gap-2 normal-case btn btn-sm"
+        >
+          <Icon iconify="tabler:arrows-exchange" class="w-4 h-4" />
+          <span :if={!@without_label}>{l("Transfer")}</span>
+        </button>
+
+        <button
+          phx-click="select_smart_input"
+          phx-target="#smart_input"
+          phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
+          phx-value-opts={Jason.encode!(%{
+            "intent_type" => "offer",
+            resource_inventoried_as: ulid(@resource)
+          })}
+          phx-value-reply_to={reply_to}
+          @click={"show_smart_input('#{l("Offer this resource")}')"}
+          type="button"
+          class="flex gap-2 normal-case btn btn-sm tooltip"
+          data-tip={l("Offer this resource")}
+        >
+          <Icon iconify="mdi:offer" class="w-4 h-4" />
+          <span :if={!@without_label}>{l("Offer")}</span>
+        </button>
+
+        <button
+          phx-click="select_smart_input"
+          phx-target="#smart_input"
+          phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
+          phx-value-opts={Jason.encode!(%{
+            "intent_type" => "need",
+            resource_inventoried_as: ulid(@resource)
+          })}
+          phx-value-reply_to={reply_to}
+          @click={"show_smart_input('#{l("I need this resource")}')"}
+          type="button"
+          class="flex gap-2 normal-case btn btn-sm tooltip"
+          data-tip={l("I need this resource")}
+        >
+          <Icon iconify="fa-solid:praying-hands" class="w-4 h-4" />
+          <span :if={!@without_label}>{l("Need")}</span>
+        </button>
+      {#match _}
+    {/case}
   </div>
 {/if}

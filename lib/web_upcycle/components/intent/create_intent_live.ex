@@ -12,6 +12,6 @@ defmodule Bonfire.Upcycle.Web.CreateIntentLive do
   prop intent_url, :string, required: false, default: ""
   prop action_id, :string, required: false, default: "work"
   prop output_of_id, :string, required: false
-  prop title, :string, default: "Create a new Ad"
-  prop intent_type, :string, default: "need"
+  prop title, :string, default: nil
+  prop intent_type, :string, default: :need
 end
