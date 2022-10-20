@@ -1,4 +1,6 @@
 defmodule Bonfire.Upcycle.Web.Routes do
+  def declare_routes, do: "upcycle"
+
   defmacro __using__(_) do
     quote do
       # pages anyone can view
