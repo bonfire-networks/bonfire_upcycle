@@ -4,4 +4,5 @@ defmodule Bonfire.Upcycle.Web.ResourceActionsLive do
   prop resource, :any
   prop action, :any, default: "raise"
   prop editable, :any, default: true
+  prop without_label, :boolean, default: false
 end

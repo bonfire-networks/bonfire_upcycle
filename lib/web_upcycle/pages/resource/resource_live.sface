@@ -20,8 +20,8 @@
     
       <figure class="max-h-[400px] h-full bg-base-content/5">
         {#if @resource.image == nil}
-          <div class="flex items-center w-full h-full opacity-10 place-content-center">
-            <Icon iconify="ant-design:picture-filled" class="w-24 h-24 text-base-100" />
+          <div class="flex items-center w-full h-full opacity-30 place-content-center">
+            <Icon iconify="ant-design:picture-filled" class="w-24 h-24 text-base-content" />
           </div>
         {#else}
           <img class="max-h-[400px] object-contain w-full" src={image_url(@resource)} "} alt="Resource image">

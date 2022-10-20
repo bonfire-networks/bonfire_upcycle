@@ -1,9 +1,20 @@
 <div class="flex items-start gap-6 p-4 rounded-md shadow bg-base-100">
-  <img
+  <figure class="rounded-xl h-[120px] w-[160px] bg-base-content/5">
+    {#if !e(@resource, :image, nil)}
+      <div class="flex items-center w-full h-full opacity-30 place-content-center">
+        <Icon iconify="ant-design:picture-filled" class="w-16 h-16 text-base-content" />
+      </div>
+    {#else}
+      <img 
+        class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]" 
+        src={image_url(@resource)} "} alt="Resource image">
+    {/if}
+  </figure>
+  <!-- <img
     :if={e(@resource, :image, nil)}
     class="object-contain bg-base-content/5 rounded-xl max-h-[120px] w-[160px]"
     src={image_url(@resource)}
-  />
+  /> -->
   <div class="flex flex-col flex-1 gap-1">
     <div class="relative items-center">
       <LiveRedirect to={path(@resource)} class="text-lg font-medium link link-hover">{e(@resource, :name, "[resource name]")}</LiveRedirect>
@@ -11,12 +22,13 @@
       <div class="absolute top-0 right-0">
         <Bonfire.Upcycle.Web.ResourceActionsLive
           resource={@resource}
+          without_label
           editable={@editable || involved?(@resource, @__context__)}
         />
       </div>
     </div>
     <div class="flex items-center gap-3">
-      <div class="flex items-center gap-1 badge badge-info">
+      <div class="flex items-center gap-2">
         <Icon outline="Scale" class="w-5 h-5" />
         <span class="text-sm font-medium">{e(@resource, :onhand_quantity, :has_numerical_value, "[#]")} {e(@resource, :onhand_quantity, :has_unit, :label, "[units]")}</span>
       </div>
@@ -24,7 +36,7 @@
         <LiveRedirect
           to={"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-1"
-        >
+          >
           <Bonfire.UI.Common.AvatarLive
             class="w-6 h-6 rounded-lg"
             user={e(@resource, :primary_accountable, nil) || @resource}
@@ -34,6 +46,6 @@
       {/if}
     </div>
 
-    <div class="text-sm">{e(@resource, :note, "")}</div>
+    <div class="text-sm line-clamp-3 text-base-content/70">{e(@resource, :note, "")}</div>
   </div>
 </div>

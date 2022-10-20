@@ -3,9 +3,9 @@
   <Bonfire.UI.Common.OpenModalLive id={Pointers.ULID.generate()} title_text={l("Edit resource")}>
     <Bonfire.Upcycle.Web.EditResourceLive resource={@resource} action={@action} />
     <:open_btn>
-      <button class="normal-case btn btn-sm">
-        <Icon solid="pencil" class="w-4 h-4 mr-2" />
-        {l "Edit"}
+      <button class="flex gap-2 normal-case btn btn-sm">
+        <Icon solid="pencil" class="w-4 h-4" />
+        <span :if={!@without_label}>{l "Edit"}</span>
       </button>
     </:open_btn>
     <:action_btns>
@@ -26,10 +26,10 @@
     })}
     @click={"show_smart_input('#{l("Record a transfer")}')"}
     type="button"
-    class="normal-case btn btn-sm"
+    class="flex gap-2 normal-case btn btn-sm"
   >
-    <Icon iconify="tabler:arrows-exchange" class="w-4 h-4 mr-2" />
-    {l("Transfer")}
+    <Icon iconify="tabler:arrows-exchange" class="w-4 h-4" />
+    <span :if={!@without_label}>{l("Transfer")}</span>
   </button>
   </div>
 {/if}
