@@ -1,56 +1,88 @@
 <div class="w-full">
-  <div class="w-full shadow bg-base-100 card">
-    <div class="card-body">
-      <h2 class="text-4xl card-title">{@resource.name}</h2>
+  <div class="p-4 mt-6 rounded shadow bg-base-100">
+    <div class="flex items-center gap-2">
+      <Bonfire.UI.Common.BackButtonLive />
+      <div class="text-2xl">{e(@resource, :name, "unknown resource")}</div>
+    </div>
+    <div class="pt-3 mt-3 border-t border-base-content/20">
+      <div class="flex items-center justify-between gap-2">
+          <span class="font-medium badge-lg badge">Category</span>
+          <div class="flex items-center gap-2">
+            <div class="badge badge-lg badge-accent">
+              {l("offer")}
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="grid mt-4 grid-cols-[1fr_320px] gap-4">
+    <div>
+    
+      <figure class="max-h-[400px] h-full bg-base-content/5">
+        {#if @resource.image == nil}
+          <div class="flex items-center w-full h-full opacity-10 place-content-center">
+            <Icon iconify="ant-design:picture-filled" class="w-24 h-24 text-base-100" />
+          </div>
+        {#else}
+          <img class="max-h-[400px] object-contain w-full" src={image_url(@resource)} "} alt="Resource image">
+        {/if}
+      </figure>
+      
+      <div class="p-3 mt-3 rounded shadow bg-base-100">
+      <div class="text-sm font-bold text-base-content/70">Description</div>
+    
+      <div class="pt-2 pb-3 prose">{@resource.note}</div>
+      <div class="pt-3 pb-3 text-sm font-bold border-t border-base-content/20 text-base-content/70">{l ("Leave a message")}</div>
+      <Bonfire.UI.Social.ThreadLive
+        id={@resource.id}
+        thread_id={@resource.id}
+        smart_input_placeholder={l("Post a comment...")}
+        smart_input_opts={
+          text:
+            e(@resource, :receiver, :display_username, "") <>
+              e(@resource, :provider, :display_username, "") <> " "
+        }
+      />
+    </div>
+      
+    </div>
 
-      <div class="flex items-center mb-8">
-        <Bonfire.UI.Common.AvatarLive
-          class="w-8 h-8 mr-2 rounded-lg bg-base-100"
-          user={e(@resource, :primary_accountable, nil)}
-        />
-        <p class="mr-2 font-bold">{e(@resource, :primary_accountable, :name, "Anonymous")}</p>
-        <p class="mr-2">{e(@resource, :primary_accountable, :display_username, nil)}</p>
+    <div class="flex flex-col gap-5 p-3 rounded shadow bg-base-100">
 
-        <!-- <p class="ml-auto text-gray-500">{format_date(@resource.updated_at)}</p> -->
+      <div class="flex flex-col gap-2">
+        <div class="text-sm font-bold text-base-content/70">{l "Owner"}</div>
+        <LiveRedirect
+          to={"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
+          class="flex items-center gap-3"
+          >
+          <Bonfire.UI.Common.AvatarLive
+            class="w-12 h-12 rounded-lg bg-base-content/5"
+            user={e(@resource, :primary_accountable, nil) || @resource}
+          />
+          <div class="text-xl font-semibold link link-hover">{e(@resource, :primary_accountable, :name, "Anonymous")}</div>
+        </LiveRedirect>
       </div>
 
-      <h3 class="text-lg font-bold">Description</h3>
-      <p>{@resource.note}</p>
+      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
+        <div class="text-sm font-bold text-base-content/70">{l "Specification"}</div>
+        <div>Dummy</div>
+      </div>
 
-      {#if @resource.image == nil}
-        <p class="mt-4 mb-4 italic">(no image)</p>
-      {#else}
-        <img class="m-4" src={image_url(@resource)} "} alt="Resource image">
-      {/if}
-
-      <dl>
-        <dt class="inline-block w-32 font-bold">Specification:</dt>
-        <dd class="inline">Dummy</dd>
-        <br>
-        <dt class="inline-block w-32 font-bold">Quantity:</dt>
-        <dd class="inline">{@resource.onhand_quantity.has_numerical_value} {@resource.onhand_quantity.has_unit.symbol}
-
-          <Bonfire.Upcycle.Web.ResourceActionsLive
+      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
+        <div class="text-sm font-bold text-base-content/70">{l "Quantity"}</div>
+        <div>{@resource.onhand_quantity.has_numerical_value} {@resource.onhand_quantity.has_unit.symbol}</div>
+         <Bonfire.Upcycle.Web.ResourceActionsLive
             resource={@resource}
             editable={@editable || involved?(@resource, @__context__)}
           />
-        </dd>
-        <br>
-        <dt class="inline-block w-32 font-bold">Location:</dt>
-        <dd class="inline">Dummy</dd>
-      </dl>
-      <div class="mt-6 -m-3">
-        <Bonfire.UI.Social.ThreadLive
-          id={@resource.id}
-          thread_id={@resource.id}
-          smart_input_placeholder={l("Post a comment...")}
-          smart_input_opts={
-            text:
-              e(@resource, :receiver, :display_username, "") <>
-                e(@resource, :provider, :display_username, "") <> " "
-          }
-        />
       </div>
+      
+      <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
+        <div class="text-sm font-bold text-base-content/70">{l "Location"}</div>
+        <div>Dummy</div>
+      </div>
+             
     </div>
   </div>
+  
 </div>

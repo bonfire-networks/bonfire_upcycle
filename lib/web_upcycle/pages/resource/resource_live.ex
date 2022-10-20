@@ -32,8 +32,8 @@ defmodule Bonfire.Upcycle.ResourceLive do
        #  unit: unit,
        # TODO
        organizations: [],
-       feed_title: name
-       #  without_sidebar: true
+       feed_title: name,
+       without_sidebar: true
      )}
   end
 
