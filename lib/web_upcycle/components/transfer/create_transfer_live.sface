@@ -16,10 +16,7 @@
       <div class="mb-2 text-sm font-semibold text-base-content/70">
         {l("From")}
       </div>
-      <LiveRedirect
-        to={path(@current_user)}
-        class="flex items-center gap-3"
-        >
+      <LiveRedirect to={path(@current_user)} class="flex items-center gap-3">
         <Bonfire.UI.Common.AvatarLive
           class="w-8 h-8 rounded-lg bg-base-content/5"
           user={e(@current_user, :profile, nil)}
@@ -33,15 +30,13 @@
         {l("To")}
       </div>
       <Bonfire.UI.Common.MultiselectLive.UserSelectorLive
-          label="Select a receiver"
-          form_input_name="receiver"
-          preloaded_options={@users_autocomplete}
-          selected_options={@receiver}
-        />
+        label="Select a receiver"
+        form_input_name="receiver"
+        preloaded_options={@users_autocomplete}
+        selected_options={@receiver}
+      />
     </div>
   </div>
-
- 
 
   <!-- Resource (Bonfire Component) -->
   <!-- <div class="p-2 m-1 rounded-md">
@@ -59,11 +54,6 @@
         </div>
     </div> -->
 
-  <!-- Resource Drop-down -->
-  <!-- <Field name={:resource_inventoried_as}>
-    <HiddenInput value={@resource_id} />
-  </Field> -->
-  <input name="economic_event[resource_inventoried_as]" value={@resource_id} type="hidden">
   <div class="grid grid-cols-2 p-3 mt-3 border rounded border-base-content/10">
     <!-- Quantity and Units -->
     <div class="">
@@ -74,34 +64,58 @@
         <Inputs for={:resource_quantity}>
           <Field name={:has_numerical_value} class="flex-grow">
             <NumberInput
+              value={@resource_quantity || e(@reply_to_id, "resource_quantity", nil)}
               placeholder="0.0"
               opts={required: true, min: 1, max: @resource_quantity}
               class="input w-full input-bordered h-[2.5rem]"
             />
           </Field>
-          <span class="mx-3">{l "of"}</span>
+
+          <Field name={:has_unit}>
+            <HiddenInput
+              value={@unit_id || e(@reply_to_id, "unit_id", nil)}
+              class="rounded-tr-lg rounded-br-lg select"
+            />
+          </Field>
           <!-- <Field name={:has_unit}>
             <Select options={units()} class="rounded-tr-lg rounded-br-lg select" />
           </Field> -->
+
+          <span class="mx-3">{@unit_name || e(@reply_to_id, "unit_name", nil)} {l("of")}</span>
         </Inputs>
       </div>
     </div>
 
+    <!-- Resource Drop-down -->
+    <!-- <Field name={:resource_inventoried_as}>
+    <HiddenInput value={@resource_id} />
+  </Field> -->
+    <input
+      name="economic_event[resource_inventoried_as]"
+      value={@resource_id || ulid(@reply_to_id)}
+      type="hidden"
+    />
+
     <div id="select_resource" x-data="{ open: false }">
       <Field name={:resource_name} class="">
         <div class="mb-2 text-sm font-semibold text-base-content/70">
-        {l("Resource")}
+          {l("Resource")}
         </div>
         <div class="flex w-full h-full" @click="open = !open">
           <TextInput
-            value={@resource_name}
+            value={@resource_name || e(@reply_to_id, "name", nil)}
             opts={required: true, placeholder: "Select a resource"}
             class="w-full  h-[2.5rem] input input-bordered"
+            disabled={if not is_nil(e(@reply_to_id, "name", nil)), do: "disabled"}
           />
         </div>
         <div x-show="open" @click.away="open = false">
           {#if @resources || @smart_input_opts[:resources]}
-            {#for %{id: id, name: name, onhand_quantity: %{has_numerical_value: value, has_unit: %{label: unit}}} <-
+            {#for %{
+                id: id,
+                name: name,
+                onhand_quantity: %{has_numerical_value: value, has_unit: %{id: unit_id, label: unit}}
+              } <-
                 @resources || @smart_input_opts[:resources]}
               {#if value > 0}
                 <div>
@@ -110,6 +124,8 @@
                     phx-value-resource_id={id}
                     phx-value-resource_name={name}
                     phx-value-resource_quantity={value}
+                    phx-value-unit_id={unit_id}
+                    phx-value-unit_name={unit}
                     phx-click="assign"
                     phx-target="#select_resource"
                     class="block p-1 border-2 rounded-md hover:bg-blue-500 hover:text-white"
@@ -125,13 +141,12 @@
     </div>
   </div>
 
-
   <!-- Description -->
   <div class="mt-3">
     <div class="mb-2 text-sm font-semibold text-base-content/70">
       {l("Add an optional note about the transfer")}
     </div>
-    
+
     <Field name={:resource_note}>
       <TextArea class="w-full rounded-md textarea-bordered textarea" />
     </Field>

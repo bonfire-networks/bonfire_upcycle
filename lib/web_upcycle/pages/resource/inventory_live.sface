@@ -4,8 +4,8 @@
     {#if value > 0}
       <Bonfire.Upcycle.Web.ResourcePreviewLive
         resource={resource}
+        editable={involved?(resource, @__context__)}
         action={@action}
-        edit_resource_value={@edit_resource_value}
       />
     {/if}
   {#else}

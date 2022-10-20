@@ -8,23 +8,12 @@
     <div class="relative items-center">
       <LiveRedirect to={path(@resource)} class="text-lg font-medium link link-hover">{e(@resource, :name, "[resource name]")}</LiveRedirect>
 
-      {#if @editable}
-        <Bonfire.UI.Common.OpenModalLive id={Pointers.ULID.generate()} title_text={l("Edit resource")}>
-          <Bonfire.Upcycle.Web.EditResourceLive
-            resource={@resource}
-            action={@action}
-            edit_resource_value={@edit_resource_value}
-          />
-          <:open_btn>
-            <button class="absolute top-0 right-0 opacity-70 btn btn-circle btn-ghost btn-sm place-self-end">
-              <Icon solid="pencil" class="w-4 h-4" />
-            </button>
-          </:open_btn>
-          <:action_btns>
-            <button type="submit" class="normal-case btn btn-primary btn-sm">{l "Submit"}</button>
-          </:action_btns>
-        </Bonfire.UI.Common.OpenModalLive>
-      {/if}
+      <div class="absolute top-0 right-0">
+        <Bonfire.Upcycle.Web.ResourceActionsLive
+          resource={@resource}
+          editable={@editable || involved?(@resource, @__context__)}
+        />
+      </div>
     </div>
     <div class="flex items-center gap-3">
       <div class="flex items-center gap-1 badge badge-info">

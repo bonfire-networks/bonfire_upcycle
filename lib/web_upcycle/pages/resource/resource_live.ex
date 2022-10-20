@@ -20,18 +20,19 @@ defmodule Bonfire.Upcycle.ResourceLive do
   end
 
   defp mounted(%{"id" => id} = _params, _session, socket) do
-    {:ok, resource} = resource(%{id: id}, socket) |> debug("theresource")
+    resource = economic_resource(%{id: id}, socket) |> debug("theresource")
+    name = e(resource, :name, nil)
 
     {:ok,
      assign(
        socket,
-       page_title: resource.name,
+       page_title: name,
        resource: resource,
+       editable: involved?(resource, socket),
        #  unit: unit,
        # TODO
-       user: nil,
        organizations: [],
-       feed_title: resource.name
+       feed_title: name
        #  without_sidebar: true
      )}
   end
@@ -43,10 +44,41 @@ defmodule Bonfire.Upcycle.ResourceLive do
       name
       note
       image
+      # updated_at
+      # conforms_to{
+      #   id
+      #   name
+      # }
+      primary_accountable {
+        id
+        display_username
+        name
+        image
+      }
+      # accounting_quantity {
+      #   has_numerical_value
+      #   has_unit {
+      #     id
+      #     label
+      #     symbol
+      #   }
+      # }
+      onhand_quantity {
+        has_numerical_value
+        has_unit {
+          id
+          label
+          symbol
+        }
+      }
+      # current_location {
+      #   display_username
+      #   canonical_url
+      # }
     }
   }
   """
-  def resource(params \\ %{}, socket), do: liveql(socket, :economic_resource, params)
+  def economic_resource(params \\ %{}, socket), do: liveql(socket, :economic_resource, params)
 
   defdelegate handle_params(params, attrs, socket),
     to: Bonfire.UI.Common.LiveHandlers

@@ -8,6 +8,7 @@ defmodule Bonfire.Upcycle.Web.CreateTransferLive do
   prop textarea_container_class, :css_class
   prop to_boundaries, :list, default: nil
   prop open_boundaries, :boolean, default: false
+  prop reply_to_id, :any, default: nil
 
   prop action, :string, default: "transfer"
   prop input_of_id, :string, default: nil
@@ -22,6 +23,8 @@ defmodule Bonfire.Upcycle.Web.CreateTransferLive do
   prop resource_id, :string, default: nil
   prop resource_name, :string, default: nil
   prop resource_quantity, :any, default: nil
+  prop unit_id, :string, default: nil
+  prop unit_name, :string, default: nil
 
   prop users_autocomplete, :any, default: nil
 end

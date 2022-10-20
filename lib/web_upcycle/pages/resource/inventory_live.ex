@@ -1,5 +1,6 @@
 defmodule Bonfire.Upcycle.Web.InventoryLive do
   use Bonfire.UI.Common.Web, :surface_live_view
+  import Bonfire.Upcycle.Integration
   alias Bonfire.UI.Me.LivePlugs
 
   use AbsintheClient,
@@ -33,7 +34,6 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
        smart_input_prompt: l("New resource"),
        changeset: ValueFlows.EconomicEvent.validate_changeset(),
        action: "raise",
-       edit_resource_value: 100,
        sidebar_widgets: [
          users: [
            secondary: [
@@ -62,6 +62,7 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
           name
         }
         primary_accountable {
+          id
           display_username
           name
           image
@@ -69,6 +70,7 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
         onhand_quantity {
           has_numerical_value
           has_unit {
+            id
             label
             symbol
           }
@@ -91,10 +93,10 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
     {:noreply, assign(socket, action: id)}
   end
 
-  def handle_event("edit_resource_change", %{}, socket) do
-    IO.inspect("edit_resource_change")
-    {:noreply, socket}
-  end
+  # def handle_event("edit_resource_change", %{}, socket) do
+  #   IO.inspect("edit_resource_change")
+  #   {:noreply, socket}
+  # end
 
   @spec handle_event(any, any, any) ::
           {any, any} | {:ok, any, any} | {:reply, any, any}

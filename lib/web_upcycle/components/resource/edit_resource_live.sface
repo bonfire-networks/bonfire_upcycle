@@ -1,8 +1,5 @@
 <div class="">
-
-
-      
-<!--       
+  <!--       
   <div class="tabs tabs-boxed">
     <div
       phx-value-id="raise"
@@ -42,8 +39,9 @@
     for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
     opts={autocomplete: "off"}
     submit="ValueFlows.EconomicEvent:create"
-    change="edit_resource_change"
   >
+    <!-- change="edit_resource_change" -->
+
     <!-- Hidden Inputs -->
     <!-- <HiddenInput name="action" value={@action} /> -->
     <!-- <HiddenInput :if={@input_of_id} name="input_of_id" value={@input_of_id} />
@@ -56,33 +54,35 @@
     /> -->
 
     <fieldset class="mt-4">
-        <legend class="text-sm font-normal text-base-content/70">{l("Action")}</legend>
-        <div class="flex items-center mt-2 border rounded-lg border-base-content/10 bg-base-100">
-          <div class="flex items-center flex-1 p-3">
-            <input
-              id="Raise"
-              name={:action}
-              value="raise"
-              type="radio"
-              class="w-5 h-5 radio"
-            />
-            <label for="Raise" class="block ml-3 text-sm text-base-content/70">
-              {l("Raise")}
-            </label>
-          </div>
-          <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
-            <input
-              id="Lower"
-              name={:action}
-              value="lower"
-              type="radio"
-              class="w-5 h-5 radio"
-            />
-            <label for="Lower" class="block ml-3 text-sm text-base-content/70">
-              {l("Lower")}
-            </label>
-          </div>
-          <!-- <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
+      <legend class="text-sm font-normal text-base-content/70">{l("Action")}</legend>
+      <div class="flex items-center mt-2 border rounded-lg border-base-content/10 bg-base-100">
+        <div class="flex items-center flex-1 p-3">
+          <input
+            id="Raise"
+            name={:action}
+            value="raise"
+            type="radio"
+            class="w-5 h-5 radio"
+            checked={@action == "raise"}
+          />
+          <label for="Raise" class="block ml-3 text-sm text-base-content/70">
+            {l("Raise")}
+          </label>
+        </div>
+        <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
+          <input
+            id="Lower"
+            name={:action}
+            value="lower"
+            type="radio"
+            class="w-5 h-5 radio"
+            checked={@action == "lower"}
+          />
+          <label for="Lower" class="block ml-3 text-sm text-base-content/70">
+            {l("Lower")}
+          </label>
+        </div>
+        <!-- <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
             <input
               id="consume"
               name="action"
@@ -94,9 +94,8 @@
               {l("Consume")}
             </label>
           </div> -->
-        </div>
-      </fieldset>
-
+      </div>
+    </fieldset>
 
     <div hidden="true">
       {#if e(@resource, :conforms_to, nil)}
@@ -112,10 +111,7 @@
       <legend class="mb-2 text-sm font-normal text-base-content/70">{l("Quantity")}</legend>
       <div class="flex">
         <Inputs for={:resource_quantity}>
-          <Field
-            name={:has_numerical_value}
-            class=""
-          >
+          <Field name={:has_numerical_value} class="">
             <NumberInput
               :if={@action == "raise"}
               opts={placeholder: "00.00", step: "any", min: 1, required: true}
@@ -134,15 +130,17 @@
               class="input input-bordered h-[2.5rem]"
               placeholder="0.0"
             />
+            {e(@resource, :onhand_quantity, :has_unit, :label, nil)}
           </Field>
-          <Field class="ml-2" name={:has_unit}>
+          <!-- <Field class="ml-2" name={:has_unit}>
             <Select
               options={units()}
               class="input input-bordered h-[2.5rem]"
             />
-          </Field>
+          </Field> -->
         </Inputs>
       </div>
+
       <!-- {l("The new quantity will be")}
       <span class="font-semibold">
         <Label :if={@action == "raise"}>
@@ -153,12 +151,13 @@
           {e(@resource, :onhand_quantity, :has_numerical_value, 0) -
             e(@edit_resource_value, 10)}
         </Label>
-      </span> -->
+      </span>  -->
     </div>
 
     <!-- Description -->
     <div class="mt-4">
-      <legend class="mb-2 text-sm font-normal text-base-content/70"> {l("Add an optional note")}</legend>
+      <legend class="mb-2 text-sm font-normal text-base-content/70">
+        {l("Add an optional note")}</legend>
       <Field name={:note}>
         <TextArea class="w-full textarea-bordered textarea" />
       </Field>

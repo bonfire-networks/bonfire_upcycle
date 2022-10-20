@@ -1,6 +1,5 @@
-defmodule Bonfire.Upcycle.Web.ResourcePreviewLive do
+defmodule Bonfire.Upcycle.Web.ResourceActionsLive do
   use Bonfire.UI.Common.Web, :stateless_component
-  import Bonfire.Upcycle.Integration
 
   prop resource, :any
   prop action, :any, default: "raise"

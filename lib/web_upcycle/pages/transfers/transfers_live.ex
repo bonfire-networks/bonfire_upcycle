@@ -36,7 +36,7 @@ defmodule Bonfire.Upcycle.Web.TransfersLive do
        smart_input_prompt: l("Record a transfer"),
        economic_events: e(my_agent, :economic_events, []),
        #  resources: resources,
-       smart_input_opts: [resources: e(my_agent, :resources, [])]
+       smart_input_opts: [resources: e(my_agent, :inventoried_economic_resources, [])]
        #  resource_id: 0,
        #  resource_name: "",
        #  resource_quantity: 0,
@@ -90,6 +90,29 @@ defmodule Bonfire.Upcycle.Web.TransfersLive do
           name
         }
         resource_inventoried_as {
+          id
+          image
+          name
+          note
+          conforms_to {
+            name
+          }
+          accounting_quantity {
+            has_numerical_value
+            has_unit {
+              label
+              symbol
+            }
+          }
+          onhand_quantity {
+            has_numerical_value
+            has_unit {
+              label
+              symbol
+            }
+          }
+        }
+        to_resource_inventoried_as {
           id
           image
           name

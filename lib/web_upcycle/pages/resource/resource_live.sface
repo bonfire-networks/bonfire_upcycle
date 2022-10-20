@@ -1,14 +1,17 @@
-<!-- <div class="w-full">
+<div class="w-full">
   <div class="w-full shadow bg-base-100 card">
     <div class="card-body">
       <h2 class="text-4xl card-title">{@resource.name}</h2>
 
       <div class="flex items-center mb-8">
-        <Bonfire.UI.Common.AvatarLive class="w-8 h-8 mr-2 rounded-lg bg-base-100" user={@user} />
-        <p class="mr-2 font-bold">{e(@user, :profile, :name, "Anonymous")}</p>
-        <p class="mr-2">@{e(@user, :character, :username, "")}</p>
+        <Bonfire.UI.Common.AvatarLive
+          class="w-8 h-8 mr-2 rounded-lg bg-base-100"
+          user={e(@resource, :primary_accountable, nil)}
+        />
+        <p class="mr-2 font-bold">{e(@resource, :primary_accountable, :name, "Anonymous")}</p>
+        <p class="mr-2">{e(@resource, :primary_accountable, :display_username, nil)}</p>
 
-        <p class="ml-auto text-gray-500">{format_date(@resource.updated_at)}</p>
+        <!-- <p class="ml-auto text-gray-500">{format_date(@resource.updated_at)}</p> -->
       </div>
 
       <h3 class="text-lg font-bold">Description</h3>
@@ -17,7 +20,7 @@
       {#if @resource.image == nil}
         <p class="mt-4 mb-4 italic">(no image)</p>
       {#else}
-        <img class="m-4" src={"#{@resource.image}"} alt="Resource image">
+        <img class="m-4" src={image_url(@resource)} "} alt="Resource image">
       {/if}
 
       <dl>
@@ -25,10 +28,13 @@
         <dd class="inline">Dummy</dd>
         <br>
         <dt class="inline-block w-32 font-bold">Quantity:</dt>
-        <dd class="inline">{@resource.accounting_quantity.has_numerical_value}</dd>
-        <br>
-        <dt class="inline-block w-32 font-bold">Units:</dt>
-        <dd class="inline">{@unit.symbol}</dd>
+        <dd class="inline">{@resource.onhand_quantity.has_numerical_value} {@resource.onhand_quantity.has_unit.symbol}
+
+          <Bonfire.Upcycle.Web.ResourceActionsLive
+            resource={@resource}
+            editable={@editable || involved?(@resource, @__context__)}
+          />
+        </dd>
         <br>
         <dt class="inline-block w-32 font-bold">Location:</dt>
         <dd class="inline">Dummy</dd>
@@ -47,5 +53,4 @@
       </div>
     </div>
   </div>
-</div> -->
-<div>test</div>
+</div>

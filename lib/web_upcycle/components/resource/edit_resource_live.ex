@@ -9,10 +9,9 @@ defmodule Bonfire.Upcycle.Web.EditResourceLive do
   # prop to_boundaries, :list, default: nil
   # prop open_boundaries, :boolean, default: false
 
-  prop action, :any
+  prop action, :any, default: "raise"
   prop changeset, :any
   prop resource, :any
-  prop edit_resource_value, :any
 
   prop input_of_id, :string, default: nil
   prop output_of_id, :string, default: nil

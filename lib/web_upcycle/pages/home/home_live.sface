@@ -7,12 +7,7 @@
   {#match "create-resource"}
     <Bonfire.Upcycle.Web.CreateResourceLive />
   {#match "create-transfer"}
-    <Bonfire.Upcycle.Web.CreateTransferLive
-      intents={@intents}
-      resource_id={@resource_id}
-      resource_name={@resource_name}
-      resource_quantity={@resource_quantity}
-    />
+    <Bonfire.Upcycle.Web.CreateTransferLive intents={@intents} />
   {#match _}
     <Bonfire.Upcycle.Web.DiscoverLive intents={@intents} />
 {/case}
