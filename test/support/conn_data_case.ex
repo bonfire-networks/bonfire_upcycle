@@ -14,6 +14,8 @@ defmodule Bonfire.Upcycle.ConnDataCase do
   using do
     quote do
       # import Bonfire.Upcycle.ConnDataCase
+      import Bonfire.ValueFlows.Test.ConnHelpers
+      import Bonfire.UI.Common.Testing.Helpers
       import Bonfire.Upcycle.Test.ConnHelpers
       import Bonfire.Upcycle.Test.FakeHelpers
       import Ecto

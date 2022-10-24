@@ -2,7 +2,7 @@ defmodule Bonfire.Upcycle.Integration do
   use Arrows
   import Bonfire.Common.Utils
 
-  # def repo, do: Bonfire.Common.Config.get!(:repo_module)
+  # def repo, do: Bonfire.Common.Config.repo()
 
   def mailer, do: Bonfire.Common.Config.get!(:mailer_module)
 
