@@ -3,7 +3,7 @@ defmodule Bonfire.Upcycle.OffersTest do
   import Bonfire.Common.Simulation
   import ValueFlows.Simulate
   import ValueFlows.Test.Faking
-  import Bonfire.Me.Fake
+  # import Bonfire.Me.Fake
   alias ValueFlows.Planning.Intent.Intents
 
   import Phoenix.LiveViewTest
