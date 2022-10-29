@@ -26,7 +26,13 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   </svg>
   """
 
-  declare_extension("Upcycle", icon: @icon)
+  declare_extension(
+    "Upcycle", 
+    icon: @icon,
+    default_nav: [
+      Bonfire.Upcycle.Web.HomeLive
+    ]
+  )
 
   declare_nav_link([
     {l("Discover"), href: "/upcycle", icon: "mdi:bulletin-board"},
