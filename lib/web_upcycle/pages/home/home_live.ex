@@ -27,7 +27,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   """
 
   declare_extension(
-    "Upcycle", 
+    "Upcycle",
     icon: @icon,
     default_nav: [
       Bonfire.Upcycle.Web.HomeLive

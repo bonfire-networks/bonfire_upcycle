@@ -21,7 +21,7 @@ defmodule Bonfire.Upcycle.Web.StarredLive do
     {:ok,
      socket
      |> assign(
-       feed: [],
+       feed: nil,
        page_info: nil,
        showing_within: :likes,
        loading: false,
