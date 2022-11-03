@@ -6,7 +6,7 @@ defmodule Bonfire.Web.ViewInventoryLive do
     action: [mode: :internal]
 
   alias Bonfire.UI.Me.LivePlugs
-  import Bonfire.Common.Localise.Gettext
+
   alias ValueFlows.EconomicEvent.EconomicEvents
 
   def mount(params, session, socket) do
