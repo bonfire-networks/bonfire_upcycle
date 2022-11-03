@@ -1,10 +1,9 @@
 # Bonfire:Upcycle
 
-An extension for [Bonfire](https://bonfire.cafe/) that handles:
+Upcycle supports a network of high school fablabs in Milwaukee that receive contributions of materials from organizations in the community and share these with each other. It is implemented as a UI for [ValueFlows](https://github.com/bonfire-networks/bonfire_valueflows), which are both available as extensions for [Bonfire](https://bonfire.cafe/). Upcycle was initially created for [LearnDeep](https://learndeep.org/) by students at [MSOE](https://www.msoe.edu/), and is now being maintained by the Bonfire team.
 
-- UI components and views for [ValueFlows](https://github.com/bonfire-networks/bonfire_valueflows)
-
-## Handy commands
+## Set up
+Upcycle is packaged as part of the `cooperation` flavour of Bonfire. Check out the development or deployment [docs](https://doc.bonfirenetworks.org/readme.html) to get started.
 
 ## Copyright and License
 
