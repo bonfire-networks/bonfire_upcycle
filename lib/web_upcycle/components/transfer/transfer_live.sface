@@ -6,7 +6,7 @@
           {l("From")}
         </div>
         <LiveRedirect
-          to={"/user/" <> e(@event, :provider, :name, "Unknown")}
+          to={~p"/user/" <> e(@event, :provider, :name, "Unknown")}
           class="flex items-center gap-3"
         >
           <Bonfire.UI.Common.AvatarLive
@@ -25,7 +25,7 @@
           {l("To")}
         </div>
         <LiveRedirect
-          to={"/user/" <> e(@event, :receiver, :name, "Unknown")}
+          to={~p"/user/" <> e(@event, :receiver, :name, "Unknown")}
           class="flex items-center gap-3"
         >
           <Bonfire.UI.Common.AvatarLive

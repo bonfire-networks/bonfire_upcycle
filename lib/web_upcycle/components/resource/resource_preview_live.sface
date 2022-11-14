@@ -37,7 +37,7 @@
       </div>
       {#if @editable}
         <LiveRedirect
-          to={"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
+          to={~p"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-1"
         >
           <Bonfire.UI.Common.AvatarLive

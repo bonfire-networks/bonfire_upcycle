@@ -60,7 +60,7 @@
       <div class="flex flex-col gap-2">
         <div class="text-sm font-bold text-base-content/70">{l("Owner")}</div>
         <LiveRedirect
-          to={"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
+          to={~p"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-3"
         >
           <Bonfire.UI.Common.AvatarLive
