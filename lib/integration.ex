@@ -6,8 +6,10 @@ defmodule Bonfire.Upcycle.Integration do
 
   def mailer, do: Bonfire.Common.Config.get!(:mailer_module)
 
-  # TODO: put in config
-  def remote_tag_id, do: "https://bonjour.bonfire.cafe/pub/actors/Needs_Offers"
+  def remote_tag_prefix, do: nil
+  # def remote_tag_prefix, do: "https://bonjour.bonfire.cafe/pub/actors/" # TODO: put in config
+
+  def remote_tag_id, do: "#{remote_tag_prefix()}Needs_Offers"
 
   def format_date(date) when not is_nil(date) do
     Calendar.strftime(date, "%a, %B %d %Y")
