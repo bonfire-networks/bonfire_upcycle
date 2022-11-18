@@ -8,7 +8,7 @@
   <HiddenInput name="action" value={@action} />
   <HiddenInput :if={@input_of_id} name="input_of_id" value={@input_of_id} />
   <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} />
-  <HiddenInput name="redirect_after" value="/upcycle/inventory?created=" />
+  <HiddenInput name="redirect_after" value={~p"/upcycle/inventory?created="} />
 
   <!-- Specification -->
   <!-- <div class="p-2 m-1 rounded-md">
