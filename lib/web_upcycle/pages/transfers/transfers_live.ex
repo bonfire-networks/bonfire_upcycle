@@ -33,10 +33,12 @@ defmodule Bonfire.Upcycle.Web.TransfersLive do
        changeset: ValueFlows.EconomicEvent.validate_changeset(),
        action: "transfer",
        create_object_type: :upcycle_transfer,
-       smart_input_prompt: l("Record a transfer"),
        economic_events: e(my_agent, :economic_events, []),
        #  resources: resources,
-       smart_input_opts: [resources: e(my_agent, :inventoried_economic_resources, [])]
+       smart_input_opts: [
+         prompt: l("Record a transfer"),
+         resources: e(my_agent, :inventoried_economic_resources, [])
+       ]
        #  resource_id: 0,
        #  resource_name: "",
        #  resource_quantity: 0,
@@ -141,17 +143,29 @@ defmodule Bonfire.Upcycle.Web.TransfersLive do
   """
   def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
 
-  @spec handle_event(any, any, any) ::
-          {any, any} | {:ok, any, any} | {:reply, any, any}
-  def handle_event(action, attrs, socket),
+  def handle_params(params, uri, socket),
     do:
-      Bonfire.UI.Common.LiveHandlers.handle_event(
-        action,
-        attrs,
+      Bonfire.UI.Common.LiveHandlers.handle_params(
+        params,
+        uri,
         socket,
         __MODULE__
       )
 
   def handle_info(info, socket),
-    do: Bonfire.Common.UI.LiveHandlers.handle_info(info, socket, __MODULE__)
+    do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+
+  def handle_event(
+        action,
+        attrs,
+        socket
+      ),
+      do:
+        Bonfire.UI.Common.LiveHandlers.handle_event(
+          action,
+          attrs,
+          socket,
+          __MODULE__
+          # &do_handle_event/3
+        )
 end

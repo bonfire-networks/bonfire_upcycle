@@ -36,7 +36,7 @@ defmodule Bonfire.Web.ViewInventoryLive do
      )}
   end
 
-  def handle_event("create_mock", _attrs, socket) do
+  def do_handle_event("create_mock", _attrs, socket) do
     # mock_resource = GraphQL.simulate({}, {})
     # IO.inspect(mock_resource)
 
@@ -82,14 +82,19 @@ defmodule Bonfire.Web.ViewInventoryLive do
   defdelegate handle_params(params, attrs, socket),
     to: Bonfire.UI.Common.LiveHandlers
 
-  def handle_event(action, attrs, socket),
-    do:
-      Bonfire.UI.Common.LiveHandlers.handle_event(
+  def handle_event(
         action,
         attrs,
-        socket,
-        __MODULE__
-      )
+        socket
+      ),
+      do:
+        Bonfire.UI.Common.LiveHandlers.handle_event(
+          action,
+          attrs,
+          socket,
+          __MODULE__
+          # &do_handle_event/3
+        )
 
   def handle_info(info, socket),
     do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)

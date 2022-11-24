@@ -31,7 +31,7 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
        page_title: l("Inventory"),
        resources: resources,
        create_object_type: :upcycle_resource,
-       smart_input_prompt: l("New resource"),
+       smart_input_opts: [prompt: l("New resource")],
        changeset: ValueFlows.EconomicEvent.validate_changeset(),
        action: "raise",
        sidebar_widgets: [
@@ -88,27 +88,39 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
   """
   def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
 
-  def handle_event("toggle_action", %{"id" => id}, socket) do
+  def do_handle_event("toggle_action", %{"id" => id}, socket) do
     debug(id)
     {:noreply, assign(socket, action: id)}
   end
 
-  # def handle_event("edit_resource_change", %{}, socket) do
+  # def do_handle_event("edit_resource_change", %{}, socket) do
   #   IO.inspect("edit_resource_change")
   #   {:noreply, socket}
   # end
 
-  @spec handle_event(any, any, any) ::
-          {any, any} | {:ok, any, any} | {:reply, any, any}
-  def handle_event(action, attrs, socket),
+  def handle_params(params, uri, socket),
     do:
-      Bonfire.UI.Common.LiveHandlers.handle_event(
-        action,
-        attrs,
+      Bonfire.UI.Common.LiveHandlers.handle_params(
+        params,
+        uri,
         socket,
         __MODULE__
       )
 
   def handle_info(info, socket),
     do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+
+  def handle_event(
+        action,
+        attrs,
+        socket
+      ),
+      do:
+        Bonfire.UI.Common.LiveHandlers.handle_event(
+          action,
+          attrs,
+          socket,
+          __MODULE__,
+          &do_handle_event/3
+        )
 end

@@ -53,10 +53,9 @@ defmodule Bonfire.Upcycle.IntentLive do
          object_type_readable: if(intent.is_offer, do: l("offer"), else: l("need")),
          current_url: path(intent),
          #  create_object_type: :upcycle_intent, # TODO: reply with an intent
-         smart_input_prompt:
-           if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need")),
-         #  smart_input_prompt:
-         #  if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need")),
+         smart_input_opts: [
+           prompt: if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need"))
+         ],
          matches: ValueFlows.Util.search_for_matches(intent)
          #  without_sidebar: true
        )}
@@ -117,15 +116,29 @@ defmodule Bonfire.Upcycle.IntentLive do
   """
   def intent(params \\ %{}, socket), do: liveql(socket, :intent, params)
 
-  def handle_event(action, attrs, socket),
+  def handle_params(params, uri, socket),
     do:
-      Bonfire.UI.Common.LiveHandlers.handle_event(
-        action,
-        attrs,
+      Bonfire.UI.Common.LiveHandlers.handle_params(
+        params,
+        uri,
         socket,
         __MODULE__
       )
 
   def handle_info(info, socket),
     do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
+
+  def handle_event(
+        action,
+        attrs,
+        socket
+      ),
+      do:
+        Bonfire.UI.Common.LiveHandlers.handle_event(
+          action,
+          attrs,
+          socket,
+          __MODULE__
+          # &do_handle_event/3
+        )
 end

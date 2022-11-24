@@ -1,4 +1,4 @@
-defmodule Bonfire.Web.RegisterLive do
+defmodule Bonfire.Web.UserLogin do
   use Bonfire.UI.Common.Web, :live_view
 
   alias Bonfire.UI.Me.LivePlugs
@@ -15,12 +15,12 @@ defmodule Bonfire.Web.RegisterLive do
   end
 
   defp mounted(_params, _session, socket) do
-    title = "Register User"
+    title = "Login"
 
     {:ok,
      assign(
        socket,
-       page_title: "Register User",
+       page_title: "Login",
        feed_title: title,
        without_sidebar: true
      )}
@@ -29,14 +29,19 @@ defmodule Bonfire.Web.RegisterLive do
   defdelegate handle_params(params, attrs, socket),
     to: Bonfire.UI.Common.LiveHandlers
 
-  def handle_event(action, attrs, socket),
-    do:
-      Bonfire.UI.Common.LiveHandlers.handle_event(
+  def handle_event(
         action,
         attrs,
-        socket,
-        __MODULE__
-      )
+        socket
+      ),
+      do:
+        Bonfire.UI.Common.LiveHandlers.handle_event(
+          action,
+          attrs,
+          socket,
+          __MODULE__
+          # &do_handle_event/3
+        )
 
   def handle_info(info, socket),
     do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
