@@ -1,0 +1,59 @@
+digraph "xref graph" {
+  "lib/integration.ex"
+  "lib/web_upcycle/components/_deprecated/create_need/create_need_live.ex"
+  "lib/web_upcycle/components/_deprecated/create_need/create_need_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/_deprecated/create_offer/create_offer_live.ex"
+  "lib/web_upcycle/components/_deprecated/create_offer/create_offer_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/_deprecated/create_offer/create_offer_live.ex" -> "lib/web_upcycle/components/resource/create_resource_live.ex" [label="(export)"]
+  "lib/web_upcycle/components/resource/create_resource_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/_deprecated/main_navigation/main_navigation_live.ex"
+  "lib/web_upcycle/components/_deprecated/my_offers/my_offers_live.ex"
+  "lib/web_upcycle/components/_deprecated/my_offers/my_offers_live.ex" -> "lib/web_upcycle/components/intent/intent_preview_live.ex" [label="(export)"]
+  "lib/web_upcycle/components/intent/intent_preview_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/discover/discover_live.ex"
+  "lib/web_upcycle/components/discover/discover_live.ex" -> "lib/web_upcycle/components/intent/intent_preview_live.ex" [label="(export)"]
+  "lib/web_upcycle/components/intent/create_intent_live.ex"
+  "lib/web_upcycle/components/intent/create_intent_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/intent/intent_preview_live.ex"
+  "lib/web_upcycle/components/intent/my_intents_live.ex"
+  "lib/web_upcycle/components/intent/my_intents_live.ex" -> "lib/web_upcycle/components/intent/intent_preview_live.ex" [label="(export)"]
+  "lib/web_upcycle/components/resource/create_resource_live.ex"
+  "lib/web_upcycle/components/resource/edit_resource_live.ex"
+  "lib/web_upcycle/components/resource/edit_resource_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/resource/resource_actions_live.ex"
+  "lib/web_upcycle/components/resource/resource_actions_live.ex" -> "lib/web_upcycle/components/resource/edit_resource_live.ex" [label="(export)"]
+  "lib/web_upcycle/components/resource/resource_preview_live.ex"
+  "lib/web_upcycle/components/resource/resource_preview_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/resource/resource_preview_live.ex" -> "lib/web_upcycle/components/resource/resource_actions_live.ex" [label="(export)"]
+  "lib/web_upcycle/components/transfer/create_transfer_live.ex"
+  "lib/web_upcycle/components/transfer/create_transfer_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/components/transfer/transfer_live.ex"
+  "lib/web_upcycle/components/transfer/transfer_live.ex" -> "lib/web_upcycle/components/resource/resource_preview_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/home/home_live.ex"
+  "lib/web_upcycle/pages/home/home_live.ex" -> "lib/web_upcycle/components/discover/discover_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/home/home_live.ex" -> "lib/web_upcycle/components/intent/my_intents_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/home/home_live.ex" -> "lib/web_upcycle/components/resource/create_resource_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/home/home_live.ex" -> "lib/web_upcycle/components/transfer/create_transfer_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/intent/intent_live.ex"
+  "lib/web_upcycle/pages/intent/intent_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/pages/intent/intent_live.ex" -> "lib/web_upcycle/pages/intent/matches_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/intent/matches_live.ex"
+  "lib/web_upcycle/pages/inventory_live.ex"
+  "lib/web_upcycle/pages/map_live.ex"
+  "lib/web_upcycle/pages/org_register_live.ex"
+  "lib/web_upcycle/pages/organizations_live.ex"
+  "lib/web_upcycle/pages/register_live.ex"
+  "lib/web_upcycle/pages/resource/inventory_live.ex"
+  "lib/web_upcycle/pages/resource/inventory_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/pages/resource/inventory_live.ex" -> "lib/web_upcycle/components/resource/resource_preview_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/resource/resource_live.ex"
+  "lib/web_upcycle/pages/resource/resource_live.ex" -> "lib/integration.ex" [label="(export)"]
+  "lib/web_upcycle/pages/resource/resource_live.ex" -> "lib/web_upcycle/components/resource/resource_actions_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/starred/starred_live.ex"
+  "lib/web_upcycle/pages/transfer_live.ex"
+  "lib/web_upcycle/pages/transfers/transfers_live.ex"
+  "lib/web_upcycle/pages/transfers/transfers_live.ex" -> "lib/web_upcycle/components/transfer/transfer_live.ex" [label="(export)"]
+  "lib/web_upcycle/pages/user_login.ex"
+  "lib/web_upcycle/pages/view_inventory_live.ex"
+  "lib/web_upcycle/routes.ex"
+}
