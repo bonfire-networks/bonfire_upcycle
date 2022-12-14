@@ -114,14 +114,6 @@
       <TextArea class="w-full mt-2 textarea textarea-bordered" />
     </Field>
 
-    <div class="mt-2 -mx-2">
-      <Bonfire.UI.Common.InputBoundariesLive
-        create_object_type={:intent}
-        to_boundaries={@to_boundaries}
-        open_boundaries={@open_boundaries}
-      />
-    </div>
-
     <Bonfire.UI.Common.InputControlsLive
       smart_input_opts={@smart_input_opts}
       thread_mode={@thread_mode}
