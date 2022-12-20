@@ -101,7 +101,7 @@
         <div class="mb-2 text-sm font-semibold text-base-content/70">
           {l("Resource")}
         </div>
-        <div class="flex w-full h-full" @click="open = !open">
+        <div class="flex w-full h-full" x-on:click="open = !open">
           <TextInput
             value={@resource_name || e(@reply_to_id, "name", nil)}
             opts={required: true, placeholder: "Select a resource"}
@@ -109,7 +109,7 @@
             disabled={if not is_nil(e(@reply_to_id, "name", nil)), do: "disabled"}
           />
         </div>
-        <div x-show="open" @click.away="open = false">
+        <div x-show="open" x-on:click.away="open = false">
           {#if @resources || @smart_input_opts[:resources]}
             {#for %{
                 id: id,
@@ -120,7 +120,7 @@
               {#if value > 0}
                 <div>
                   <label
-                    @click="open = false"
+                    x-on:click="open = false"
                     phx-value-resource_id={id}
                     phx-value-resource_name={name}
                     phx-value-resource_quantity={value}

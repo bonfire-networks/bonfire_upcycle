@@ -26,7 +26,7 @@
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateTransferLive"
           phx-value-reply_to={reply_to}
-          @click={"show_smart_input('#{l("Record a transfer")}')"}
+          x-on:click={"show_smart_input('#{l("Record a transfer")}')"}
           type="button"
           class="flex gap-2 normal-case btn btn-sm"
         >
@@ -43,7 +43,7 @@
             resource_inventoried_as: ulid(@resource)
           })}
           phx-value-reply_to={reply_to}
-          @click={"show_smart_input('#{l("Offer this resource")}')"}
+          x-on:click={"show_smart_input('#{l("Offer this resource")}')"}
           type="button"
           class="flex gap-2 normal-case btn btn-sm tooltip"
           data-tip={l("Offer this resource")}
@@ -61,7 +61,7 @@
             resource_inventoried_as: ulid(@resource)
           })}
           phx-value-reply_to={reply_to}
-          @click={"show_smart_input('#{l("I need this resource")}')"}
+          x-on:click={"show_smart_input('#{l("I need this resource")}')"}
           type="button"
           class="flex gap-2 normal-case btn btn-sm tooltip"
           data-tip={l("I need this resource")}

@@ -41,7 +41,7 @@
       <div id="select_resource" x-data="{ open: false }">
         <Field name={:name} class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300">
           <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Resource I can offer")}</Label>
-          <div @click="open = !open" class="flex w-full h-full">
+          <div x-on:click="open = !open" class="flex w-full h-full">
             <TextInput
               value={@resource_name}
               opts={required: true, placeholder: "Select a resource"}
@@ -51,13 +51,13 @@
               <button class="w-full h-full text-2xl" phx-click="my_agent">{l(" ")}</button>
             </div> -->
           </div>
-          <div x-show="open" @click.away="open = false">
+          <div x-show="open" x-on:click.away="open = false">
             {#if e(@intents, :my_agent, :inventoried_economic_resources, nil)}
               <!-- make sure there is something in inventory -->
               {#for resource <- e(@intents, :my_agent, :inventoried_economic_resources, nil)}
                 <div>
                   <label
-                    @click="open = false"
+                    x-on:click="open = false"
                     phx-value-resource_id={resource.id}
                     phx-value-resource_name={resource.name}
                     phx-value-resource_quantity={e(resource, :onhand_quantity, :has_numerical_value, nil)}
@@ -72,7 +72,7 @@
             {/if}
             <div>
               <label
-                @click="create = !create; open = false"
+                x-on:click="create = !create; open = false"
                 class="w-full block   p-1 border-2 border-black hover:bg-blue-300 hover:border-white hover:text-white"
               >
                 {l("   Create a new resource")}
@@ -122,7 +122,7 @@
   </section>
   <div
     x-show="create"
-    @click.away="create = false"
+    x-on:click.away="create = false"
     class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4"
   >
     <div>
