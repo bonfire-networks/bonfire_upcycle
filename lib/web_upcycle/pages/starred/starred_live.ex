@@ -51,7 +51,7 @@ defmodule Bonfire.Upcycle.Web.StarredLive do
     {:noreply,
      socket
      |> assign(
-       feed: Bonfire.Social.Feeds.LiveHandler.preloads(feed, socket),
+       feed: feed,
        page_info: page_info
      )}
   end
