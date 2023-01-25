@@ -46,7 +46,7 @@
           </div> -->
           <img
             class="max-h-[400px] object-contain w-full"
-            src={image_url(@intent) || image_url(e(@intent, :resource_inventoried_as, nil))}
+            src={Media.image_url(@intent) || Media.image_url(e(@intent, :resource_inventoried_as, nil))}
             alt="Intent image"
           />
         </figure>

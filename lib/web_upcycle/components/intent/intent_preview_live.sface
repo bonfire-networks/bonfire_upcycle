@@ -7,7 +7,7 @@
     {#else}
       <img
         class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]"
-        src={image_url(@intent) || image_url(e(@intent, :resource_inventoried_as, nil))}
+        src={Media.image_url(@intent) || Media.image_url(e(@intent, :resource_inventoried_as, nil))}
         alt="intent image"
       />
     {/if}

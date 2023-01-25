@@ -25,7 +25,7 @@
         {#else}
           <img
             class="max-h-[400px] object-contain w-full"
-            src={image_url(@resource)}
+            src={Media.image_url(@resource)}
             "}
             alt="Resource image"
           />

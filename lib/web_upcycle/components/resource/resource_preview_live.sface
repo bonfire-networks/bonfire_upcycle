@@ -7,7 +7,7 @@
     {#else}
       <img
         class="object-contain bg-base-content/5 rounded-xl h-[120px] w-[160px]"
-        src={image_url(@resource)}
+        src={Media.image_url(@resource)}
         "}
         alt="Resource image"
       />
@@ -16,7 +16,7 @@
   <!-- <img
     :if={e(@resource, :image, nil)}
     class="object-contain bg-base-content/5 rounded-xl max-h-[120px] w-[160px]"
-    src={image_url(@resource)}
+    src={Media.image_url(@resource)}
   /> -->
   <div class="flex flex-col flex-1 gap-1">
     <div class="relative items-center">
