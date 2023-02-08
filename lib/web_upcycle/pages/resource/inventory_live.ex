@@ -31,7 +31,7 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
        page_title: l("Inventory"),
        resources: resources,
        create_object_type: :upcycle_resource,
-       smart_input_opts: [prompt: l("New resource")],
+       smart_input_opts: %{prompt: l("New resource")},
        changeset: ValueFlows.EconomicEvent.validate_changeset(),
        action: "raise",
        sidebar_widgets: [

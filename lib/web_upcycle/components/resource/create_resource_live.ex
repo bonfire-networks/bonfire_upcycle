@@ -2,7 +2,7 @@ defmodule Bonfire.Upcycle.Web.CreateResourceLive do
   use Bonfire.UI.Common.Web, :stateless_component
   import Bonfire.Upcycle.Integration
 
-  prop smart_input_opts, :list, default: []
+  prop smart_input_opts, :map, default: %{}
   prop textarea_class, :css_class, required: false
   # unused but workaround surface "invalid value for property" issue
   prop textarea_container_class, :css_class

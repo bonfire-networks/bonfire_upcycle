@@ -110,13 +110,13 @@
           />
         </div>
         <div x-show="open" x-on:click.away="open = false">
-          {#if @resources || @smart_input_opts[:resources]}
+          {#if @resources || e(@smart_input_opts, :resources, nil)}
             {#for %{
                 id: id,
                 name: name,
                 onhand_quantity: %{has_numerical_value: value, has_unit: %{id: unit_id, label: unit}}
               } <-
-                @resources || @smart_input_opts[:resources]}
+                @resources || e(@smart_input_opts, :resources, nil)}
               {#if value > 0}
                 <div>
                   <label

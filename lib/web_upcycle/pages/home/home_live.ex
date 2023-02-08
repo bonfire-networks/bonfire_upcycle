@@ -63,7 +63,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
        resource_name: "",
        resource_quantity: 0,
        create_object_type: :upcycle_intent,
-       smart_input_opts: [prompt: l("New offer or need")],
+       smart_input_opts: %{prompt: l("New offer or need")},
        sidebar_widgets: [
          users: [
            secondary: [

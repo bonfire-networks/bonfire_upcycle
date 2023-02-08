@@ -28,7 +28,7 @@ defmodule Bonfire.Upcycle.Web.StarredLive do
        page: "likes",
        page_title: l("Starred"),
        create_object_type: :task,
-       smart_input_opts: [prompt: l("New offer or need")]
+       smart_input_opts: %{prompt: l("New offer or need")}
      )}
   end
 

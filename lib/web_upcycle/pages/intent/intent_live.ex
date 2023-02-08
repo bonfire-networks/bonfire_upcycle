@@ -53,9 +53,9 @@ defmodule Bonfire.Upcycle.IntentLive do
          object_type_readable: if(intent.is_offer, do: l("offer"), else: l("need")),
          current_url: path(intent),
          #  create_object_type: :upcycle_intent, # TODO: reply with an intent
-         smart_input_opts: [
+         smart_input_opts: %{
            prompt: if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need"))
-         ],
+         },
          matches: ValueFlows.Util.search_for_matches(intent)
          #  without_sidebar: true
        )}

@@ -35,10 +35,10 @@ defmodule Bonfire.Upcycle.Web.TransfersLive do
        create_object_type: :upcycle_transfer,
        economic_events: e(my_agent, :economic_events, []),
        #  resources: resources,
-       smart_input_opts: [
+       smart_input_opts: %{
          prompt: l("Record a transfer"),
          resources: e(my_agent, :inventoried_economic_resources, [])
-       ]
+       }
        #  resource_id: 0,
        #  resource_name: "",
        #  resource_quantity: 0,
