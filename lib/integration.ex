@@ -23,7 +23,7 @@ defmodule Bonfire.Upcycle.Integration do
   end
 
   def involved?(resource, context) do
-    ulid(current_user(context)) in [
+    Types.ulid(current_user(context)) in [
       e(resource, :provider, :id, nil),
       e(resource, :provider_id, nil),
       e(resource, :receiver, :id, nil),
