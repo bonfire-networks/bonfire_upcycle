@@ -1,11 +1,14 @@
 <Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
-<Bonfire.UI.Social.FeedLive
-  id="feed:profile:likes"
-  feed_id="feed:profile:likes"
-  page_title={@page_title}
-  feed={@feed}
-  page_info={@page_info}
-  showing_within={@showing_within}
-  verb_default="like"
-  loading={@loading}
-/>
+{#if module_enabled?(Bonfire.UI.Social.FeedLive)}
+  <Dynamic.Component
+    module={Bonfire.UI.Social.FeedLive}
+    id="feed:profile:likes"
+    feed_id="feed:profile:likes"
+    page_title={@page_title}
+    feed={@feed}
+    page_info={@page_info}
+    showing_within={@showing_within}
+    verb_default="like"
+    loading={@loading}
+  />
+{/if}
