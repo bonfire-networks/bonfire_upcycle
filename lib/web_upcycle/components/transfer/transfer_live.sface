@@ -10,6 +10,7 @@
           class="flex items-center gap-3"
         >
           <Bonfire.UI.Common.AvatarLive
+            parent_id="transfer_from"
             class="w-12 h-12 rounded-lg bg-base-content/5"
             user={e(@event, :provider, nil) || @event}
           />
@@ -29,6 +30,7 @@
           class="flex items-center gap-3"
         >
           <Bonfire.UI.Common.AvatarLive
+            parent_id="transfer_to"
             class="w-12 h-12 rounded-lg bg-base-content/5"
             user={e(@event, :receiver, nil) || @event}
           />

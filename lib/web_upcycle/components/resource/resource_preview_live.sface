@@ -41,6 +41,7 @@
           class="flex items-center gap-1"
         >
           <Bonfire.UI.Common.AvatarLive
+            parent_id={"resource_preview-#{id(@resource)}"}
             class="w-6 h-6 rounded-lg"
             user={e(@resource, :primary_accountable, nil) || @resource}
           />

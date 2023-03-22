@@ -94,6 +94,7 @@
           <div class="text-sm font-bold text-base-content/70">{l("Offered by")}</div>
           <LiveRedirect to={path(e(@intent, :provider, nil))} class="flex items-center gap-3">
             <Bonfire.UI.Common.AvatarLive
+              parent_id="intent_offer"
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :provider, nil) || @intent}
             />
@@ -103,6 +104,7 @@
           <div class="text-sm font-bold text-base-content/70">{l("Needed by")}</div>
           <LiveRedirect to={path(e(@intent, :receiver, nil))} class="flex items-center gap-3">
             <Bonfire.UI.Common.AvatarLive
+              parent_id="intent_need"
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :receiver, nil) || @intent}
             />

@@ -18,6 +18,7 @@
       </div>
       <LiveRedirect to={path(@current_user)} class="flex items-center gap-3">
         <Bonfire.UI.Common.AvatarLive
+          parent_id="create_transfer"
           class="w-8 h-8 rounded-lg bg-base-content/5"
           user={e(@current_user, :profile, nil)}
         />
