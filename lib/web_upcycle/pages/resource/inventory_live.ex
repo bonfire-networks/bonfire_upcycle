@@ -1,7 +1,6 @@
 defmodule Bonfire.Upcycle.Web.InventoryLive do
   use Bonfire.UI.Common.Web, :surface_live_view
   import Bonfire.Upcycle.Integration
-  alias Bonfire.UI.Me.LivePlugs
 
   use AbsintheClient,
     schema: Bonfire.API.GraphQL.Schema,
@@ -9,18 +8,9 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
 
   declare_nav_link(l("Inventory"), icon: "ph:ladder")
 
-  def mount(params, session, socket),
-    do:
-      live_plug(params, session, socket, [
-        LivePlugs.LoadCurrentAccount,
-        LivePlugs.LoadCurrentUser,
-        Bonfire.UI.Common.LivePlugs.StaticChanged,
-        Bonfire.UI.Common.LivePlugs.Csrf,
-        Bonfire.UI.Common.LivePlugs.Locale,
-        &mounted/3
-      ])
+  on_mount {LivePlugs, [Bonfire.UI.Me.LivePlugs.LoadCurrentUser]}
 
-  defp mounted(params, session, socket) do
+  def mount(params, session, socket) do
     current_user = current_user(socket)
     resources = my_agent(socket).inventoried_economic_resources
 

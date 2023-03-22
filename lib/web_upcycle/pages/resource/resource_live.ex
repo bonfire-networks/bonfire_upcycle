@@ -5,21 +5,11 @@ defmodule Bonfire.Upcycle.ResourceLive do
     schema: Bonfire.API.GraphQL.Schema,
     action: [mode: :internal]
 
-  alias Bonfire.UI.Me.LivePlugs
   import Bonfire.Upcycle.Integration
 
-  def mount(params, session, socket) do
-    live_plug(params, session, socket, [
-      LivePlugs.LoadCurrentAccount,
-      LivePlugs.LoadCurrentUser,
-      Bonfire.UI.Common.LivePlugs.StaticChanged,
-      Bonfire.UI.Common.LivePlugs.Csrf,
-      Bonfire.UI.Common.LivePlugs.Locale,
-      &mounted/3
-    ])
-  end
+  on_mount {LivePlugs, [Bonfire.UI.Me.LivePlugs.LoadCurrentUser]}
 
-  defp mounted(%{"id" => id} = _params, _session, socket) do
+  def mount(%{"id" => id} = _params, _session, socket) do
     resource = economic_resource(%{id: id}, socket) |> debug("theresource")
     name = e(resource, :name, nil)
 

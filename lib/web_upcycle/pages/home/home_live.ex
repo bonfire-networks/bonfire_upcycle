@@ -9,7 +9,6 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   alias Bonfire.UI.ValueFlows.CreateMilestoneLive
   alias Bonfire.UI.ValueFlows.FiltersLive
 
-  alias Bonfire.UI.Me.LivePlugs
   alias Bonfire.Me.Users
   alias Bonfire.UI.Me.CreateUserLive
   alias Bonfire.UI.Me.LoggedDashboardLive
@@ -40,18 +39,9 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
     {l("Settings"), href: path(:upcycle_settings), icon: "ph:sliders-bold"}
   ])
 
-  def mount(params, session, socket) do
-    live_plug(params, session, socket, [
-      LivePlugs.LoadCurrentAccount,
-      LivePlugs.LoadCurrentUser,
-      Bonfire.UI.Common.LivePlugs.StaticChanged,
-      Bonfire.UI.Common.LivePlugs.Csrf,
-      Bonfire.UI.Common.LivePlugs.Locale,
-      &mounted/3
-    ])
-  end
+  on_mount {LivePlugs, [Bonfire.UI.Me.LivePlugs.LoadCurrentUser]}
 
-  defp mounted(params, session, socket) do
+  def mount(params, session, socket) do
     {:ok,
      assign(
        socket,
