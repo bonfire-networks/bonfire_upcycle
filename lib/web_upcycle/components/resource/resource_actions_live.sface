@@ -22,7 +22,7 @@
       })}
       {#match {:ok, reply_to}}
         <button
-          phx-click="select_smart_input"
+          phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateTransferLive"
           phx-value-reply_to={reply_to}
@@ -35,7 +35,7 @@
         </button>
 
         <button
-          phx-click="select_smart_input"
+          phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
           phx-value-opts={Jason.encode!(%{
@@ -53,7 +53,7 @@
         </button>
 
         <button
-          phx-click="select_smart_input"
+          phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
           phx-value-opts={Jason.encode!(%{
