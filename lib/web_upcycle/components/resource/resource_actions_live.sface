@@ -4,7 +4,7 @@
       <Bonfire.Upcycle.Web.EditResourceLive resource={@resource} action={@action} />
       <:open_btn>
         <button class="flex gap-2 normal-case btn btn-sm">
-          <Icon solid="pencil" class="w-4 h-4" />
+          <#Icon solid="pencil" class="w-4 h-4" />
           <span :if={!@without_label}>{l("Edit")}</span>
         </button>
       </:open_btn>
@@ -29,7 +29,7 @@
           x-on:click={"show_smart_input('#{l("Record a transfer")}')"}
           type="button"
         >
-          <Icon iconify="tabler:arrows-exchange" class="w-4 h-4" />
+          <#Icon iconify="tabler:arrows-exchange" class="w-4 h-4" />
           <span :}</span>
         </button> -->
         <Bonfire.UI.Common.SmartInputButtonLive
@@ -54,7 +54,7 @@
           class="flex gap-2 normal-case btn btn-sm tooltip"
           data-tip={l("Offer this resource")}
         >
-          <Icon iconify="mdi:offer" class="w-4 h-4" />
+          <#Icon iconify="mdi:offer" class="w-4 h-4" />
           <span :if={!@without_label}>{l("Offer")}</span>
         </button> -->
         <Bonfire.UI.Common.SmartInputButtonLive
@@ -79,7 +79,7 @@
           class="flex gap-2 normal-case btn btn-sm tooltip"
           data-tip={l("I need this resource")}
         >
-          <Icon iconify="fa-solid:praying-hands" class="w-4 h-4" />
+          <#Icon iconify="fa-solid:praying-hands" class="w-4 h-4" />
           <span :if={!@without_label}>{l("Need")}</span>
         </button> -->
         <Bonfire.UI.Common.SmartInputButtonLive
