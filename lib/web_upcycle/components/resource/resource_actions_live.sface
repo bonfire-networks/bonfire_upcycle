@@ -13,28 +13,34 @@
       </:action_btns>
     </Bonfire.UI.Common.OpenModalLive>
 
-    {#case Jason.encode(%{
-        "id" => ulid(@resource),
+    {#case %{
+        "id" => id(@resource),
         "name" => e(@resource, :name, nil),
         "unit_id" => e(@resource, :onhand_quantity, :has_unit, :id, nil),
         "resource_quantity" => e(@resource, :onhand_quantity, :has_numerical_value, nil),
         "unit_name" => e(@resource, :onhand_quantity, :has_unit, :label, nil)
-      })}
-      {#match {:ok, reply_to}}
-        <button
+      }}
+      {#match reply_to}
+        <!-- <button
           phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
-          phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateTransferLive"
+          phx-value-component={Bonfire.Upcycle.Web.CreateTransferLive}
           phx-value-reply_to={reply_to}
           x-on:click={"show_smart_input('#{l("Record a transfer")}')"}
           type="button"
-          class="flex gap-2 normal-case btn btn-sm"
         >
           <Icon iconify="tabler:arrows-exchange" class="w-4 h-4" />
-          <span :if={!@without_label}>{l("Transfer")}</span>
-        </button>
+          <span :}</span>
+        </button> -->
+        <Bonfire.UI.Common.SmartInputButtonLive
+          class="flex gap-2 normal-case btn btn-sm"
+          component={Bonfire.Upcycle.Web.CreateTransferLive}
+          smart_input_opts={%{"reply_to" => reply_to}}
+          icon="tabler:arrows-exchange"
+          prompt={if !@without_label, do: l("Transfer"), else: false}
+        />
 
-        <button
+        <!-- <button
           phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
@@ -50,9 +56,16 @@
         >
           <Icon iconify="mdi:offer" class="w-4 h-4" />
           <span :if={!@without_label}>{l("Offer")}</span>
-        </button>
+        </button> -->
+        <Bonfire.UI.Common.SmartInputButtonLive
+          class="flex gap-2 normal-case btn btn-sm tooltip"
+          component={Bonfire.Upcycle.Web.CreateIntentLive}
+          smart_input_opts={%{"reply_to" => reply_to, "resource_inventoried_as" => id(@resource), "intent_type" => "offer"}}
+          icon="mdi:offer"
+          prompt={if !@without_label, do: l("Offer"), else: false}
+        />
 
-        <button
+        <!-- <button
           phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
@@ -68,7 +81,14 @@
         >
           <Icon iconify="fa-solid:praying-hands" class="w-4 h-4" />
           <span :if={!@without_label}>{l("Need")}</span>
-        </button>
+        </button> -->
+        <Bonfire.UI.Common.SmartInputButtonLive
+          class="flex gap-2 normal-case btn btn-sm tooltip"
+          component={Bonfire.Upcycle.Web.CreateIntentLive}
+          smart_input_opts={%{"reply_to" => reply_to, "resource_inventoried_as" => id(@resource), "intent_type" => "need"}}
+          icon="fa-solid:praying-hands"
+          prompt={if !@without_label, do: l("Need"), else: false}
+        />
       {#match _}
     {/case}
   </div>
