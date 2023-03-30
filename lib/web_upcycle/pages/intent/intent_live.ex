@@ -37,15 +37,15 @@ defmodule Bonfire.Upcycle.IntentLive do
          socket,
          page_title: if(intent.is_offer, do: l("Offer"), else: l("Need")),
          without_sidebar: true,
-         id: ulid(intent),
+         id: id(intent),
          intent: intent,
-         reply_to_id: intent,
+         #  reply_to_id: intent,
          object_type_readable: if(intent.is_offer, do: l("offer"), else: l("need")),
          current_url: path(intent),
          #  create_object_type: :upcycle_intent, # TODO: reply with an intent
-         smart_input_opts: %{
-           prompt: if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need"))
-         },
+         #  smart_input_opts: %{ # TODO: add reply button
+         #    prompt: if(intent.is_offer, do: l("Respond to offer"), else: l("Respond to need"))
+         #  },
          matches: ValueFlows.Util.search_for_matches(intent)
          #  without_sidebar: true
        )}
