@@ -25,44 +25,6 @@
     />
   </div> -->
 
-  <!-- Name -->
-  <div class="p-2 m-0">
-    {l("Specify a name")}
-    <Field name={:resource_name}>
-      <TextInput
-        opts={required: true}
-        placeholder="Type the resource name..."
-        class="w-full mt-2 rounded-md input-bordered input"
-      />
-    </Field>
-  </div>
-
-  <!-- Quantity and Units -->
-  <div class="p-2">
-    {l("Specify the quantity and units")}
-    <div class="flex mt-2">
-      <Inputs for={:resource_quantity}>
-        <Field
-          name={:has_numerical_value}
-          class="flex-grow border rounded-lg rounded-r-none border-base-content/20"
-        >
-          <NumberInput opts={required: true, min: 1} class="w-full min-h-0 input" />
-        </Field>
-        <Field name={:has_unit} class="border border-l-0 rounded-r-lg border-base-content/20">
-          <Select options={units()} class="min-h-0 select" />
-        </Field>
-      </Inputs>
-    </div>
-  </div>
-
-  <!-- Description -->
-  <div class="p-2">
-    {l("Add an optional resource description")}
-    <Field class="mt-2" name={:resource_note}>
-      <TextArea class="w-full textarea-bordered textarea" />
-    </Field>
-  </div>
-
   <!-- Image -->
   <!-- <div class="p-2">
     {l("Add an optional image")}
@@ -95,5 +57,43 @@
     uploads={@uploads}
     uploaded_files={@uploaded_files}
     submit_label={l("Submit")}
-  />
+  >
+    <!-- Name -->
+    <div class="p-2 m-0">
+      {l("Specify a name")}
+      <Field name={:resource_name}>
+        <TextInput
+          opts={required: true}
+          placeholder="Type the resource name..."
+          class="w-full mt-2 rounded-md input-bordered input"
+        />
+      </Field>
+    </div>
+
+    <!-- Quantity and Units -->
+    <div class="p-2">
+      {l("Specify the quantity and units")}
+      <div class="flex mt-2">
+        <Inputs for={:resource_quantity}>
+          <Field
+            name={:has_numerical_value}
+            class="flex-grow border rounded-lg rounded-r-none border-base-content/20"
+          >
+            <NumberInput opts={required: true, min: 1} class="w-full min-h-0 input" />
+          </Field>
+          <Field name={:has_unit} class="border border-l-0 rounded-r-lg border-base-content/20">
+            <Select options={units()} class="min-h-0 select" />
+          </Field>
+        </Inputs>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="p-2">
+      {l("Add an optional resource description")}
+      <Field class="mt-2" name={:resource_note}>
+        <TextArea class="w-full textarea-bordered textarea" />
+      </Field>
+    </div>
+  </Bonfire.UI.Common.InputControlsLive>
 </Form>
