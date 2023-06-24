@@ -2,8 +2,8 @@
 {#if module_enabled?(Bonfire.UI.Social.FeedLive)}
   <Dynamic.Component
     module={Bonfire.UI.Social.FeedLive}
-    id="feed:profile:likes"
-    feed_id="feed:profile:likes"
+    id="feed_profile_likes"
+    feed_id="feed_profile_likes"
     page_title={@page_title}
     feed={@feed}
     page_info={@page_info}
