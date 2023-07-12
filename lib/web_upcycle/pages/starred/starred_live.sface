@@ -1,4 +1,4 @@
-<Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
+<!-- <Bonfire.UI.Common.PageTitleLive page_title={@page_title} /> -->
 {#if module_enabled?(Bonfire.UI.Social.FeedLive)}
   <Dynamic.Component
     module={Bonfire.UI.Social.FeedLive}

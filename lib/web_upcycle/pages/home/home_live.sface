@@ -1,4 +1,4 @@
-<Bonfire.UI.Common.PageTitleLive page_title={@page_title} />
+<!-- <Bonfire.UI.Common.PageTitleLive page_title={@page_title} /> -->
 {#case @selected_tab}
   {#match "discover"}
     <Bonfire.Upcycle.Web.DiscoverLive intents={@intents} />
