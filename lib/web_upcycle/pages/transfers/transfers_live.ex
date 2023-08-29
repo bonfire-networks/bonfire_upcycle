@@ -12,7 +12,7 @@ defmodule Bonfire.Upcycle.Web.TransfersLive do
   on_mount {LivePlugs, [Bonfire.UI.Me.LivePlugs.LoadCurrentUser]}
 
   def mount(params, session, socket) do
-    current_user = current_user(socket)
+    current_user = current_user(socket.assigns)
     my_agent = my_agent(socket)
 
     {:ok,
