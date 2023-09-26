@@ -1,6 +1,6 @@
 <section class="w-full p-4 shadow bg-base-100 rounded-box">
   <Label class="block rounded-box w-1/3 p-2 m-0 bg-blue-600 border-transparent text-white text-center">{l("I need")}</Label>
-  <!-- Create a form -->
+  {!-- Create a form --}
   <Form
     class="flex flex-col w-full p-2 space-y-4"
     for={e(
@@ -30,7 +30,7 @@
       </Field>
     </div>
 
-    <!-- Create a title input form field -->
+    {!-- Create a title input form field --}
     <Field class="w-full p-2 m-0 rounded-lg shadow-inner bg-base-300" name={:org}>
       <Label class="block text-sm text-base-content text-opacity-80 font-regular">{l("Select for which organization")}</Label>
       <Select class="input block w-full rounded-box text-base-content focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />

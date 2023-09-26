@@ -20,14 +20,14 @@
           </button>
         </div>
       </div>
-      <!-- <div class="absolute right-0">
+      {!-- <div class="absolute right-0">
         <button
           x-on:click="open = !open"
           class="btn rounded-md normal-case text-base font-normal border-0 bg-indigo-600 hover:bg-indigo-400"
         >
           {l("Create New Transfer")}
         </button>
-      </div> -->
+      </div> --}
     </div>
     <div class="py-10">
       {#for event <- @economic_events}
@@ -43,7 +43,7 @@
       {/for}
     </div>
   </div>
-  <!-- <div
+  {!-- <div
     x-show="open"
     x-on:click.away="open = false"
     class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4"
@@ -54,5 +54,5 @@
       resource_name={@resource_name}
       resource_quantity={@resource_quantity}
     />
-  </div> -->
+  </div> --}
 </div>

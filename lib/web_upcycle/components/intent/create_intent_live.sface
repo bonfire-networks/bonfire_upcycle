@@ -1,5 +1,5 @@
 <section class="relative w-full p-4 bg-base-100">
-  <!-- Create a form -->
+  {!-- Create a form --}
   <Form
     class="flex flex-col w-full p-2 space-y-3"
     for={e(
@@ -79,7 +79,7 @@
         </div>
       </fieldset>
 
-      <!-- Create a title input form field -->
+      {!-- Create a title input form field --}
       <Field class="w-full p-2 pt-0 m-0" name={:name}>
         <Label class="block text-sm text-base-content/80">{l("Title")}</Label>
         <TextInput
@@ -112,7 +112,7 @@
           </div>
         </div>
       </Inputs>
-      <!-- <div class="w-full p-2 pt-0 m-0 rounded-lg shadow-inner bg-base-300">
+      {!-- <div class="w-full p-2 pt-0 m-0 rounded-lg shadow-inner bg-base-300">
       <Label class="block text-sm text-base-content/80">{l("Offer Expires")}</Label>
       <Field name={:due}>
         <DateTimeLocalInput
@@ -121,13 +121,13 @@
           class="block w-full input text-base-content rounded-box focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </Field>
-    </div> -->
+    </div> --}
       <Field name={:note} class="w-full p-2">
         <Label class="block text-sm text-base-content/80">{l("Write an optional description")}</Label>
         <TextArea class="w-full mt-2 textarea textarea-bordered" />
       </Field>
     </Bonfire.UI.Common.InputControlsLive>
 
-    <!-- <button type="submit" class="w-full btn btn-primary">{l("Publish")}</button> -->
+    {!-- <button type="submit" class="w-full btn btn-primary">{l("Publish")}</button> --}
   </Form>
 </section>

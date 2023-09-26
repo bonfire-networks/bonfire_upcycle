@@ -10,8 +10,8 @@
   <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} />
   <HiddenInput name="redirect_after" value={~p"/upcycle/inventory?created="} />
 
-  <!-- Specification -->
-  <!-- <div class="p-2 m-1 rounded-md">
+  {!-- Specification --}
+  {!-- <div class="p-2 m-1 rounded-md">
     {l("Specify the resource you want to add")}
     <Bonfire.UI.Common.MultiselectLive
       id="new_resource_conforms_to"
@@ -23,27 +23,27 @@
       remove_event={@remove_event}
       focus_event="ValueFlows.Knowledge.ResourceSpecification:autocomplete"
     />
-  </div> -->
+  </div> --}
 
-  <!-- Image -->
-  <!-- <div class="p-2">
+  {!-- Image --}
+  {!-- <div class="p-2">
     {l("Add an optional image")}
     <div class="mt-2">
       <Field name={:resource_image}>
         <img class="rounded-md" src="https://placekitten.com/150/150">
       </Field>
     </div>
-  </div> -->
+  </div> --}
 
-  <!-- Submit Button -->
-  <!-- <div class="flex justify-center mt-4">
+  {!-- Submit Button --}
+  {!-- <div class="flex justify-center mt-4">
     <button
       type="submit"
       class="w-full normal-case btn btn-primary"
     >
       {l("Add Resource")}
     </button>
-  </div> -->
+  </div> --}
 
   <Bonfire.UI.Common.InputControlsLive
     smart_input_opts={@smart_input_opts}
@@ -59,7 +59,7 @@
     uploaded_files={@uploaded_files}
     submit_label={l("Submit")}
   >
-    <!-- Name -->
+    {!-- Name --}
     <div class="p-2 m-0">
       {l("Specify a name")}
       <Field name={:resource_name}>
@@ -71,7 +71,7 @@
       </Field>
     </div>
 
-    <!-- Quantity and Units -->
+    {!-- Quantity and Units --}
     <div class="p-2">
       {l("Specify the quantity and units")}
       <div class="flex mt-2">
@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <!-- Description -->
+    {!-- Description --}
     <div class="p-2">
       {l("Add an optional resource description")}
       <Field class="mt-2" name={:resource_note}>

@@ -41,7 +41,7 @@
           resource={e(@event, :to_resource_inventoried_as, nil)}
         />
       </div>
-      <!-- <div class="grid grid-cols-2 grid-rows-5">
+      {!-- <div class="grid grid-cols-2 grid-rows-5">
         <span>
           {l(" ")}
         </span>
@@ -60,7 +60,7 @@
         <span>
           {e(@event, :at_location, :name, "[location]")}
         </span>
-      </div> -->
+      </div> --}
     </div>
     <br>
     <span class="font-bold">
@@ -69,12 +69,12 @@
     <p>
       {e(@event, :note, "[description]")}
     </p>
-    <!-- <div class="border-2 rounded-md">
+    {!-- <div class="border-2 rounded-md">
       <Bonfire.Upcycle.Web.ResourcePreviewLive
         editable={false}
         resource={e(@event, :resource_inventoried_as, nil)}
       />
-    </div> -->
+    </div> --}
   </div>
   <div
     x-show="open"
@@ -82,7 +82,7 @@
     class="absolute w-1/4 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
   >
     <div>
-      <!--  -->
+      {!--  --}
     </div>
   </div>
 </div>

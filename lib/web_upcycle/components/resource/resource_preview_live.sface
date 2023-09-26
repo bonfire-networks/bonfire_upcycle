@@ -13,11 +13,11 @@
       />
     {/if}
   </figure>
-  <!-- <img
+  {!-- <img
     :if={e(@resource, :image, nil)}
     class="object-contain bg-base-content/5 rounded-xl max-h-[120px] w-[160px]"
     src={Media.image_url(@resource)}
-  /> -->
+  /> --}
   <div class="flex flex-col flex-1 gap-1">
     <div class="relative items-center">
       <LiveRedirect to={path(@resource)} class="text-lg font-medium link link-hover">{e(@resource, :name, "[resource name]")}</LiveRedirect>

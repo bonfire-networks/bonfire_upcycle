@@ -1,4 +1,4 @@
-<!-- <Bonfire.UI.Common.PageTitleLive page_title={@page_title} /> -->
+{!-- <Bonfire.UI.Common.PageTitleLive page_title={@page_title} /> --}
 <div class="flex flex-col gap-3">
   {#for %{onhand_quantity: %{has_numerical_value: value}} = resource <- @resources}
     {#if value > 0}

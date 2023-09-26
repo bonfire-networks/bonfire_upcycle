@@ -4,7 +4,7 @@
       <Bonfire.UI.Common.BackButtonLive />
       <div class="text-2xl">{e(@resource, :name, "unknown resource")}</div>
     </div>
-    <!-- <div class="pt-3 mt-3 border-t border-base-content/20">
+    {!-- <div class="pt-3 mt-3 border-t border-base-content/20">
       <div class="flex items-center justify-between gap-2">
           <span class="font-medium badge-lg badge">Category</span>
           <div class="flex items-center gap-2">
@@ -13,7 +13,7 @@
             </div>
           </div>
         </div>
-    </div> -->
+    </div> --}
   </div>
   <div class="grid mt-4 grid-cols-[1fr_320px] gap-4">
     <div>
@@ -72,10 +72,10 @@
         </LiveRedirect>
       </div>
 
-      <!-- <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
+      {!-- <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
         <div class="text-sm font-bold text-base-content/70">{l "Specification"}</div>
         <div>Dummy</div>
-      </div> -->
+      </div> --}
 
       <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
         <div class="text-sm font-bold text-base-content/70">{l("Quantity")}</div>

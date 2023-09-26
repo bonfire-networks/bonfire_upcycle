@@ -1,5 +1,5 @@
 <div class="">
-  <!--       
+  {!--       
   <div class="tabs tabs-boxed">
     <div
       phx-value-id="raise"
@@ -33,25 +33,25 @@
     >
       {l("consume")}
     </div>
-  </div> -->
+  </div> --}
 
   <Form
     for={@changeset || ValueFlows.EconomicEvent.validate_changeset()}
     opts={autocomplete: "off"}
     submit="ValueFlows.EconomicEvent:create"
   >
-    <!-- change="edit_resource_change" -->
+    {!-- change="edit_resource_change" --}
 
-    <!-- Hidden Inputs -->
-    <!-- <HiddenInput name="action" value={@action} /> -->
-    <!-- <HiddenInput :if={@input_of_id} name="input_of_id" value={@input_of_id} />
-    <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} /> -->
-    <!-- <HiddenInput :if={@resource_inventoried_as} name="resource_inventoried_as" value={{@resource}} /> -->
-    <!-- <HiddenInput
+    {!-- Hidden Inputs --}
+    {!-- <HiddenInput name="action" value={@action} /> --}
+    {!-- <HiddenInput :if={@input_of_id} name="input_of_id" value={@input_of_id} />
+    <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} /> --}
+    {!-- <HiddenInput :if={@resource_inventoried_as} name="resource_inventoried_as" value={{@resource}} /> --}
+    {!-- <HiddenInput
       :if={@resource_conforms_to}
       name="resource_conforms_to"
       value={{@resource.conforms_to}}
-    /> -->
+    /> --}
 
     <fieldset class="mt-4">
       <legend class="text-sm font-normal text-base-content/70">{l("Action")}</legend>
@@ -82,7 +82,7 @@
             {l("Lower")}
           </label>
         </div>
-        <!-- <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
+        {!-- <div class="flex items-center flex-1 p-3 border-l border-base-content/10">
             <input
               id="consume"
               name="action"
@@ -93,7 +93,7 @@
             <label for="consume" class="block ml-3 text-sm text-base-content/70">
               {l("Consume")}
             </label>
-          </div> -->
+          </div> --}
       </div>
     </fieldset>
 
@@ -106,7 +106,7 @@
       </Field>
     </div>
 
-    <!-- Quantity -->
+    {!-- Quantity --}
     <div class="mt-4">
       <legend class="mb-2 text-sm font-normal text-base-content/70">{l("Quantity")}</legend>
       <div class="flex">
@@ -132,16 +132,16 @@
             />
             {e(@resource, :onhand_quantity, :has_unit, :label, nil)}
           </Field>
-          <!-- <Field class="ml-2" name={:has_unit}>
+          {!-- <Field class="ml-2" name={:has_unit}>
             <Select
               options={units()}
               class="input input-bordered h-[2.5rem]"
             />
-          </Field> -->
+          </Field> --}
         </Inputs>
       </div>
 
-      <!-- {l("The new quantity will be")}
+      {!-- {l("The new quantity will be")}
       <span class="font-semibold">
         <Label :if={@action == "raise"}>
           {e(@resource, :onhand_quantity, :has_numerical_value, 0) +
@@ -151,10 +151,10 @@
           {e(@resource, :onhand_quantity, :has_numerical_value, 0) -
             e(@edit_resource_value, 10)}
         </Label>
-      </span>  -->
+      </span>  --}
     </div>
 
-    <!-- Description -->
+    {!-- Description --}
     <div class="mt-4">
       <legend class="mb-2 text-sm font-normal text-base-content/70">
         {l("Add an optional note")}</legend>
@@ -163,6 +163,6 @@
       </Field>
     </div>
 
-    <!-- Submit Button -->
+    {!-- Submit Button --}
   </Form>
 </div>

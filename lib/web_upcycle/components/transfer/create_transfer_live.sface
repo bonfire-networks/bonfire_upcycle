@@ -10,15 +10,15 @@
   <HiddenInput :if={@output_of_id} name="output_of_id" value={@output_of_id} />
   <HiddenInput name="redirect_after" value={~p"/upcycle/transfers?created="} />
 
-  <!-- Submit Button -->
-  <!-- <div class="flex justify-center">
+  {!-- Submit Button --}
+  {!-- <div class="flex justify-center">
     <button
       type="submit"
       class="text-base font-normal normal-case bg-indigo-600 border-0 rounded-md btn hover:bg-indigo-400"
     >
       {l("Create Transfer")}
     </button>
-  </div> -->
+  </div> --}
 
   <Bonfire.UI.Common.InputControlsLive
     smart_input_opts={@smart_input_opts}
@@ -34,7 +34,7 @@
     uploaded_files={@uploaded_files}
     submit_label={l("Submit")}
   >
-    <!-- From -->
+    {!-- From --}
     <div class="grid grid-cols-2 p-3 border rounded border-base-content/10">
       <div class="">
         <div class="mb-2 text-sm font-semibold text-base-content/70">
@@ -49,7 +49,7 @@
           <div class="text-lg font-semibold link link-hover">{e(current_user(@__context__), :profile, :name, "Unknown name")}</div>
         </LiveRedirect>
       </div>
-      <!-- To -->
+      {!-- To --}
       <div class="">
         <div class="mb-2 text-sm font-semibold text-base-content/70">
           {l("To")}
@@ -63,8 +63,8 @@
       </div>
     </div>
 
-    <!-- Resource (Bonfire Component) -->
-    <!-- <div class="p-2 m-1 rounded-md">
+    {!-- Resource (Bonfire Component) --}
+    {!-- <div class="p-2 m-1 rounded-md">
     {l "Specify which resource to transfer"}
         <div class="relative flex-1">
             <Bonfire.UI.Common.MultiselectLive
@@ -77,10 +77,10 @@
             focus_event="ValueFlows.EconomicResource:autocomplete"
             />
         </div>
-    </div> -->
+    </div> --}
 
     <div class="grid grid-cols-2 p-3 mt-3 border rounded border-base-content/10">
-      <!-- Quantity and Units -->
+      {!-- Quantity and Units --}
       <div class="">
         <div class="mb-2 text-sm font-semibold text-base-content/70">
           {l("Amount")}
@@ -102,19 +102,19 @@
                 class="rounded-tr-lg rounded-br-lg select"
               />
             </Field>
-            <!-- <Field name={:has_unit}>
+            {!-- <Field name={:has_unit}>
             <Select options={units()} class="rounded-tr-lg rounded-br-lg select" />
-          </Field> -->
+          </Field> --}
 
             <span class="mx-3">{@unit_name || e(@reply_to_id, "unit_name", nil)} {l("of")}</span>
           </Inputs>
         </div>
       </div>
 
-      <!-- Resource Drop-down -->
-      <!-- <Field name={:resource_inventoried_as}>
+      {!-- Resource Drop-down --}
+      {!-- <Field name={:resource_inventoried_as}>
     <HiddenInput value={@resource_id} />
-  </Field> -->
+  </Field> --}
       <input
         name="economic_event[resource_inventoried_as]"
         value={@resource_id || ulid(@reply_to_id)}
@@ -166,7 +166,7 @@
       </div>
     </div>
 
-    <!-- Description -->
+    {!-- Description --}
     <div class="mt-3">
       <div class="mb-2 text-sm font-semibold text-base-content/70">
         {l("Add an optional note about the transfer")}

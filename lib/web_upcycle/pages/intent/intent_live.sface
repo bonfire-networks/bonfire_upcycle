@@ -20,7 +20,7 @@
     </div>
     <div class="pt-3 mt-3 border-t border-base-content/20">
       <div class="flex items-center justify-between gap-2">
-        <!-- <span class="font-medium badge">Category</span> -->
+        {!-- <span class="font-medium badge">Category</span> --}
         <div class="flex items-center gap-4">
           <div class="text-sm font-medium tracking-wide text-base-content/80">{format_date(e(@intent, :has_beginning, nil))}</div>
           {#if @intent.is_offer}
@@ -41,9 +41,9 @@
     <div>
       {#if not is_nil(@intent.image) or not is_nil(e(@intent, :resource_inventoried_as, :image, nil))}
         <figure class="max-h-[400px] h-full bg-base-content/5">
-          <!-- <div class="flex items-center w-full h-full opacity-30 place-content-center">
+          {!-- <div class="flex items-center w-full h-full opacity-30 place-content-center">
             <#Icon iconify="ant-design:picture-filled" class="w-24 h-24 text-base-content" />
-          </div> -->
+          </div> --}
           <img
             class="max-h-[400px] object-contain w-full"
             src={Media.image_url(@intent) || Media.image_url(e(@intent, :resource_inventoried_as, nil))}
@@ -83,7 +83,7 @@
 
       <div class="mt-6">
         <div class="mb-3 text-lg font-semibold">{l("You may be interested in")}</div>
-        <!-- <div class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l("No"))} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</div> -->
+        {!-- <div class="text-xs text-gray-800 uppercase dark:text-gray-100 font-regular">{e(@matches, "nbHits", l("No"))} possible {if @intent.is_offer, do: l("needs"), else: l("offers")} matching this {if @intent.is_offer, do: l("offer"), else: l("need")}</div> --}
         <Bonfire.Upcycle.MatchesLive hits={e(@matches, :hits, [])} />
       </div>
     </div>
@@ -113,10 +113,10 @@
         {/if}
       </div>
 
-      <!-- <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
+      {!-- <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">
         <div class="text-sm font-bold text-base-content/70">{l "Specification"}</div>
         <div>Dummy</div>
-      </div> -->
+      </div> --}
 
       <div
         :if={e(@intent, :resource_quantity, :has_numerical_value, nil)}

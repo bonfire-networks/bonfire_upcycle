@@ -36,7 +36,7 @@
         <span class="text-sm font-medium">{e(@intent, :resource_quantity, :has_numerical_value, "AmountNotSet")} {e(@intent, :resource_quantity, :has_unit, :label, "Unit")}</span>
       </div>
       <span class="text-sm font-medium tracking-wide text-base-content/80">{format_date(e(@intent, :has_beginning, nil))}</span>
-      <!-- {#if @editable}
+      {!-- {#if @editable}
         <LiveRedirect
           to={~p"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-1"
@@ -48,7 +48,7 @@
           />
           <div class="link link-hover">{e(@resource, :primary_accountable, :name, "[user's name]")}</div>
         </LiveRedirect>
-      {/if} -->
+      {/if} --}
     </div>
 
     <div class="mt-2 text-sm line-clamp-3 text-base-content/70">{e(@intent, :note, "")}</div>

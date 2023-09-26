@@ -21,7 +21,7 @@
         "unit_name" => e(@resource, :onhand_quantity, :has_unit, :label, nil)
       }}
       {#match reply_to}
-        <!-- <button
+        {!-- <button
           phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component={Bonfire.Upcycle.Web.CreateTransferLive}
@@ -31,7 +31,7 @@
         >
           <#Icon iconify="tabler:arrows-exchange" class="w-4 h-4" />
           <span :}</span>
-        </button> -->
+        </button> --}
         <Bonfire.UI.Common.SmartInputButtonLive
           class="flex gap-2 normal-case btn btn-sm"
           component={Bonfire.Upcycle.Web.CreateTransferLive}
@@ -40,7 +40,7 @@
           prompt={if !@without_label, do: l("Transfer"), else: false}
         />
 
-        <!-- <button
+        {!-- <button
           phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
@@ -56,7 +56,7 @@
         >
           <#Icon iconify="mdi:offer" class="w-4 h-4" />
           <span :if={!@without_label}>{l("Offer")}</span>
-        </button> -->
+        </button> --}
         <Bonfire.UI.Common.SmartInputButtonLive
           class="flex gap-2 normal-case btn btn-sm tooltip"
           component={Bonfire.Upcycle.Web.CreateIntentLive}
@@ -65,7 +65,7 @@
           prompt={if !@without_label, do: l("Offer"), else: false}
         />
 
-        <!-- <button
+        {!-- <button
           phx-click="Bonfire.UI.Common.SmartInput:select_smart_input"
           phx-target="#smart_input"
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
@@ -81,7 +81,7 @@
         >
           <#Icon iconify="fa-solid:praying-hands" class="w-4 h-4" />
           <span :if={!@without_label}>{l("Need")}</span>
-        </button> -->
+        </button> --}
         <Bonfire.UI.Common.SmartInputButtonLive
           class="flex gap-2 normal-case btn btn-sm tooltip"
           component={Bonfire.Upcycle.Web.CreateIntentLive}
