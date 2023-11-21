@@ -39,6 +39,7 @@
         {/if}
 
         <Bonfire.UI.Social.Activity.ActionsLive
+          id="resource_action"
           object={@resource}
           object_type={ValueFlows.EconomicResource}
           object_type_readable="resource"

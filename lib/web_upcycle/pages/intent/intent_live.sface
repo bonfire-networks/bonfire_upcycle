@@ -66,6 +66,7 @@
       </div>
 
       <Bonfire.UI.Social.Activity.ActionsLive
+        id="intent_action"
         object={@intent}
         object_type={ValueFlows.Planning.Intent}
         object_type_readable={@object_type_readable}
