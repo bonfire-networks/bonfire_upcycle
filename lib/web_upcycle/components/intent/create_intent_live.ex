@@ -14,4 +14,7 @@ defmodule Bonfire.Upcycle.Web.CreateIntentLive do
   prop output_of_id, :string, required: false
   prop title, :string, default: nil
   prop intent_type, :string, default: :need
+
+  @behaviour Bonfire.UI.Common.SmartInputModule
+  def smart_input_module, do: [:upcycle_intent]
 end

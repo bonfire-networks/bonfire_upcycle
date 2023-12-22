@@ -18,4 +18,7 @@ defmodule Bonfire.Upcycle.Web.CreateResourceLive do
 
   prop resource_specifications_autocomplete, :any, default: nil
   prop resource_specification_selected, :any, default: nil
+
+  @behaviour Bonfire.UI.Common.SmartInputModule
+  def smart_input_module, do: [:upcycle_resource]
 end

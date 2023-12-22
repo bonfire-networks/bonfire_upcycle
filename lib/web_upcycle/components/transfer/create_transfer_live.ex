@@ -27,4 +27,7 @@ defmodule Bonfire.Upcycle.Web.CreateTransferLive do
   prop unit_name, :string, default: nil
 
   prop users_autocomplete, :any, default: nil
+
+  @behaviour Bonfire.UI.Common.SmartInputModule
+  def smart_input_module, do: [:upcycle_transfer]
 end
