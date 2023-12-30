@@ -1,17 +1,15 @@
 {!-- <Bonfire.UI.Common.PageTitleLive page_title={@page_title} /> --}
-{#if module_enabled?(Bonfire.UI.Social.FeedLive)}
-  {!-- 
+{!-- 
       TODO: support LivePush:
       ComponentID.new(Bonfire.UI.Social.FeedLive, @feed_ids || @feed_id, __MODULE__) --}
-  <Dynamic.Component
-    module={Bonfire.UI.Social.FeedLive}
-    id="feed_profile_likes"
-    feed_id="feed_profile_likes"
-    page_title={@page_title}
-    feed={@feed}
-    page_info={@page_info}
-    showing_within={@showing_within}
-    verb_default="like"
-    loading={@loading}
-  />
-{/if}
+<StatelessComponent
+  module={maybe_component(Bonfire.UI.Social.FeedLive, @__context__)}
+  id="feed_profile_likes"
+  feed_id="feed_profile_likes"
+  page_title={@page_title}
+  feed={@feed}
+  page_info={@page_info}
+  showing_within={@showing_within}
+  verb_default="like"
+  loading={@loading}
+/>
