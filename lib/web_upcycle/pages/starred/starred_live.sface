@@ -2,10 +2,9 @@
 {!-- 
       TODO: support LivePush:
       ComponentID.new(Bonfire.UI.Social.FeedLive, @feed_ids || @feed_id, __MODULE__) --}
-<StatelessComponent
+<StatefulComponent
   module={maybe_component(Bonfire.UI.Social.FeedLive, @__context__)}
-  id="feed_profile_likes"
-  feed_id="feed_profile_likes"
+  id={ComponentID.new(Bonfire.UI.Social.FeedLive, :likes, __MODULE__)}
   page_title={@page_title}
   feed={@feed}
   page_info={@page_info}
