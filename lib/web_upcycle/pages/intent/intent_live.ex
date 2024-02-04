@@ -15,7 +15,7 @@ defmodule Bonfire.Upcycle.IntentLive do
   alias Bonfire.UI.Me.CreateUserLive
   alias Bonfire.UI.Me.LoggedDashboardLive
 
-  prop selected_tab, :string, default: "discover"
+  prop selected_tab, :any, default: "discover"
 
   on_mount {LivePlugs, [Bonfire.UI.Me.LivePlugs.LoadCurrentUser]}
 

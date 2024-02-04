@@ -13,7 +13,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   alias Bonfire.UI.Me.CreateUserLive
   alias Bonfire.UI.Me.LoggedDashboardLive
 
-  prop selected_tab, :string, default: "discover"
+  prop selected_tab, :any, default: "discover"
 
   @icon """
   <svg stroke-miterlimit="10" version="1.1" viewBox="0 0 566.876 680.091" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
