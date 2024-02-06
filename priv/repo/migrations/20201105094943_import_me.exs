@@ -1,4 +1,4 @@
-defmodule Bonfire.Upcycle.Repo.Migrations.ImportMe  do
+defmodule Bonfire.Upcycle.Repo.Migrations.ImportMe do
   @moduledoc false
   use Ecto.Migration
 
