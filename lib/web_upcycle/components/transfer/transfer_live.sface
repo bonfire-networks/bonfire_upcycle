@@ -5,7 +5,7 @@
         <div class="text-xl font-bold">
           {l("From")}
         </div>
-        <LiveRedirect
+        <LinkLive
           to={~p"/user/" <> e(@event, :provider, :name, "Unknown")}
           class="flex items-center gap-3"
         >
@@ -15,7 +15,7 @@
             user={e(@event, :provider, nil) || @event}
           />
           <div class="text-lg font-semibold link link-hover">{e(@event, :provider, :name, "Unknown")}</div>
-        </LiveRedirect>
+        </LinkLive>
         <Bonfire.Upcycle.Web.ResourcePreviewLive
           editable={false}
           resource={e(@event, :resource_inventoried_as, nil)}
@@ -25,7 +25,7 @@
         <div class="text-xl font-bold">
           {l("To")}
         </div>
-        <LiveRedirect
+        <LinkLive
           to={~p"/user/" <> e(@event, :receiver, :name, "Unknown")}
           class="flex items-center gap-3"
         >
@@ -35,7 +35,7 @@
             user={e(@event, :receiver, nil) || @event}
           />
           <div class="text-lg font-semibold link link-hover">{e(@event, :receiver, :name, "Unknown")}</div>
-        </LiveRedirect>
+        </LinkLive>
         <Bonfire.Upcycle.Web.ResourcePreviewLive
           editable={false}
           resource={e(@event, :to_resource_inventoried_as, nil)}

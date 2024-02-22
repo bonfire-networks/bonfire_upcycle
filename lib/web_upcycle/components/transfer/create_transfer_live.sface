@@ -40,14 +40,14 @@
         <div class="mb-2 text-sm font-semibold text-base-content/70">
           {l("From")}
         </div>
-        <LiveRedirect to={path(current_user(@__context__))} class="flex items-center gap-3">
+        <LinkLive to={path(current_user(@__context__))} class="flex items-center gap-3">
           <Bonfire.UI.Common.AvatarLive
             parent_id="create_transfer"
             class="w-8 h-8 rounded-lg bg-base-content/5"
             user={e(current_user(@__context__), :profile, nil)}
           />
           <div class="text-lg font-semibold link link-hover">{e(current_user(@__context__), :profile, :name, "Unknown name")}</div>
-        </LiveRedirect>
+        </LinkLive>
       </div>
       {!-- To --}
       <div class="">

@@ -20,7 +20,7 @@
   /> --}
   <div class="flex flex-col flex-1 gap-1">
     <div class="relative items-center">
-      <LiveRedirect to={path(@resource)} class="text-lg font-medium link link-hover">{e(@resource, :name, "[resource name]")}</LiveRedirect>
+      <LinkLive to={path(@resource)} class="text-lg font-medium link link-hover">{e(@resource, :name, "[resource name]")}</LinkLive>
 
       <div class="absolute top-0 right-0">
         <Bonfire.Upcycle.Web.ResourceActionsLive
@@ -36,7 +36,7 @@
         <span class="text-sm font-medium">{e(@resource, :onhand_quantity, :has_numerical_value, "[#]")} {e(@resource, :onhand_quantity, :has_unit, :label, "[units]")}</span>
       </div>
       {#if @editable}
-        <LiveRedirect
+        <LinkLive
           to={~p"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-1"
         >
@@ -46,7 +46,7 @@
             user={e(@resource, :primary_accountable, nil) || @resource}
           />
           <div class="link link-hover">{e(@resource, :primary_accountable, :name, "[user's name]")}</div>
-        </LiveRedirect>
+        </LinkLive>
       {/if}
     </div>
 

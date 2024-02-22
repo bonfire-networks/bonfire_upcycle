@@ -60,7 +60,7 @@
     <div class="flex flex-col gap-5 p-3 rounded shadow bg-base-100">
       <div class="flex flex-col gap-2">
         <div class="text-sm font-bold text-base-content/70">{l("Owner")}</div>
-        <LiveRedirect
+        <LinkLive
           to={~p"/user/" <> e(@resource, :primary_accountable, :display_username, nil, "[display_username]")}
           class="flex items-center gap-3"
         >
@@ -70,7 +70,7 @@
             user={e(@resource, :primary_accountable, nil) || @resource}
           />
           <div class="text-xl font-semibold link link-hover">{e(@resource, :primary_accountable, :name, "Anonymous")}</div>
-        </LiveRedirect>
+        </LinkLive>
       </div>
 
       {!-- <div class="flex flex-col gap-2 pt-5 border-t border-base-content/20">

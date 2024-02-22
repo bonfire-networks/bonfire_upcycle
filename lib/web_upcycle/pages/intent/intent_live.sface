@@ -5,11 +5,11 @@
       <div class="breadcrumbs">
         <ul>
           {#if @intent.resource_inventoried_as}
-            <li><LiveRedirect class="text-2xl link link-hover" to={path(@intent.resource_inventoried_as)}>
+            <li><LinkLive class="text-2xl link link-hover" to={path(@intent.resource_inventoried_as)}>
                 <span data-test-id="intent_name">
                   {e(@intent, :resource_inventoried_as, :name, nil)}
                 </span>
-              </LiveRedirect>
+              </LinkLive>
             </li>
           {/if}
           <li><span class="text-2xl" data-test-id="intent_name">
@@ -93,24 +93,24 @@
       <div class="flex flex-col gap-2">
         {#if @intent.is_offer}
           <div class="text-sm font-bold text-base-content/70">{l("Offered by")}</div>
-          <LiveRedirect to={path(e(@intent, :provider, nil))} class="flex items-center gap-3">
+          <LinkLive to={path(e(@intent, :provider, nil))} class="flex items-center gap-3">
             <Bonfire.UI.Common.AvatarLive
               parent_id="intent_offer"
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :provider, nil) || @intent}
             />
             <div class="text-lg font-semibold link link-hover">{e(@intent, :provider, :name, "[user's name]")}</div>
-          </LiveRedirect>
+          </LinkLive>
         {#else}
           <div class="text-sm font-bold text-base-content/70">{l("Needed by")}</div>
-          <LiveRedirect to={path(e(@intent, :receiver, nil))} class="flex items-center gap-3">
+          <LinkLive to={path(e(@intent, :receiver, nil))} class="flex items-center gap-3">
             <Bonfire.UI.Common.AvatarLive
               parent_id="intent_need"
               class="w-12 h-12 rounded-lg bg-base-content/5"
               user={e(@intent, :receiver, nil) || @intent}
             />
             <div class="text-lg font-semibold link link-hover">{e(@intent, :receiver, :name, "[user's name]")}</div>
-          </LiveRedirect>
+          </LinkLive>
         {/if}
       </div>
 
