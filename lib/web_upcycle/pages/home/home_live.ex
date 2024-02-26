@@ -69,7 +69,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(%{"tab" => "discover" = tab} = _params, _url, socket) do
+  def handle_params(%{"tab" => "discover" = tab} = _params, _url, socket) do
     current_user = current_user(socket.assigns)
     intents = intents(socket)
     IO.inspect(intents)
@@ -82,7 +82,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  # def do_handle_params(%{"tab" => "my-needs" = tab} = _params, _url, socket) do
+  # def handle_params(%{"tab" => "my-needs" = tab} = _params, _url, socket) do
   #   current_user = current_user(socket.assigns)
   #   intents = intents(%{receiver: "me"}, socket)
   #   IO.inspect(intents)
@@ -94,7 +94,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   #    )}
   # end
 
-  # def do_handle_params(%{"tab" => "my-offers" = tab} = _params, _url, socket) do
+  # def handle_params(%{"tab" => "my-offers" = tab} = _params, _url, socket) do
   #   current_user = current_user(socket.assigns)
   #   intents = intents(%{provider: "me"}, socket)
   #   IO.inspect(intents)
@@ -106,7 +106,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   #    )}
   # end
 
-  def do_handle_params(%{"tab" => "my-intents" = tab} = _params, _url, socket) do
+  def handle_params(%{"tab" => "my-intents" = tab} = _params, _url, socket) do
     current_user = current_user(socket.assigns)
     intents = intents(%{agent: "me"}, socket)
 
@@ -118,7 +118,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(
+  def handle_params(
         %{"tab" => "create-transfer" = tab} = _params,
         _url,
         socket
@@ -133,8 +133,8 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
      )}
   end
 
-  def do_handle_params(params, url, socket) do
-    do_handle_params(Map.merge(params, %{"tab" => "discover"}), url, socket)
+  def handle_params(params, url, socket) do
+    handle_params(Map.merge(params, %{"tab" => "discover"}), url, socket)
   end
 
   @graphql """
@@ -177,9 +177,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   """
   def intents(params \\ %{}, socket), do: liveql(socket, :intents, params)
 
-  # defdelegate handle_params(params, attrs, socket), to: Bonfire.UI.Common.LiveHandlers
-
-  def do_handle_event("my_agent", %{}, socket) do
+  def handle_event("my_agent", %{}, socket) do
     my_agent = my_agent(socket)
     {:noreply, assign(socket, intents: my_agent)}
   end
@@ -204,31 +202,4 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   }
   """
   def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
-
-  def handle_params(params, uri, socket),
-    do:
-      Bonfire.UI.Common.LiveHandlers.handle_params(
-        params,
-        uri,
-        socket,
-        __MODULE__,
-        &do_handle_params/3
-      )
-
-  def handle_info(info, socket),
-    do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
-
-  def handle_event(
-        action,
-        attrs,
-        socket
-      ),
-      do:
-        Bonfire.UI.Common.LiveHandlers.handle_event(
-          action,
-          attrs,
-          socket,
-          __MODULE__,
-          &do_handle_event/3
-        )
 end

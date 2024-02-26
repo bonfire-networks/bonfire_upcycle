@@ -20,7 +20,7 @@ defmodule Bonfire.Upcycle.Web.StarredLive do
      )}
   end
 
-  def do_handle_params(_params, _url, socket) do
+  def handle_params(_params, _url, socket) do
     current_user = current_user_required!(socket)
 
     %{edges: feed, page_info: page_info} =
@@ -43,31 +43,4 @@ defmodule Bonfire.Upcycle.Web.StarredLive do
        page_info: page_info
      )}
   end
-
-  def handle_params(params, uri, socket),
-    do:
-      Bonfire.UI.Common.LiveHandlers.handle_params(
-        params,
-        uri,
-        socket,
-        __MODULE__,
-        &do_handle_params/3
-      )
-
-  def handle_info(info, socket),
-    do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
-
-  def handle_event(
-        action,
-        attrs,
-        socket
-      ),
-      do:
-        Bonfire.UI.Common.LiveHandlers.handle_event(
-          action,
-          attrs,
-          socket,
-          __MODULE__
-          # &do_handle_event/3
-        )
 end

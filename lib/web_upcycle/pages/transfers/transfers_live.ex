@@ -131,30 +131,4 @@ defmodule Bonfire.Upcycle.Web.TransfersLive do
   }
   """
   def my_agent(params \\ %{}, socket), do: liveql(socket, :my_agent, params)
-
-  def handle_params(params, uri, socket),
-    do:
-      Bonfire.UI.Common.LiveHandlers.handle_params(
-        params,
-        uri,
-        socket,
-        __MODULE__
-      )
-
-  def handle_info(info, socket),
-    do: Bonfire.UI.Common.LiveHandlers.handle_info(info, socket, __MODULE__)
-
-  def handle_event(
-        action,
-        attrs,
-        socket
-      ),
-      do:
-        Bonfire.UI.Common.LiveHandlers.handle_event(
-          action,
-          attrs,
-          socket,
-          __MODULE__
-          # &do_handle_event/3
-        )
 end
