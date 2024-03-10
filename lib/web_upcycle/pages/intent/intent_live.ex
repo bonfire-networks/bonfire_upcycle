@@ -12,8 +12,6 @@ defmodule Bonfire.Upcycle.IntentLive do
   alias Bonfire.UI.ValueFlows.FiltersLive
 
   alias Bonfire.Me.Users
-  alias Bonfire.UI.Me.CreateUserLive
-  alias Bonfire.UI.Me.LoggedDashboardLive
 
   prop selected_tab, :any, default: "discover"
 
