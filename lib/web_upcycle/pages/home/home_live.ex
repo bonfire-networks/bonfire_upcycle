@@ -26,6 +26,10 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   declare_extension(
     "Upcycle",
     icon: @icon,
+    description:
+      l(
+        "Tools for networks of fablabs that receive contributions of materials from organizations in the community and share these with each other."
+      ),
     default_nav: [
       Bonfire.Upcycle.Web.HomeLive
     ]
