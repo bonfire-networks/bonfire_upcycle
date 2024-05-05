@@ -1,6 +1,6 @@
 defmodule Bonfire.Upcycle.Web.CreateIntentLive do
   use Bonfire.UI.Common.Web, :stateless_component
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 
   prop smart_input_opts, :map, default: %{}
   prop textarea_class, :css_class, required: false

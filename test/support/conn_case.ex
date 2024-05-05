@@ -38,7 +38,7 @@ defmodule Bonfire.Upcycle.ConnCase do
   end
 
   setup tags do
-    import Bonfire.Upcycle.Integration
+    import Bonfire.Upcycle
 
     Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 

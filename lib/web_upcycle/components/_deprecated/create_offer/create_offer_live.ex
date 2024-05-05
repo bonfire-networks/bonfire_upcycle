@@ -1,6 +1,6 @@
 defmodule Bonfire.Upcycle.Web.CreateOfferLive do
   use Bonfire.UI.Common.Web, :stateless_component
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 
   prop intent_url, :string, required: false, default: ""
   prop action_id, :string, required: false, default: "work"

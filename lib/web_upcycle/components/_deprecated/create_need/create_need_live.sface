@@ -20,7 +20,7 @@
       name="provider"
       value={current_user_id(@__context__)}
     />
-    <HiddenInput name="classified_as[]" value={Bonfire.Upcycle.Integration.remote_tag_id()} />
+    <HiddenInput name="classified_as[]" value={Bonfire.Upcycle.remote_tag_id()} />
 
     <div hidden="true">
       <Field name={:has_beginning}>

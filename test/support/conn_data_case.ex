@@ -9,7 +9,7 @@ defmodule Bonfire.Upcycle.ConnDataCase do
 
   use ExUnit.CaseTemplate
 
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 
   using do
     quote do
@@ -32,7 +32,7 @@ defmodule Bonfire.Upcycle.ConnDataCase do
   end
 
   setup tags do
-    import Bonfire.Upcycle.Integration
+    import Bonfire.Upcycle
 
     Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 

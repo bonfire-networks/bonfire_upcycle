@@ -5,5 +5,5 @@ defmodule Bonfire.Upcycle.Test.FakeHelpers do
 
   import ExUnit.Assertions
 
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 end

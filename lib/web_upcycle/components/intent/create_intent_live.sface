@@ -23,7 +23,7 @@
       value={e(@smart_input_opts, :resource_conforms_to, nil)}
     />
 
-    <HiddenInput name="classified_as[]" value={Bonfire.Upcycle.Integration.remote_tag_id()} />
+    <HiddenInput name="classified_as[]" value={Bonfire.Upcycle.remote_tag_id()} />
 
     <Bonfire.UI.Common.InputControlsLive
       smart_input_opts={@smart_input_opts}

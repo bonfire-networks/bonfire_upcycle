@@ -1,4 +1,6 @@
-defmodule Bonfire.Upcycle.Integration do
+defmodule Bonfire.Upcycle do
+  @moduledoc "./README.md" |> File.stream!() |> Enum.drop(1) |> Enum.join()
+
   use Arrows
   import Bonfire.Common.Utils
 

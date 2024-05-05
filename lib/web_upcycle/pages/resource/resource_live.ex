@@ -5,7 +5,7 @@ defmodule Bonfire.Upcycle.ResourceLive do
     schema: Bonfire.API.GraphQL.Schema,
     action: [mode: :internal]
 
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 
   on_mount {LivePlugs, [Bonfire.UI.Me.LivePlugs.LoadCurrentUser]}
 

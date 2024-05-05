@@ -17,7 +17,7 @@ defmodule Bonfire.Upcycle.ChannelCase do
 
   use ExUnit.CaseTemplate
 
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 
   using do
     quote do

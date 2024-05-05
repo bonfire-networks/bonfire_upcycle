@@ -5,7 +5,7 @@ defmodule Bonfire.Upcycle.IntentLive do
     schema: Bonfire.API.GraphQL.Schema,
     action: [mode: :internal]
 
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 
   alias Bonfire.UI.ValueFlows.IntentCreateActivityLive
   alias Bonfire.UI.ValueFlows.CreateMilestoneLive

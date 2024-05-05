@@ -1,6 +1,6 @@
 defmodule Bonfire.Upcycle.Web.InventoryLive do
   use Bonfire.UI.Common.Web, :surface_live_view
-  import Bonfire.Upcycle.Integration
+  import Bonfire.Upcycle
 
   use AbsintheClient,
     schema: Bonfire.API.GraphQL.Schema,
