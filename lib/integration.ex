@@ -2,7 +2,7 @@ defmodule Bonfire.Upcycle do
   @moduledoc "./README.md" |> File.stream!() |> Enum.drop(1) |> Enum.join()
 
   use Arrows
-  import Bonfire.Common.Utils
+  use Bonfire.Common.Utils
 
   # def repo, do: Bonfire.Common.Config.repo()
 
