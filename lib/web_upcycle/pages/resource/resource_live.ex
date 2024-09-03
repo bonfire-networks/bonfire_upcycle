@@ -17,7 +17,7 @@ defmodule Bonfire.Upcycle.ResourceLive do
      assign(
        socket,
        page_title: name,
-       id: ulid(resource),
+       id: uid(resource),
        resource: resource,
        current_url: path(resource),
        editable: involved?(resource, socket),

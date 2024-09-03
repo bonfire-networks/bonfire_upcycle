@@ -46,7 +46,7 @@
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
           phx-value-opts={Jason.encode!(%{
             "intent_type" => "offer",
-            resource_inventoried_as: ulid(@resource)
+            resource_inventoried_as: uid(@resource)
           })}
           phx-value-reply_to={reply_to}
           x-on:click={"show_smart_input('#{l("Offer this resource")}')"}
@@ -71,7 +71,7 @@
           phx-value-component="Elixir.Bonfire.Upcycle.Web.CreateIntentLive"
           phx-value-opts={Jason.encode!(%{
             "intent_type" => "need",
-            resource_inventoried_as: ulid(@resource)
+            resource_inventoried_as: uid(@resource)
           })}
           phx-value-reply_to={reply_to}
           x-on:click={"show_smart_input('#{l("I need this resource")}')"}
