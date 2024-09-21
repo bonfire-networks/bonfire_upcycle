@@ -29,7 +29,7 @@ defmodule Bonfire.Web.ViewInventoryLive do
     # mock_resource = GraphQL.simulate({}, {})
     # IO.inspect(mock_resource)
 
-    current_user = socket.assigns.current_user
+    current_user = assigns(socket).current_user
 
     event_attrs = %{
       action: "raise",

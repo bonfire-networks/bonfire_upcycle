@@ -72,7 +72,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   end
 
   def handle_params(%{"tab" => "discover" = tab} = _params, _url, socket) do
-    current_user = current_user(socket.assigns)
+    current_user = current_user(assigns(socket))
     intents = intents(socket)
     IO.inspect(intents)
 
@@ -85,7 +85,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   end
 
   # def handle_params(%{"tab" => "my-needs" = tab} = _params, _url, socket) do
-  #   current_user = current_user(socket.assigns)
+  #   current_user = current_user(assigns(socket))
   #   intents = intents(%{receiver: "me"}, socket)
   #   IO.inspect(intents)
 
@@ -97,7 +97,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   # end
 
   # def handle_params(%{"tab" => "my-offers" = tab} = _params, _url, socket) do
-  #   current_user = current_user(socket.assigns)
+  #   current_user = current_user(assigns(socket))
   #   intents = intents(%{provider: "me"}, socket)
   #   IO.inspect(intents)
 
@@ -109,7 +109,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
   # end
 
   def handle_params(%{"tab" => "my-intents" = tab} = _params, _url, socket) do
-    current_user = current_user(socket.assigns)
+    current_user = current_user(assigns(socket))
     intents = intents(%{agent: "me"}, socket)
 
     {:noreply,
@@ -125,7 +125,7 @@ defmodule Bonfire.Upcycle.Web.HomeLive do
         _url,
         socket
       ) do
-    current_user = current_user(socket.assigns)
+    current_user = current_user(assigns(socket))
     my_agent = my_agent(socket)
 
     {:noreply,

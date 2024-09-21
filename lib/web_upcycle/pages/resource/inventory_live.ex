@@ -11,7 +11,7 @@ defmodule Bonfire.Upcycle.Web.InventoryLive do
   on_mount {LivePlugs, [Bonfire.UI.Me.LivePlugs.LoadCurrentUser]}
 
   def mount(params, session, socket) do
-    current_user = current_user(socket.assigns)
+    current_user = current_user(assigns(socket))
     resources = my_agent(socket).inventoried_economic_resources
 
     {:ok,
