@@ -26,7 +26,7 @@ defmodule Bonfire.Upcycle.Web.StarredLive do
     %{edges: feed, page_info: page_info} =
       Bonfire.Social.Likes.list_my(
         current_user: current_user,
-        object_type: [
+        object_types: [
           ValueFlows.Planning.Intent,
           ValueFlows.Proposal,
           ValueFlows.EconomicResource,
